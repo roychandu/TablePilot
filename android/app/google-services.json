@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "779948000253",
+    "firebase_url": "https://curborder6758163433-default-rtdb.firebaseio.com",
+    "project_id": "curborder6758163433",
+    "storage_bucket": "curborder6758163433.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779948000253:android:26df4553da40e35dcbcf94",
+        "android_client_info": {
+          "package_name": "com.zapp.testbuild"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDE902UvnHWMFjD_9OU_ULk1btoP2MlVU0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

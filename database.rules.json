@@ -1,0 +1,91 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "users": {
+      ".read": "auth != null",
+      ".write": "auth != null",
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid",
+        "profile": {
+          ".read": "$uid === auth.uid",
+          ".write": "$uid === auth.uid"
+        },
+        "orders": {
+          ".read": "auth != null",
+          ".write": "$uid === auth.uid",
+          "$orderId": {
+            ".read": "auth != null",
+            ".write": "$uid === auth.uid",
+            "bills": {
+              ".read": "$uid === auth.uid",
+              ".write": "$uid === auth.uid",
+              "$billId": {
+                ".read": "$uid === auth.uid",
+                ".write": "$uid === auth.uid"
+              }
+            },
+            "feedback": {
+              ".read": "$uid === auth.uid",
+              ".write": "$uid === auth.uid",
+              "$feedbackId": {
+                ".read": "$uid === auth.uid",
+                ".write": "$uid === auth.uid"
+              }
+            }
+          }
+        },
+        "reports": {
+          ".read": "$uid === auth.uid",
+          ".write": "$uid === auth.uid",
+          "$reportId": {
+            ".read": "$uid === auth.uid",
+            ".write": "$uid === auth.uid"
+          }
+        },
+        "staff": {
+          ".read": "$uid === auth.uid",
+          ".write": "$uid === auth.uid",
+          "$staffId": {
+            ".read": "$uid === auth.uid",
+            ".write": "$uid === auth.uid"
+          }
+        },
+        "events": {
+          ".read": "auth != null",
+          ".write": "$uid === auth.uid",
+          "$eventId": {
+            ".read": "auth != null",
+            ".write": "$uid === auth.uid"
+          }
+        },
+        "reservations": {
+          ".read": "auth != null",
+          ".write": "$uid === auth.uid",
+          "$reservationId": {
+            ".read": "auth != null",
+            ".write": "$uid === auth.uid"
+          }
+        },
+        "offers": {
+          ".read": "$uid === auth.uid",
+          ".write": "$uid === auth.uid",
+          "$offerId": {
+            ".read": "$uid === auth.uid",
+            ".write": "$uid === auth.uid"
+          }
+        },
+        "menu": {
+          ".read": "$uid === auth.uid",
+          ".write": "$uid === auth.uid"
+        },
+        "cart": {
+          ".read": "$uid === auth.uid",
+          ".write": "$uid === auth.uid"
+        }
+      }
+    }
+  }
+}
+
