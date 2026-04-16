@@ -111,7 +111,7 @@ icons_launcher:
   image_path: "assets/icon.jpg"
   platforms:
     android:
-      enable: false
+      enable: true
     ios:
       enable: true
 # The following section is specific to Flutter packages.
