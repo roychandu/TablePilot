@@ -1,4 +1,4 @@
-package cafe.orderpad
+package com.zapp.testbuild
 
 import android.os.Build
 import android.view.View
@@ -6,16 +6,16 @@ import android.view.WindowInsetsController
 import io.flutter.embedding.android.FlutterActivity
 
 class MainActivity : FlutterActivity() {
-    override fun onPostResume() {
-        super.onPostResume()
-        enableFullscreen()
-    }
-    
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
         if (hasFocus) {
             enableFullscreen()
         }
+    }
+
+    override fun onPostResume() {
+        super.onPostResume()
+        enableFullscreen()
     }
     
     private fun enableFullscreen() {
