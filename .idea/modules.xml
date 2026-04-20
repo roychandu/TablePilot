@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/cafe_management_p261.iml" filepath="$PROJECT_DIR$/cafe_management_p261.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android/cafe_management_p261_android.iml" filepath="$PROJECT_DIR$/android/cafe_management_p261_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/table_pilot.iml" filepath="$PROJECT_DIR$/table_pilot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/table_pilot_android.iml" filepath="$PROJECT_DIR$/android/table_pilot_android.iml" />
     </modules>
   </component>
 </project>
