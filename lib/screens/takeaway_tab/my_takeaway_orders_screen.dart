@@ -239,7 +239,7 @@ class _MyTakeawayOrdersScreenState extends State<MyTakeawayOrdersScreen> {
       badgeContent: Text(
         statusText,
         style: const TextStyle(
-          color: Colors.white,
+          color: AppColors.white,
           fontSize: 10,
           fontWeight: FontWeight.bold,
         ),
@@ -257,7 +257,7 @@ class _MyTakeawayOrdersScreenState extends State<MyTakeawayOrdersScreen> {
           border: Border.all(color: AppColors.border.withOpacity(0.2)),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: AppColors.black.withOpacity(0.05),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),

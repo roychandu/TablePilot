@@ -1,4 +1,4 @@
-﻿// ignore_for_file: deprecated_member_use, empty_catches, use_build_context_synchronously
+// ignore_for_file: deprecated_member_use, empty_catches, use_build_context_synchronously
 
 import 'package:table_pilot/screens/profile_screen/restaurant_menu_screen.dart';
 import 'package:flutter/material.dart';
@@ -167,7 +167,7 @@ class HomeScreenState extends State<HomeScreen> {
         color: AppColors.cardBackground,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2),
+            color: AppColors.black.withOpacity(0.2),
             blurRadius: 10,
             offset: const Offset(0, -2),
           ),
@@ -191,7 +191,7 @@ class HomeScreenState extends State<HomeScreen> {
                   vertical: isSelected ? 8 : 12,
                   horizontal: 4,
                 ),
-                decoration: const BoxDecoration(color: Colors.transparent),
+                decoration: const BoxDecoration(color: AppColors.transparent),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -240,7 +240,7 @@ class HomeScreenState extends State<HomeScreen> {
                                   // Stronger 3D Text Effect
                                   Shadow(
                                     offset: const Offset(1, 1),
-                                    color: Colors.black.withOpacity(0.3),
+                                    color: AppColors.black.withOpacity(0.3),
                                     blurRadius: 1,
                                   ),
                                   Shadow(

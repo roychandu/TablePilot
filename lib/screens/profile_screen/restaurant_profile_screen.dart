@@ -96,7 +96,7 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Colors.black.withOpacity(0.05),
+                  AppColors.black.withOpacity(0.05),
                   AppColors.mainBackground.withOpacity(0.85),
                   AppColors.mainBackground,
                 ],
@@ -121,10 +121,10 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
                             width: 54,
                             height: 54,
                             decoration: BoxDecoration(
-                              color: const Color(0xFFFFE27A),
+                              color: AppColors.warning,
                               borderRadius: BorderRadius.circular(8),
                               border: Border.all(
-                                color: Colors.white.withOpacity(0.25),
+                                color: AppColors.white.withOpacity(0.25),
                                 width: 2,
                               ),
                             ),
@@ -319,10 +319,10 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
                       width: 56,
                       height: 56,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFFFE27A),
+                        color: AppColors.warning,
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: Colors.black.withOpacity(0.05),
+                          color: AppColors.black.withOpacity(0.05),
                         ),
                       ),
                       child: Center(
@@ -359,7 +359,7 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
                                   Icon(
                                     Icons.star,
                                     size: 16,
-                                    color: Color(0xFFFFC107),
+                                    color: AppColors.warning,
                                   ),
                                   SizedBox(width: 4),
                                   Text(
@@ -408,7 +408,7 @@ class _BackButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.35),
+          color: AppColors.black.withOpacity(0.35),
           shape: BoxShape.circle,
         ),
         child: const Icon(

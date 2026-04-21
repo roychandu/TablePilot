@@ -336,14 +336,14 @@ class _EditStaffScreenState extends State<EditStaffScreen> {
                                 child: CircularProgressIndicator(
                                   strokeWidth: 2,
                                   valueColor: AlwaysStoppedAnimation<Color>(
-                                    Colors.white,
+                                    AppColors.white,
                                   ),
                                 ),
                               )
                             : Text(
                                 'Save Changes',
                                 style: AppTextStyles.bodyMedium.copyWith(
-                                  color: Colors.white,
+                                  color: AppColors.white,
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),

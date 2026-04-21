@@ -1,6 +1,7 @@
-﻿// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:table_pilot/common_widgets/app_colors.dart';
 import 'package:table_pilot/main.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -34,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return const Scaffold(
       body: Center(
         child: CircularProgressIndicator.adaptive(
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.white,
         ),
       ),
     );

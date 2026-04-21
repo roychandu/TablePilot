@@ -453,7 +453,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                           color: AppColors.background,
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.05),
+                              color: AppColors.black.withOpacity(0.05),
                               blurRadius: 10,
                               offset: const Offset(0, -2),
                             ),
@@ -512,7 +512,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2),
+            color: AppColors.black.withOpacity(0.2),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -1276,7 +1276,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
               Text(
                 'AED ${discountedPrice.toStringAsFixed(0)}',
                 style: AppTextStyles.bodyMedium.copyWith(
-                  color: const Color(0xFFFFC107),
+                  color: AppColors.warning,
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -1313,7 +1313,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
     return Text(
       'AED ${item.priceAed.toStringAsFixed(0)}',
       style: AppTextStyles.bodyMedium.copyWith(
-        color: const Color(0xFFFFC107),
+        color: AppColors.warning,
         fontWeight: FontWeight.w700,
       ),
     );
@@ -1407,7 +1407,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                   Text(
                     'AED ${item.totalPrice.toStringAsFixed(0)}',
                     style: AppTextStyles.bodySmall.copyWith(
-                      color: const Color(0xFFFFC107),
+                      color: AppColors.warning,
                     ),
                   ),
                 ],

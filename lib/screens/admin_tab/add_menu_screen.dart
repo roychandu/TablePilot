@@ -122,7 +122,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
     try {
       final ImageSource? source = await showModalBottomSheet<ImageSource>(
         context: context,
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.transparent,
         builder: (context) => Container(
           decoration: BoxDecoration(
             color: AppColors.cardBackground,
@@ -975,13 +975,13 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 14),
                     decoration: BoxDecoration(
                       color: _isVeg
-                          ? const Color(0xFF7DDF8C).withOpacity(0.2)
-                          : Colors.transparent,
+                          ? AppColors.success.withOpacity(0.2)
+                          : AppColors.transparent,
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
                         color: _isVeg
-                            ? const Color(0xFF7DDF8C)
-                            : Colors.transparent,
+                            ? AppColors.success
+                            : AppColors.transparent,
                         width: 1.5,
                       ),
                     ),
@@ -993,12 +993,12 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                           height: 12,
                           decoration: BoxDecoration(
                             color: _isVeg
-                                ? const Color(0xFF7DDF8C)
-                                : Colors.transparent,
+                                ? AppColors.success
+                                : AppColors.transparent,
                             shape: BoxShape.circle,
                             border: Border.all(
                               color: _isVeg
-                                  ? const Color(0xFF7DDF8C)
+                                  ? AppColors.success
                                   : AppColors.textSecondary.withOpacity(0.5),
                               width: 2,
                             ),
@@ -1007,7 +1007,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                               ? const Icon(
                                   Icons.check,
                                   size: 8,
-                                  color: Colors.white,
+                                  color: AppColors.white,
                                 )
                               : null,
                         ),
@@ -1016,7 +1016,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                           'Veg',
                           style: TextStyle(
                             color: _isVeg
-                                ? const Color(0xFF7DDF8C)
+                                ? AppColors.success
                                 : AppColors.textSecondary,
                             fontWeight: _isVeg
                                 ? FontWeight.w700
@@ -1041,13 +1041,13 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 14),
                     decoration: BoxDecoration(
                       color: !_isVeg
-                          ? const Color(0xFFFFDF74).withOpacity(0.2)
-                          : Colors.transparent,
+                          ? AppColors.warning.withOpacity(0.2)
+                          : AppColors.transparent,
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
                         color: !_isVeg
-                            ? const Color(0xFFFFDF74)
-                            : Colors.transparent,
+                            ? AppColors.warning
+                            : AppColors.transparent,
                         width: 1.5,
                       ),
                     ),
@@ -1059,12 +1059,12 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                           height: 12,
                           decoration: BoxDecoration(
                             color: !_isVeg
-                                ? const Color(0xFFFFDF74)
-                                : Colors.transparent,
+                                ? AppColors.warning
+                                : AppColors.transparent,
                             shape: BoxShape.circle,
                             border: Border.all(
                               color: !_isVeg
-                                  ? const Color(0xFFFFDF74)
+                                  ? AppColors.warning
                                   : AppColors.textSecondary.withOpacity(0.5),
                               width: 2,
                             ),
@@ -1073,7 +1073,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                               ? const Icon(
                                   Icons.check,
                                   size: 8,
-                                  color: Colors.black87,
+                                  color: AppColors.black,
                                 )
                               : null,
                         ),
@@ -1082,7 +1082,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                           'Non-Veg',
                           style: TextStyle(
                             color: !_isVeg
-                                ? const Color(0xFFFFDF74)
+                                ? AppColors.warning
                                 : AppColors.textSecondary,
                             fontWeight: !_isVeg
                                 ? FontWeight.w700

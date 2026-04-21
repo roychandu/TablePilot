@@ -599,9 +599,9 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Colors.transparent,
+                AppColors.transparent,
                 AppColors.border.withOpacity(0.3),
-                Colors.transparent,
+                AppColors.transparent,
               ],
             ),
           ),
@@ -822,7 +822,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
         border: Border.all(color: AppColors.border.withOpacity(0.2), width: 1),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.15),
+            color: AppColors.black.withOpacity(0.15),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -883,7 +883,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
                         borderRadius: BorderRadius.circular(12),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
+                            color: AppColors.black.withOpacity(0.2),
                             blurRadius: 4,
                             offset: const Offset(0, 2),
                           ),
@@ -1071,7 +1071,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.25),
+                color: AppColors.black.withOpacity(0.25),
                 blurRadius: 6,
                 offset: const Offset(0, 2),
               ),
@@ -1088,7 +1088,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.25),
+              color: AppColors.black.withOpacity(0.25),
               blurRadius: 6,
               offset: const Offset(0, 2),
             ),

@@ -630,14 +630,14 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
                                 child: CircularProgressIndicator(
                                   strokeWidth: 2,
                                   valueColor: AlwaysStoppedAnimation<Color>(
-                                    Colors.white,
+                                    AppColors.white,
                                   ),
                                 ),
                               )
                             : Text(
                                 'Add Staff',
                                 style: AppTextStyles.bodyMedium.copyWith(
-                                  color: Colors.white,
+                                  color: AppColors.white,
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),

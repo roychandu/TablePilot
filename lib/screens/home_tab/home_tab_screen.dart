@@ -1250,7 +1250,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       gradient: LinearGradient(
-                        colors: [Color(0xFFF1D06B), Color(0xFFC49B3E)],
+                        colors: [AppColors.warning, AppColors.warning],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                       ),
@@ -1561,7 +1561,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                       mainText: 'Order online',
                       bottomText: 'Order will be fastracked',
                       gradientColors: const [
-                        Color(0xFF2D3051), // Dark blue-grey
+                        AppColors.cardBackground, // Dark blue-grey
                         Color(0xFFFF6B4A), // Vibrant orange-red
                       ],
                       backgroundImage: 'assets/order-take.png',
@@ -1582,8 +1582,8 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                       mainText: 'Reserve Table',
                       bottomText: 'Order will be fastracked',
                       gradientColors: const [
-                        Color(0xFF2D3051), // Dark blue-grey
-                        Color(0xFF43CE6E), // Deep green
+                        AppColors.cardBackground, // Dark blue-grey
+                        AppColors.success, // Deep green
                       ],
                       backgroundImage: 'assets/reserve-table.png',
                       onTap: () {
@@ -1625,7 +1625,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
+              color: AppColors.black.withOpacity(0.2),
               blurRadius: 8,
               offset: const Offset(0, 4),
             ),
@@ -2050,7 +2050,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
         border: Border.all(color: AppColors.border.withOpacity(0.2), width: 1),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: AppColors.black.withOpacity(0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -2106,7 +2106,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                         borderRadius: BorderRadius.circular(12),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
+                            color: AppColors.black.withOpacity(0.2),
                             blurRadius: 4,
                             offset: const Offset(0, 2),
                           ),
@@ -2301,7 +2301,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.25),
+                color: AppColors.black.withOpacity(0.25),
                 blurRadius: 6,
                 offset: const Offset(0, 2),
               ),
@@ -2317,7 +2317,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.25),
+              color: AppColors.black.withOpacity(0.25),
               blurRadius: 6,
               offset: const Offset(0, 2),
             ),
@@ -2530,12 +2530,12 @@ class _HomeTabScreenState extends State<HomeTabScreen>
     return Container(
       height: cardHeight,
       decoration: BoxDecoration(
-        color: const Color(0xFF161821),
+        color: AppColors.background,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.white.withOpacity(0.05), width: 1),
+        border: Border.all(color: AppColors.white.withOpacity(0.05), width: 1),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2),
+            color: AppColors.black.withOpacity(0.2),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -2767,8 +2767,8 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.black.withOpacity(0.2),
-                    Colors.black.withOpacity(0.1),
+                    AppColors.black.withOpacity(0.2),
+                    AppColors.black.withOpacity(0.1),
                   ],
                 ),
               ),
@@ -2787,7 +2787,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
+                      color: AppColors.black.withOpacity(0.2),
                       blurRadius: 4,
                       offset: const Offset(0, 2),
                     ),
@@ -3223,7 +3223,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                           title: 'Open Online Orders',
                           count: takeawayOrdersCount,
                           gradientColors: const [
-                            Color(0xFF2D3051), // Dark blue-grey
+                            AppColors.cardBackground, // Dark blue-grey
                             Color(0xFFFF6B4A), // Vibrant orange-red
                           ],
                           backgroundImage: 'assets/order-take.png',
@@ -3246,8 +3246,8 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                           title: 'Online Reservation Request',
                           count: reservationRequestsCount,
                           gradientColors: const [
-                            Color(0xFF2D3051), // Dark blue-grey
-                            Color(0xFF43CE6E), // Deep green
+                            AppColors.cardBackground, // Dark blue-grey
+                            AppColors.success, // Deep green
                           ],
                           backgroundImage: 'assets/reserve-table.png',
                           onTap: () async {
@@ -3294,7 +3294,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
+              color: AppColors.black.withOpacity(0.2),
               blurRadius: 8,
               offset: const Offset(0, 4),
             ),
@@ -3421,7 +3421,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 16),
         decoration: BoxDecoration(
-          color: const Color(0xFF2D3051), // Dark purplish-grey
+          color: AppColors.cardBackground, // Dark purplish-grey
           borderRadius: BorderRadius.circular(12),
         ),
         child: Center(

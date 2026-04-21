@@ -35,7 +35,7 @@ class CustomCard extends StatelessWidget {
         borderRadius: radius, // 16px
         border: showBorder
             ? Border.all(color: AppColors.border, width: 1) // Slate 700 (#334155)
-            : Border.all(color: Colors.transparent, width: 0),
+            : Border.all(color: AppColors.transparent, width: 0),
         boxShadow: AppDesignSystem.cardShadow, // 0 4px 6px rgba(0, 0, 0, 0.1)
       ),
       child: child,

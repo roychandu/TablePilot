@@ -218,7 +218,7 @@ class _StaffProfileScreenState extends State<StaffProfileScreen> {
           const SizedBox(height: 4),
           Row(
             children: [
-              const Icon(Icons.email_outlined, color: Colors.white70, size: 18),
+              Icon(Icons.email_outlined, color: AppColors.white.withOpacity(0.7), size: 18),
               const SizedBox(width: 8),
               Text(
                 _staff.email,
@@ -233,7 +233,7 @@ class _StaffProfileScreenState extends State<StaffProfileScreen> {
           const SizedBox(height: 4),
           Row(
             children: [
-              const Icon(Icons.phone_outlined, color: Colors.white70, size: 18),
+              Icon(Icons.phone_outlined, color: AppColors.white.withOpacity(0.7), size: 18),
               const SizedBox(width: 8),
               Text(
                 _staff.phone,

@@ -417,17 +417,17 @@ class _FloorScreenState extends State<FloorScreen> {
             child: Container(
               padding: const EdgeInsets.fromLTRB(12, 12, 12, 16),
               decoration: BoxDecoration(
-                color: const Color(0xFF2D3051),
+                color: AppColors.cardBackground,
                 borderRadius: BorderRadius.only(
                   topLeft: isFirst ? const Radius.circular(16) : Radius.zero,
                   bottomLeft: isFirst ? const Radius.circular(16) : Radius.zero,
                   topRight: isLast ? const Radius.circular(16) : Radius.zero,
                   bottomRight: isLast ? const Radius.circular(16) : Radius.zero,
                 ),
-                border: Border.all(color: Colors.white.withOpacity(0.04)),
+                border: Border.all(color: AppColors.white.withOpacity(0.04)),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.35),
+                    color: AppColors.black.withOpacity(0.35),
                     blurRadius: 16,
                     offset: const Offset(0, 8),
                   ),
@@ -442,7 +442,7 @@ class _FloorScreenState extends State<FloorScreen> {
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
-                        color: const Color(0xFF111321),
+                        color: AppColors.background,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(cardWidth),
                           topRight: Radius.circular(cardWidth),
@@ -450,7 +450,7 @@ class _FloorScreenState extends State<FloorScreen> {
                           bottomRight: const Radius.circular(18),
                         ),
                         border: Border.all(
-                          color: Colors.white.withOpacity(0.05),
+                          color: AppColors.white.withOpacity(0.05),
                         ),
                       ),
                       child: Stack(
@@ -465,19 +465,19 @@ class _FloorScreenState extends State<FloorScreen> {
                                   shape: BoxShape.circle,
                                   gradient: const LinearGradient(
                                     colors: [
-                                      Color(0xFF7D8EE3),
-                                      Color(0xFF3D4786),
+                                      AppColors.primaryLight,
+                                      AppColors.primaryGradientEnd,
                                     ],
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
                                   ),
                                   border: Border.all(
-                                    color: Colors.white.withOpacity(0.18),
+                                    color: AppColors.white.withOpacity(0.18),
                                     width: 2,
                                   ),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.black.withOpacity(0.25),
+                                      color: AppColors.black.withOpacity(0.25),
                                       blurRadius: 10,
                                       offset: const Offset(0, 6),
                                     ),
@@ -487,7 +487,7 @@ class _FloorScreenState extends State<FloorScreen> {
                                   child: Text(
                                     tableLabel,
                                     style: AppTextStyles.bodyMedium.copyWith(
-                                      color: Colors.white,
+                                      color: AppColors.white,
                                       fontWeight: FontWeight.w700,
                                     ),
                                   ),
@@ -500,7 +500,7 @@ class _FloorScreenState extends State<FloorScreen> {
                                   Text(
                                     'Seats: ${table.seats}',
                                     style: AppTextStyles.bodySmall.copyWith(
-                                      color: Colors.white.withOpacity(0.8),
+                                      color: AppColors.white.withOpacity(0.8),
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
@@ -525,7 +525,7 @@ class _FloorScreenState extends State<FloorScreen> {
               right: -3,
               top: 0,
               bottom: 0,
-              child: _DashedDivider(color: Colors.white),
+              child: _DashedDivider(color: AppColors.white),
             ),
         ],
       ),
@@ -575,7 +575,7 @@ class _FloorScreenState extends State<FloorScreen> {
       case _FloorTableStatus.cleaning:
         return AppColors.highlight; // red
       case _FloorTableStatus.served:
-        return const Color(0xFFCF3E81); // magenta similar to design
+        return AppColors.accent1; // magenta similar to design
     }
   }
 
@@ -613,7 +613,7 @@ class _FloorScreenState extends State<FloorScreen> {
                     label: Text(
                       statusLabel,
                       style: AppTextStyles.bodySmall.copyWith(
-                        color: Colors.white,
+                        color: AppColors.white,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -647,7 +647,7 @@ class _FloorScreenState extends State<FloorScreen> {
                       child: Text(
                         'Assign Staff',
                         style: AppTextStyles.bodyMedium.copyWith(
-                          color: Colors.white,
+                          color: AppColors.white,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -852,7 +852,7 @@ class _FloorScreenState extends State<FloorScreen> {
                   child: Text(
                     'Add New Staff',
                     style: AppTextStyles.bodyMedium.copyWith(
-                      color: Colors.white,
+                      color: AppColors.white,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -1058,7 +1058,7 @@ class _StatusBadge extends StatelessWidget {
       child: Text(
         text,
         style: AppTextStyles.bodySmall.copyWith(
-          color: Colors.white,
+          color: AppColors.white,
           fontWeight: FontWeight.w600,
         ),
       ),

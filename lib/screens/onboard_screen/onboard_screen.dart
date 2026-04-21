@@ -1,9 +1,9 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:table_pilot/common_widgets/app_colors.dart';
 import 'package:table_pilot/services/app_flow_service.dart';
 
-const Color _onboardPurple = Color(0xFF9B51E0);
+const Color _onboardPurple = AppColors.occupied;
 
 class OnboardScreen extends StatefulWidget {
   const OnboardScreen({super.key});
@@ -85,7 +85,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
+        statusBarColor: AppColors.transparent,
         statusBarIconBrightness: Brightness.light,
         statusBarBrightness: Brightness.dark,
       ),
@@ -124,12 +124,12 @@ class _OnboardScreenState extends State<OnboardScreen> {
                             alignment: Alignment.center,
                             errorBuilder: (context, error, stackTrace) {
                               return Container(
-                                color: AppColors.mainBackground,
+                                color: AppColors.background,
                                 child: const Center(
                                   child: Icon(
                                     Icons.image_not_supported,
                                     size: 64,
-                                    color: Colors.grey,
+                                    color: AppColors.textTertiary,
                                   ),
                                 ),
                               );
@@ -150,8 +150,8 @@ class _OnboardScreenState extends State<OnboardScreen> {
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                           colors: [
-                            Colors.transparent,
-                            Colors.black.withOpacity(0.8),
+                            AppColors.transparent,
+                            AppColors.black.withOpacity(0.8),
                           ],
                         ),
                       ),
@@ -166,7 +166,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                               _onboardPages[_currentPage].title,
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: Colors.white,
+                                color: AppColors.white,
                                 fontSize: isSmallScreen ? 24 : 28,
                                 fontWeight: FontWeight.w800,
                               ),
@@ -180,7 +180,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                               _onboardPages[_currentPage].description,
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: Colors.white.withOpacity(0.9),
+                                color: AppColors.white.withOpacity(0.9),
                                 fontSize: isSmallScreen ? 13 : 15,
                                 height: 1.5,
                               ),
@@ -216,16 +216,14 @@ class _OnboardScreenState extends State<OnboardScreen> {
                                           child: OutlinedButton(
                                             style: OutlinedButton.styleFrom(
                                               side: BorderSide(
-                                                color: Colors.white.withOpacity(
-                                                  0.5,
-                                                ),
+                                                color: AppColors.white.withOpacity(0.5),
                                                 width: 2,
                                               ),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(28),
                                               ),
-                                              foregroundColor: Colors.white,
+                                              foregroundColor: AppColors.white,
                                             ),
                                             onPressed: _previousPage,
                                             child: Text(
@@ -253,7 +251,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                                                 borderRadius:
                                                     BorderRadius.circular(28),
                                               ),
-                                              foregroundColor: Colors.white,
+                                              foregroundColor: AppColors.white,
                                               elevation: 4,
                                             ),
                                             onPressed: _nextPage,
@@ -285,7 +283,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                                             28,
                                           ),
                                         ),
-                                        foregroundColor: Colors.white,
+                                        foregroundColor: AppColors.white,
                                         elevation: 4,
                                       ),
                                       onPressed: _nextPage,
@@ -308,7 +306,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                             child: Text(
                               'Skip',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: AppColors.white,
                                 fontWeight: FontWeight.w600,
                                 fontSize: isSmallScreen ? 14 : 16,
                               ),
@@ -336,7 +334,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
       width: isActive ? 40 : 20,
       height: 8,
       decoration: BoxDecoration(
-        color: isActive ? _onboardPurple : Colors.white.withOpacity(0.3),
+              color: isActive ? _onboardPurple : AppColors.white.withOpacity(0.3),
         borderRadius: BorderRadius.circular(4),
       ),
     );

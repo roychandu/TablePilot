@@ -909,7 +909,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
           showModalBottomSheet(
             context: context,
             isScrollControlled: true,
-            backgroundColor: Colors.transparent,
+            backgroundColor: AppColors.transparent,
             builder: (context) =>
                 AddTableBookingScreen(tableNumber: tableNumber),
           );
@@ -1058,7 +1058,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
     await showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.transparent,
       builder: (context) => _TableDetailsBottomSheet(
         tableNumber: tableNumber,
         seatCount: seatCount,
@@ -1826,7 +1826,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                                       showModalBottomSheet(
                                         context: context,
                                         isScrollControlled: true,
-                                        backgroundColor: Colors.transparent,
+                                        backgroundColor: AppColors.transparent,
                                         builder: (context) =>
                                             AddTableBookingScreen(
                                               tableNumber: widget.tableNumber,

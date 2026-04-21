@@ -114,17 +114,17 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
   Color _getEventTypeColor(ReservationType type) {
     switch (type) {
       case ReservationType.corporateEvent:
-        return const Color(0xFF3498DB);
+        return AppColors.info;
       case ReservationType.wedding:
-        return const Color(0xFFE91E63);
+        return AppColors.accent1;
       case ReservationType.birthdayParty:
-        return const Color(0xFFFFC107);
+        return AppColors.warning;
       case ReservationType.anniversary:
-        return Colors.red;
+        return AppColors.error;
       case ReservationType.conference:
-        return const Color(0xFF9C27B0);
+        return AppColors.occupied;
       case ReservationType.galaDinner:
-        return const Color(0xFFFF9800);
+        return AppColors.warning;
       case ReservationType.other:
         return AppColors.textSecondary;
     }
@@ -514,7 +514,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
                   _buildActionButton(
                     icon: Icons.edit_outlined,
                     label: 'Edit Reservation',
-                    color: const Color(0xFF3498DB),
+                    color: AppColors.info,
                     onTap: () async {
                       final updated = await Navigator.push<bool>(
                         context,
@@ -568,7 +568,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
               _buildActionButton(
                 icon: Icons.shopping_cart_outlined,
                 label: 'Add Orders',
-                color: const Color(0xFFFF9800),
+                color: AppColors.warning,
                 onTap: () async {
                   final created = await Navigator.push<bool>(
                     context,
@@ -738,11 +738,11 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
       width: double.infinity,
       child: ElevatedButton.icon(
         onPressed: onTap,
-        icon: Icon(icon, color: Colors.white),
+        icon: Icon(icon, color: AppColors.white),
         label: Text(
           label,
           style: AppTextStyles.bodyMedium.copyWith(
-            color: Colors.white,
+            color: AppColors.white,
             fontWeight: FontWeight.w600,
           ),
         ),

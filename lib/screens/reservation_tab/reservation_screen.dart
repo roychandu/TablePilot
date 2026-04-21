@@ -581,18 +581,18 @@ class _ReservationScreenState extends State<ReservationScreen>
     IconData statusIcon;
 
     if (isPending) {
-      statusColor = const Color(0xFFFF9800);
-      statusBgColor = const Color(0xFF42372E);
+      statusColor = AppColors.warning;
+      statusBgColor = AppColors.surface;
       statusText = 'Pending';
       statusIcon = Icons.pending_outlined;
     } else if (isConfirmed) {
-      statusColor = const Color(0xFF4CAF50);
-      statusBgColor = const Color(0xFF1E3A33);
+      statusColor = AppColors.success;
+      statusBgColor = AppColors.surface;
       statusText = 'Accepted';
       statusIcon = Icons.check_circle_outline;
     } else if (isRejected) {
-      statusColor = const Color(0xFFF44336);
-      statusBgColor = const Color(0xFF3F2B30);
+      statusColor = AppColors.error;
+      statusBgColor = AppColors.surface;
       statusText = 'Rejected';
       statusIcon = Icons.close;
     } else {
@@ -655,7 +655,7 @@ class _ReservationScreenState extends State<ReservationScreen>
                           ? 'T${reservation.tableNumber!.toString().padLeft(2, '0')}'
                           : 'NA',
                       style: AppTextStyles.bodyLarge.copyWith(
-                        color: Colors.white,
+                        color: AppColors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),
@@ -721,12 +721,12 @@ class _ReservationScreenState extends State<ReservationScreen>
                     icon: const Icon(
                       CupertinoIcons.delete,
                       size: 16,
-                      color: Colors.white60,
+                      color: AppColors.textSecondary,
                     ),
                     label: Text(
                       'Delete',
                       style: AppTextStyles.bodySmall.copyWith(
-                        color: Colors.white60,
+                        color: AppColors.textSecondary,
                       ),
                     ),
                     style: TextButton.styleFrom(
@@ -750,13 +750,13 @@ class _ReservationScreenState extends State<ReservationScreen>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Icon(icon, color: Colors.white.withOpacity(0.9), size: 14),
+          Icon(icon, color: AppColors.white.withOpacity(0.9), size: 14),
           const SizedBox(width: 8),
           Expanded(
             child: Text(
               label,
               style: AppTextStyles.bodySmall.copyWith(
-                color: Colors.white.withOpacity(0.9),
+                color: AppColors.white.withOpacity(0.9),
                 fontWeight: FontWeight.w500,
                 fontSize: 11,
               ),

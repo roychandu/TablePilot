@@ -551,14 +551,14 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                         child: CircularProgressIndicator(
                           strokeWidth: 2,
                           valueColor: AlwaysStoppedAnimation<Color>(
-                            Colors.white,
+                            AppColors.white,
                           ),
                         ),
                       )
                     : Text(
                         'Update Menu Items',
                         style: AppTextStyles.bodyMedium.copyWith(
-                          color: Colors.white,
+                          color: AppColors.white,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
@@ -684,7 +684,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                               Text(
                                 'AED ${discountedPrice.toStringAsFixed(0)}',
                                 style: AppTextStyles.bodyMedium.copyWith(
-                                  color: const Color(0xFFFFC107),
+                                  color: AppColors.warning,
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
@@ -721,7 +721,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                             child: Text(
                               offerText,
                               style: AppTextStyles.bodySmall.copyWith(
-                                color: Colors.black,
+                                color: AppColors.black,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 10,
                               ),
@@ -817,7 +817,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.primary,
-                              foregroundColor: Colors.white,
+                              foregroundColor: AppColors.white,
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 16,
                                 vertical: 8,
@@ -898,7 +898,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                   Text(
                     'AED ${item.totalPrice.toStringAsFixed(0)}',
                     style: AppTextStyles.bodySmall.copyWith(
-                      color: const Color(0xFFFFC107),
+                      color: AppColors.warning,
                     ),
                   ),
                 ],

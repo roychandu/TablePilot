@@ -439,7 +439,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                   Text(
                     'AED ${item.totalPrice.toStringAsFixed(0)}',
                     style: AppTextStyles.bodyMedium.copyWith(
-                      color: const Color(0xFFFFC107),
+                      color: AppColors.warning,
                       fontWeight: FontWeight.w600,
                     ),
                   ),

@@ -49,7 +49,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
                         child: Text(
                           'Upgrade Now',
                           style: AppTextStyles.h3.copyWith(
-                            color: const Color(0xFFF2C44C),
+                            color: AppColors.warning,
                             fontWeight: FontWeight.w800,
                             fontSize: 26,
                           ),
@@ -102,7 +102,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
                       Text(
                         '\$0.99',
                         style: AppTextStyles.h2.copyWith(
-                          color: const Color(0xFFF2C44C),
+                          color: AppColors.warning,
                           fontSize: 36,
                           fontWeight: FontWeight.w800,
                         ),
@@ -356,7 +356,7 @@ class _BackButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.3),
+          color: AppColors.black.withOpacity(0.3),
           shape: BoxShape.circle,
         ),
         child: const Icon(
