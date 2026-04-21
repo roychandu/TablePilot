@@ -79,6 +79,6 @@
 	<true/>
 	
 	<key>GMSApiKey</key>
-	<string>AIzaSyDPpsFnO7iTRgVNrvk1h1T_r7TC26Ky-c4</string>
+	<string>$(GOOGLE_MAPS_API_KEY)</string>
 </dict>
 </plist>

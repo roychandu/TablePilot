@@ -1,4 +1,4 @@
-﻿// ignore_for_file: empty_catches, deprecated_member_use
+// ignore_for_file: empty_catches, deprecated_member_use
 
 import 'package:table_pilot/common_widgets/app_colors.dart';
 import 'package:table_pilot/provider/purchase_provider.dart';
@@ -15,6 +15,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' as riverpod;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 setPortait() {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
@@ -30,6 +31,9 @@ void ensureFullScreen() {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
+  // Load environment variables
+  await dotenv.load(fileName: ".env");
 
   try {
     await Firebase.initializeApp();
