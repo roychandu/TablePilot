@@ -2,6 +2,7 @@
 
 import 'package:table_pilot/common_widgets/app_colors.dart';
 import 'package:table_pilot/provider/purchase_provider.dart';
+import 'package:table_pilot/provider/theme_provider.dart';
 import 'package:table_pilot/screens/auth_screen/login_screen.dart';
 import 'package:table_pilot/screens/home_screen/home_screen.dart';
 import 'package:table_pilot/screens/onboard_screen/onboard_screen.dart';
@@ -45,13 +46,13 @@ void main() async {
   } catch (e) {}
 
   setPortait();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 final GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -62,20 +63,55 @@ class MyApp extends StatelessWidget {
             lazy: false,
             create: (_) => InAppPurchaseProvider(),
           ),
-        ],
-        child: GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Cafe Management P261',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
-            useMaterial3: true,
+          ChangeNotifierProvider(
+            create: (_) => ThemeProvider(),
           ),
-          navigatorKey: appNavigatorKey,
-          home: const AppFlowWrapper(),
-          routes: {
-            '/intro': (context) => const OnboardScreen(),
-            '/login': (context) => const LoginScreen(),
-            '/home': (context) => const HomeScreen(),
+        ],
+        child: Builder(
+          builder: (context) {
+            final themeProvider = Provider.of<ThemeProvider>(context);
+            
+            // Update the static palette reference before building the app
+            AppColors.updatePalette(
+              themeProvider.themeMode == ThemeMode.dark 
+                  ? DarkPalette() 
+                  : themeProvider.themeMode == ThemeMode.light 
+                      ? LightPalette() 
+                      : (MediaQuery.platformBrightnessOf(context) == Brightness.dark ? DarkPalette() : LightPalette())
+            );
+
+            return GetMaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Cafe Management P261',
+              theme: ThemeData(
+                brightness: Brightness.light,
+                colorScheme: ColorScheme.fromSeed(
+                  seedColor: Color(0xFF6FD373),
+                  brightness: Brightness.light,
+                  surface: LightPalette().background,
+                ),
+                scaffoldBackgroundColor: LightPalette().background,
+                useMaterial3: true,
+              ),
+              darkTheme: ThemeData(
+                brightness: Brightness.dark,
+                colorScheme: ColorScheme.fromSeed(
+                  seedColor: Color(0xFF6FD373),
+                  brightness: Brightness.dark,
+                  surface: DarkPalette().background,
+                ),
+                scaffoldBackgroundColor: DarkPalette().background,
+                useMaterial3: true,
+              ),
+              themeMode: themeProvider.themeMode,
+              navigatorKey: appNavigatorKey,
+              home: AppFlowWrapper(),
+              routes: {
+                '/intro': (context) => OnboardScreen(),
+                '/login': (context) => LoginScreen(),
+                '/home': (context) => HomeScreen(),
+              },
+            );
           },
         ),
       ),
@@ -84,7 +120,7 @@ class MyApp extends StatelessWidget {
 }
 
 class AppFlowWrapper extends StatefulWidget {
-  const AppFlowWrapper({super.key});
+  AppFlowWrapper({super.key});
 
   @override
   State<AppFlowWrapper> createState() => _AppFlowWrapperState();
@@ -100,7 +136,7 @@ class _AppFlowWrapperState extends State<AppFlowWrapper> {
       stream: _authService.authStateChanges,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Scaffold(
+          return Scaffold(
             body: Center(child: CircularProgressIndicator()),
           );
         }
@@ -109,22 +145,22 @@ class _AppFlowWrapperState extends State<AppFlowWrapper> {
         if (snapshot.hasData && snapshot.data != null) {
           // User is logged in - always go to home screen
           // Business setup will be checked when user tries to create an invoice
-          return const HomeScreen();
+          return HomeScreen();
         } else {
           // User is not logged in - check if they've seen intro
           return FutureBuilder<bool>(
             future: _appFlowService.hasSeenIntro(),
             builder: (context, introSnapshot) {
               if (introSnapshot.connectionState == ConnectionState.waiting) {
-                return const Scaffold(
+                return Scaffold(
                   body: Center(child: CircularProgressIndicator()),
                 );
               }
 
               if (introSnapshot.data == true) {
-                return const LoginScreen();
+                return LoginScreen();
               } else {
-                return const OnboardScreen();
+                return OnboardScreen();
               }
             },
           );

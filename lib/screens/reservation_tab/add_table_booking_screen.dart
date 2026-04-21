@@ -22,7 +22,7 @@ import '../staff_tab/add_staff_screen.dart';
 class AddTableBookingScreen extends StatefulWidget {
   final int? tableNumber;
 
-  const AddTableBookingScreen({super.key, this.tableNumber});
+  AddTableBookingScreen({super.key, this.tableNumber});
 
   @override
   State<AddTableBookingScreen> createState() => _AddTableBookingScreenState();
@@ -263,7 +263,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
     });
 
     _messageTimer?.cancel();
-    _messageTimer = Timer(const Duration(seconds: 3), () {
+    _messageTimer = Timer(Duration(seconds: 3), () {
       if (mounted) {
         setState(() {
           _messageText = null;
@@ -327,7 +327,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
 
       if (bookingId != null && mounted) {
         _showMessage('Table booking created successfully', AppColors.success);
-        Future.delayed(const Duration(seconds: 1), () {
+        Future.delayed(Duration(seconds: 1), () {
           if (mounted) {
             Navigator.pop(context, true);
           }
@@ -361,7 +361,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
       height: screenHeight * 0.9,
       decoration: BoxDecoration(
         color: AppColors.background,
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
@@ -372,7 +372,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
             children: [
               // Drag handle
               Container(
-                margin: const EdgeInsets.only(top: 12, bottom: 8),
+                margin: EdgeInsets.only(top: 12, bottom: 8),
                 width: 40,
                 height: 4,
                 decoration: BoxDecoration(
@@ -407,7 +407,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                       ),
                     ),
                     IconButton(
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.close,
                         color: AppColors.textPrimary,
                       ),
@@ -416,7 +416,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                   ],
                 ),
               ),
-              const Divider(color: AppColors.border),
+              Divider(color: AppColors.border),
               // Content
               Expanded(
                 child: Form(
@@ -433,14 +433,14 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                               // Selected Table Display
                               if (_selectedTable != null) ...[
                                 _buildSelectedTableDisplay(),
-                                const SizedBox(height: 12),
+                                SizedBox(height: 12),
                               ],
                               // Menu Selection Section
                               _buildSectionHeader(
                                 icon: Icons.restaurant_menu,
                                 title: 'Menu Selection',
                               ),
-                              const SizedBox(height: 8),
+                              SizedBox(height: 8),
                               _buildMenuSelectionContent(),
                             ],
                           ),
@@ -455,7 +455,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                             BoxShadow(
                               color: AppColors.black.withOpacity(0.05),
                               blurRadius: 10,
-                              offset: const Offset(0, -2),
+                              offset: Offset(0, -2),
                             ),
                           ],
                         ),
@@ -467,19 +467,19 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                               icon: CupertinoIcons.info,
                               title: 'Special Preferences',
                             ),
-                            const SizedBox(height: 16),
+                            SizedBox(height: 16),
                             _buildTextArea(
                               controller: _specialPreferencesController,
                               hintText: 'preferences, or special occasions...',
                             ),
-                            const SizedBox(height: 12),
+                            SizedBox(height: 12),
                             _buildStaffAssignmentSection(),
-                            const SizedBox(height: 12),
+                            SizedBox(height: 12),
                             // Action Buttons
                             Row(
                               children: [
                                 Expanded(child: _buildCancelButton(isTablet)),
-                                const SizedBox(width: 12),
+                                SizedBox(width: 12),
                                 Expanded(
                                   flex: 2,
                                   child: _buildCreateButton(isTablet),
@@ -505,8 +505,8 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
 
   Widget _buildMessageWidget() {
     return Container(
-      margin: const EdgeInsets.all(16),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      margin: EdgeInsets.all(16),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         color: _messageColor ?? AppColors.error,
         borderRadius: BorderRadius.circular(12),
@@ -514,7 +514,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
           BoxShadow(
             color: AppColors.black.withOpacity(0.2),
             blurRadius: 8,
-            offset: const Offset(0, 2),
+            offset: Offset(0, 2),
           ),
         ],
       ),
@@ -530,7 +530,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
             ),
           ),
           IconButton(
-            icon: const Icon(Icons.close, color: AppColors.white, size: 20),
+            icon: Icon(Icons.close, color: AppColors.white, size: 20),
             onPressed: () {
               setState(() {
                 _messageText = null;
@@ -539,7 +539,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
               _messageTimer?.cancel();
             },
             padding: EdgeInsets.zero,
-            constraints: const BoxConstraints(),
+            constraints: BoxConstraints(),
           ),
         ],
       ),
@@ -547,7 +547,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
   }
 
   Widget _buildSelectedTableDisplay() {
-    if (_selectedTable == null) return const SizedBox.shrink();
+    if (_selectedTable == null) return SizedBox.shrink();
 
     final seatCount = _getSeatCount(_selectedTable!);
 
@@ -577,7 +577,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
         }
 
         return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
             color: AppColors.cardBackground,
             borderRadius: BorderRadius.circular(12),
@@ -590,7 +590,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                 color: AppColors.primary,
                 size: 20,
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: 12),
               Expanded(
                 child: Row(
                   children: [
@@ -601,9 +601,9 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                     Container(
-                      padding: const EdgeInsets.symmetric(
+                      padding: EdgeInsets.symmetric(
                         horizontal: 8,
                         vertical: 4,
                       ),
@@ -620,9 +620,9 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                     Container(
-                      padding: const EdgeInsets.symmetric(
+                      padding: EdgeInsets.symmetric(
                         horizontal: 8,
                         vertical: 4,
                       ),
@@ -667,7 +667,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4),
                   Text(
                     'Allocate team members to this booking',
                     style: AppTextStyles.bodySmall.copyWith(
@@ -677,7 +677,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                 ],
               ),
             ),
-            const SizedBox(width: 8),
+            SizedBox(width: 8),
             SizedBox(
               height: 40,
               child: ElevatedButton.icon(
@@ -692,7 +692,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                 ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
-                  padding: const EdgeInsets.symmetric(
+                  padding: EdgeInsets.symmetric(
                     horizontal: 12,
                     vertical: 8,
                   ),
@@ -705,11 +705,11 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
           ],
         ),
         if (_assignedStaffIds.isNotEmpty) ...[
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           ..._getAssignedStaff().map((staff) {
             return Container(
-              margin: const EdgeInsets.only(bottom: 8),
-              padding: const EdgeInsets.all(12),
+              margin: EdgeInsets.only(bottom: 8),
+              padding: EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: AppColors.cardBackground,
                 borderRadius: BorderRadius.circular(12),
@@ -727,7 +727,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  SizedBox(width: 12),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -749,7 +749,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                     ),
                   ),
                   IconButton(
-                    icon: const Icon(Icons.close, size: 20),
+                    icon: Icon(Icons.close, size: 20),
                     color: AppColors.textSecondary,
                     onPressed: () {
                       setState(() {
@@ -791,9 +791,9 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
       builder: (context) => AlertDialog(
         backgroundColor: AppColors.cardBackground,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+        insetPadding: EdgeInsets.symmetric(horizontal: 20),
         contentPadding: EdgeInsets.zero,
-        titlePadding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
+        titlePadding: EdgeInsets.fromLTRB(20, 20, 20, 16),
         title: Text(
           'Select Staff',
           style: AppTextStyles.bodyLarge.copyWith(
@@ -803,14 +803,14 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
         ),
         content: Container(
           width: screenWidth - 40,
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20),
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxHeight: 400),
+            constraints: BoxConstraints(maxHeight: 400),
             child: SizedBox(
               width: double.maxFinite,
               child: unassignedStaff.isEmpty
                   ? Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 24.0),
+                      padding: EdgeInsets.symmetric(vertical: 24.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -819,21 +819,21 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                             size: 48,
                             color: AppColors.textSecondary,
                           ),
-                          const SizedBox(height: 16),
+                          SizedBox(height: 16),
                           Text(
                             'No staff available',
                             style: AppTextStyles.bodyMedium.copyWith(
                               color: AppColors.textPrimary,
                             ),
                           ),
-                          const SizedBox(height: 24),
+                          SizedBox(height: 24),
                           ElevatedButton(
                             onPressed: () {
                               Navigator.pop(context);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const AddStaffScreen(),
+                                  builder: (context) => AddStaffScreen(),
                                 ),
                               ).then((_) {
                                 _loadStaff();
@@ -841,7 +841,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.primary,
-                              padding: const EdgeInsets.symmetric(
+                              padding: EdgeInsets.symmetric(
                                 horizontal: 24,
                                 vertical: 12,
                               ),
@@ -893,9 +893,9 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
-                              const SizedBox(width: 8),
+                              SizedBox(width: 8),
                               Container(
-                                padding: const EdgeInsets.symmetric(
+                                padding: EdgeInsets.symmetric(
                                   horizontal: 8,
                                   vertical: 2,
                                 ),
@@ -941,7 +941,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
             ),
           ),
         ),
-        actionsPadding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+        actionsPadding: EdgeInsets.fromLTRB(20, 0, 20, 20),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
@@ -976,7 +976,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
     return Row(
       children: [
         Icon(icon, color: AppColors.success, size: 20),
-        const SizedBox(width: 8),
+        SizedBox(width: 8),
         Text(
           title,
           style: AppTextStyles.h6.copyWith(
@@ -996,7 +996,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
           _buildMenuItemsList(),
         ] else ...[
           Container(
-            padding: const EdgeInsets.all(24),
+            padding: EdgeInsets.all(24),
             decoration: BoxDecoration(
               color: AppColors.cardBackground,
               borderRadius: BorderRadius.circular(12),
@@ -1013,7 +1013,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
           ),
         ],
         if (_selectedMenuItems.isNotEmpty) ...[
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           _buildSelectedItemsCard(),
         ],
       ],
@@ -1022,14 +1022,14 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
 
   Widget _buildMenuItemsList() {
     if (_menu == null || _menu!.categories.isEmpty) {
-      return const SizedBox.shrink();
+      return SizedBox.shrink();
     }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: _menu!.categories.map((category) {
         if (category.items.isEmpty) {
-          return const SizedBox.shrink();
+          return SizedBox.shrink();
         }
 
         return Column(
@@ -1037,7 +1037,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
           children: [
             // Category Header
             Padding(
-              padding: const EdgeInsets.only(bottom: 12, top: 8),
+              padding: EdgeInsets.only(bottom: 12, top: 8),
               child: Text(
                 category.categoryName,
                 style: AppTextStyles.bodyMedium.copyWith(
@@ -1059,8 +1059,8 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                   : 0;
 
               return Container(
-                margin: const EdgeInsets.only(bottom: 12),
-                padding: const EdgeInsets.all(12),
+                margin: EdgeInsets.only(bottom: 12),
+                padding: EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   color: AppColors.cardBackground,
                   borderRadius: BorderRadius.circular(12),
@@ -1083,7 +1083,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                         ),
                       ),
                     if (item.imagePath != null && item.imagePath!.isNotEmpty)
-                      const SizedBox(width: 12),
+                      SizedBox(width: 12),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1095,7 +1095,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          const SizedBox(height: 4),
+                          SizedBox(height: 4),
                           Text(
                             item.description,
                             style: AppTextStyles.bodySmall.copyWith(
@@ -1103,17 +1103,17 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                               fontSize: 11,
                             ),
                           ),
-                          const SizedBox(height: 4),
+                          SizedBox(height: 4),
                           _buildPriceWithOffer(item, category.categoryName),
                         ],
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                     if (quantity > 0)
                       Row(
                         children: [
                           IconButton(
-                            icon: const Icon(Icons.remove, size: 20),
+                            icon: Icon(Icons.remove, size: 20),
                             color: AppColors.textPrimary,
                             onPressed: () {
                               setState(() {
@@ -1158,7 +1158,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                             ),
                           ),
                           IconButton(
-                            icon: const Icon(Icons.add, size: 20),
+                            icon: Icon(Icons.add, size: 20),
                             color: AppColors.textPrimary,
                             onPressed: () {
                               setState(() {
@@ -1218,7 +1218,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                       )
                     else
                       IconButton(
-                        icon: const Icon(Icons.add, size: 24),
+                        icon: Icon(Icons.add, size: 24),
                         color: AppColors.primary,
                         onPressed: () {
                           setState(() {
@@ -1280,9 +1280,9 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(width: 8),
+              SizedBox(width: 8),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                 decoration: BoxDecoration(
                   color: AppColors.primary.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(4),
@@ -1376,7 +1376,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
     final finalTotal = (subtotal - totalDiscount).clamp(0.0, double.infinity);
 
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
@@ -1391,10 +1391,10 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           ..._selectedMenuItems.map((item) {
             return Padding(
-              padding: const EdgeInsets.only(bottom: 8),
+              padding: EdgeInsets.only(bottom: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -1414,8 +1414,8 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
               ),
             );
           }),
-          const Divider(color: AppColors.border),
-          const SizedBox(height: 8),
+          Divider(color: AppColors.border),
+          SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -1435,7 +1435,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
             ],
           ),
           if (totalDiscount > 0) ...[
-            const SizedBox(height: 4),
+            SizedBox(height: 4),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -1456,9 +1456,9 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
               ],
             ),
           ],
-          const SizedBox(height: 8),
-          const Divider(color: AppColors.border),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
+          Divider(color: AppColors.border),
+          SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -1510,7 +1510,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(color: AppColors.primary, width: 2),
         ),
-        contentPadding: const EdgeInsets.all(16),
+        contentPadding: EdgeInsets.all(16),
       ),
     );
   }
@@ -1549,7 +1549,7 @@ class _AddTableBookingScreenState extends State<AddTableBookingScreen> {
           ),
         ),
         child: _isSubmitting
-            ? const SizedBox(
+            ? SizedBox(
                 width: 20,
                 height: 20,
                 child: CircularProgressIndicator(

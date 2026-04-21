@@ -8,7 +8,7 @@ import '../../services/offer_service.dart';
 import 'create_edit_offer_screen.dart';
 
 class OffersListScreen extends StatefulWidget {
-  const OffersListScreen({super.key});
+  OffersListScreen({super.key});
 
   @override
   State<OffersListScreen> createState() => _OffersListScreenState();
@@ -93,7 +93,7 @@ class _OffersListScreenState extends State<OffersListScreen>
           labelColor: AppColors.primary,
           unselectedLabelColor: AppColors.textSecondary,
           indicatorColor: AppColors.primary,
-          tabs: const [
+          tabs: [
             Tab(text: 'Active'),
             Tab(text: 'Scheduled'),
             Tab(text: 'Expired'),
@@ -101,11 +101,11 @@ class _OffersListScreenState extends State<OffersListScreen>
         ),
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: const Icon(Icons.arrow_back_ios_new, color: AppColors.primary),
+          icon: Icon(Icons.arrow_back_ios_new, color: AppColors.primary),
         ),
       ),
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? Center(child: CircularProgressIndicator())
           : TabBarView(
               controller: _tabController,
               children: [
@@ -118,14 +118,14 @@ class _OffersListScreenState extends State<OffersListScreen>
         onPressed: () async {
           final created = await Navigator.push<bool>(
             context,
-            MaterialPageRoute(builder: (_) => const CreateEditOfferScreen()),
+            MaterialPageRoute(builder: (_) => CreateEditOfferScreen()),
           );
           if (created == true) {
             _loadOffers();
           }
         },
         backgroundColor: AppColors.primary,
-        child: const Icon(Icons.add, color: AppColors.white),
+        child: Icon(Icons.add, color: AppColors.white),
       ),
     );
   }
@@ -135,15 +135,15 @@ class _OffersListScreenState extends State<OffersListScreen>
       onRefresh: _loadOffers,
       child: offers.isEmpty
           ? SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
+              physics: AlwaysScrollableScrollPhysics(),
               child: SizedBox(
                 height: MediaQuery.of(context).size.height * 0.7,
                 child: _buildEmptyState(emptyMessage),
               ),
             )
           : ListView.builder(
-              padding: const EdgeInsets.all(16),
-              physics: const AlwaysScrollableScrollPhysics(),
+              padding: EdgeInsets.all(16),
+              physics: AlwaysScrollableScrollPhysics(),
               itemCount: offers.length,
               itemBuilder: (context, index) {
                 return _buildOfferCard(offers[index]);
@@ -162,14 +162,14 @@ class _OffersListScreenState extends State<OffersListScreen>
             size: 64,
             color: AppColors.textSecondary,
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           Text(
             message,
             style: AppTextStyles.bodyLarge.copyWith(
               color: AppColors.textSecondary,
             ),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           Text(
             'Tap the + button to create your first offer',
             style: AppTextStyles.bodySmall.copyWith(
@@ -186,7 +186,7 @@ class _OffersListScreenState extends State<OffersListScreen>
     final statusText = getOfferStatusDisplayText(offer.status);
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
+      margin: EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(12),
@@ -194,7 +194,7 @@ class _OffersListScreenState extends State<OffersListScreen>
           BoxShadow(
             color: AppColors.shadow,
             blurRadius: 4,
-            offset: const Offset(0, 2),
+            offset: Offset(0, 2),
           ),
         ],
       ),
@@ -204,7 +204,7 @@ class _OffersListScreenState extends State<OffersListScreen>
           // Banner Image
           if (offer.bannerImageUrl != null && offer.bannerImageUrl!.isNotEmpty)
             ClipRRect(
-              borderRadius: const BorderRadius.vertical(
+              borderRadius: BorderRadius.vertical(
                 top: Radius.circular(12),
               ),
               child: Image.network(
@@ -224,7 +224,7 @@ class _OffersListScreenState extends State<OffersListScreen>
               ),
             ),
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -242,7 +242,7 @@ class _OffersListScreenState extends State<OffersListScreen>
                       ),
                     ),
                     Container(
-                      padding: const EdgeInsets.symmetric(
+                      padding: EdgeInsets.symmetric(
                         horizontal: 8,
                         vertical: 4,
                       ),
@@ -262,7 +262,7 @@ class _OffersListScreenState extends State<OffersListScreen>
                     ),
                   ],
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8),
                 // Description
                 Text(
                   offer.description,
@@ -272,12 +272,12 @@ class _OffersListScreenState extends State<OffersListScreen>
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: 12),
                 // Discount Details
                 Row(
                   children: [
                     Icon(Icons.discount, size: 16, color: AppColors.primary),
-                    const SizedBox(width: 4),
+                    SizedBox(width: 4),
                     Text(
                       _getDiscountText(offer),
                       style: AppTextStyles.bodyMedium.copyWith(
@@ -287,7 +287,7 @@ class _OffersListScreenState extends State<OffersListScreen>
                     ),
                   ],
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8),
                 // Valid Dates
                 Row(
                   children: [
@@ -296,7 +296,7 @@ class _OffersListScreenState extends State<OffersListScreen>
                       size: 14,
                       color: AppColors.textSecondary,
                     ),
-                    const SizedBox(width: 4),
+                    SizedBox(width: 4),
                     Expanded(
                       child: Text(
                         '${_formatDate(offer.validFrom)} - ${_formatDate(offer.validUntil)}',
@@ -307,7 +307,7 @@ class _OffersListScreenState extends State<OffersListScreen>
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: 12),
                 // Actions
                 Row(
                   children: [
@@ -317,7 +317,7 @@ class _OffersListScreenState extends State<OffersListScreen>
                         color: AppColors.textSecondary,
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12),
                     Transform.scale(
                       scale: 0.75,
                       child: Switch(
@@ -332,9 +332,9 @@ class _OffersListScreenState extends State<OffersListScreen>
                         activeColor: AppColors.primary,
                       ),
                     ),
-                    const Spacer(),
+                    Spacer(),
                     IconButton(
-                      icon: const Icon(Icons.edit, color: AppColors.primary),
+                      icon: Icon(Icons.edit, color: AppColors.primary),
                       onPressed: () async {
                         final updated = await Navigator.push<bool>(
                           context,
@@ -348,7 +348,7 @@ class _OffersListScreenState extends State<OffersListScreen>
                       },
                     ),
                     IconButton(
-                      icon: const Icon(Icons.delete, color: AppColors.error),
+                      icon: Icon(Icons.delete, color: AppColors.error),
                       onPressed: () => _showDeleteDialog(offer),
                     ),
                   ],
@@ -393,7 +393,7 @@ class _OffersListScreenState extends State<OffersListScreen>
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete Offer'),
+        title: Text('Delete Offer'),
         content: Text('Are you sure you want to delete "${offer.title}"?'),
         actions: [
           TextButton(

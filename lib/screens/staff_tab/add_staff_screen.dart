@@ -14,7 +14,7 @@ import '../../models/staff_model.dart';
 import '../../services/staff_service.dart';
 
 class AddStaffScreen extends StatefulWidget {
-  const AddStaffScreen({super.key, this.existingStaff});
+  AddStaffScreen({super.key, this.existingStaff});
 
   final StaffModel? existingStaff;
 
@@ -37,9 +37,9 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
   dynamic _profileImage; // Can be File or String (AWS URL)
   File? pickedImage;
 
-  final List<String> _categories = const ['Cook', 'Cleaner', 'Waiter'];
+  final List<String> _categories = ['Cook', 'Cleaner', 'Waiter'];
 
-  final List<String> _shifts = const ['Morning', 'Evening', 'Night'];
+  final List<String> _shifts = ['Morning', 'Evening', 'Night'];
 
   String? _selectedCategory;
   String? _selectedShift;
@@ -150,7 +150,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
         context: context,
         backgroundColor: AppColors.transparent,
         builder: (context) => Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             color: AppColors.cardBackground,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20),
@@ -161,7 +161,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                margin: const EdgeInsets.only(top: 8),
+                margin: EdgeInsets.only(top: 8),
                 width: 40,
                 height: 4,
                 decoration: BoxDecoration(
@@ -169,8 +169,8 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
-              const SizedBox(height: 20),
-              const Text(
+              SizedBox(height: 20),
+              Text(
                 'Select Image Source',
                 style: TextStyle(
                   fontSize: 18,
@@ -178,10 +178,10 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
                   color: AppColors.primary,
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
               Row(
                 children: [
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16),
                   Expanded(
                     child: _buildImageSourceOption(
                       icon: Icons.camera_alt,
@@ -190,7 +190,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
                       onTap: () => Navigator.pop(context, ImageSource.camera),
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16),
                   Expanded(
                     child: _buildImageSourceOption(
                       icon: Icons.photo_library,
@@ -199,10 +199,10 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
                       onTap: () => Navigator.pop(context, ImageSource.gallery),
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16),
                 ],
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
             ],
           ),
         ),
@@ -262,7 +262,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
         _startDate == null) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(const SnackBar(content: Text('Please fill all fields')));
+      ).showSnackBar(SnackBar(content: Text('Please fill all fields')));
       return;
     }
 
@@ -323,7 +323,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
       Navigator.pop(context, true);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Failed to add staff. Please try again.')),
+        SnackBar(content: Text('Failed to add staff. Please try again.')),
       );
     }
   }
@@ -336,7 +336,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
         backgroundColor: AppColors.cardBackground,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back_ios_new_rounded,
             color: AppColors.textPrimary,
           ),
@@ -352,7 +352,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(16),
           child: Form(
             key: _formKey,
             child: Column(
@@ -379,7 +379,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
                                   BoxShadow(
                                     color: AppColors.shadow,
                                     blurRadius: 8,
-                                    offset: const Offset(0, 2),
+                                    offset: Offset(0, 2),
                                   ),
                                 ],
                               ),
@@ -399,7 +399,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
                                               fit: BoxFit.cover,
                                               errorBuilder:
                                                   (context, error, stackTrace) {
-                                                    return const Icon(
+                                                    return Icon(
                                                       Icons.person,
                                                       size: 60,
                                                       color: AppColors.primary,
@@ -407,7 +407,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
                                                   },
                                             ),
                                     )
-                                  : const Icon(
+                                  : Icon(
                                       Icons.person,
                                       size: 60,
                                       color: AppColors.primary,
@@ -430,7 +430,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
                                     width: 2,
                                   ),
                                 ),
-                                child: const Icon(
+                                child: Icon(
                                   Icons.edit,
                                   color: AppColors.white,
                                   size: 16,
@@ -440,7 +440,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8),
                       Text(
                         'Staff Photo',
                         style: AppTextStyles.bodySmall.copyWith(
@@ -450,7 +450,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: 24),
                 _buildTextField(
                   label: 'First Name',
                   controller: _firstNameController,
@@ -458,7 +458,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
                   validator: (value) =>
                       value == null || value.trim().isEmpty ? 'Required' : null,
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildTextField(
                   label: 'Last Name',
                   controller: _lastNameController,
@@ -466,7 +466,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
                   validator: (value) =>
                       value == null || value.trim().isEmpty ? 'Required' : null,
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildTextField(
                   label: 'Email',
                   controller: _emailController,
@@ -486,7 +486,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildTextField(
                   label: 'Phone',
                   controller: _phoneController,
@@ -507,7 +507,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: 24),
                 _buildDropdownField(
                   label: 'Category',
                   value: _selectedCategory,
@@ -519,7 +519,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
                     });
                   },
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildDropdownField(
                   label: 'Shift',
                   value: _selectedShift,
@@ -531,32 +531,32 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
                     });
                   },
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildTextField(
                   label: 'Salary (AED)',
                   controller: _salaryController,
                   hintText: '3500',
                   keyboardType: TextInputType.number,
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildTextField(
                   label: 'Experience (years)',
                   controller: _experienceController,
                   hintText: '3',
                   keyboardType: TextInputType.number,
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 Text(
                   'Start Date',
                   style: AppTextStyles.bodySmall.copyWith(
                     color: AppColors.textSecondary,
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8),
                 GestureDetector(
                   onTap: _pickStartDate,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
+                    padding: EdgeInsets.symmetric(
                       horizontal: 16,
                       vertical: 16,
                     ),
@@ -589,13 +589,13 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 32),
+                SizedBox(height: 32),
                 Row(
                   children: [
                     Expanded(
                       child: OutlinedButton(
                         style: OutlinedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          padding: EdgeInsets.symmetric(vertical: 16),
                           side: BorderSide(color: AppColors.cardBackground),
                           backgroundColor: AppColors.cardBackground,
                           shape: RoundedRectangleBorder(
@@ -612,19 +612,19 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 16),
+                    SizedBox(width: 16),
                     Expanded(
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary,
-                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          padding: EdgeInsets.symmetric(vertical: 16),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
                           ),
                         ),
                         onPressed: _isSubmitting ? null : _submit,
                         child: _isSubmitting
-                            ? const SizedBox(
+                            ? SizedBox(
                                 height: 20,
                                 width: 20,
                                 child: CircularProgressIndicator(
@@ -671,7 +671,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
             color: AppColors.textSecondary,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         TextFormField(
           controller: controller,
           keyboardType: keyboardType,
@@ -723,9 +723,9 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
             color: AppColors.textSecondary,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: EdgeInsets.symmetric(horizontal: 12),
           decoration: BoxDecoration(
             color: AppColors.cardBackground,
             borderRadius: BorderRadius.circular(16),
@@ -773,7 +773,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: AppColors.cardBackground,
           borderRadius: BorderRadius.circular(12),
@@ -782,14 +782,14 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
             BoxShadow(
               color: AppColors.shadow.withOpacity(0.1),
               blurRadius: 4,
-              offset: const Offset(0, 2),
+              offset: Offset(0, 2),
             ),
           ],
         ),
         child: Column(
           children: [
             Icon(icon, size: 32, color: AppColors.primary),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             Text(
               title,
               style: AppTextStyles.bodySmall.copyWith(
@@ -797,7 +797,7 @@ class _AddStaffScreenState extends State<AddStaffScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 4),
+            SizedBox(height: 4),
             Text(
               subtitle,
               style: AppTextStyles.bodySmall.copyWith(

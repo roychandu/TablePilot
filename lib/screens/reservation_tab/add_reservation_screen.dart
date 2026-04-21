@@ -15,7 +15,7 @@ import '../../models/table_booking_model.dart';
 import '../../services/table_booking_service.dart';
 
 class AddReservationScreen extends StatefulWidget {
-  const AddReservationScreen({super.key});
+  AddReservationScreen({super.key});
 
   @override
   State<AddReservationScreen> createState() => _AddReservationScreenState();
@@ -86,7 +86,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
       context: context,
       initialDate: _selectedDate ?? DateTime.now(),
       firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(const Duration(days: 365)),
+      lastDate: DateTime.now().add(Duration(days: 365)),
       builder: (context, child) {
         return Theme(
           data: Theme.of(context).copyWith(
@@ -117,7 +117,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
   Future<void> _selectTime() async {
     if (_selectedDate == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text('Please select a date first'),
           backgroundColor: AppColors.error,
         ),
@@ -161,8 +161,8 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
     }
 
     // Allowed time window: 9:30 AM to 9:30 PM
-    const minAllowedTime = TimeOfDay(hour: 9, minute: 30);
-    const maxAllowedTime = TimeOfDay(hour: 21, minute: 30);
+    final minAllowedTime = TimeOfDay(hour: 9, minute: 30);
+    final maxAllowedTime = TimeOfDay(hour: 21, minute: 30);
 
     final now = DateTime.now();
 
@@ -174,7 +174,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
         _selectedDate!.day == now.day;
 
     if (isToday) {
-      final minDateTime = now.add(const Duration(hours: 2));
+      final minDateTime = now.add(Duration(hours: 2));
       minTime = TimeOfDay.fromDateTime(minDateTime);
     }
 
@@ -242,7 +242,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
     if (pickedMinutes < minAllowedMinutes ||
         pickedMinutes > maxAllowedMinutes) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text('Time must be between 9:30 AM and 9:30 PM'),
           backgroundColor: AppColors.error,
         ),
@@ -257,7 +257,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
       final minMinutes = toMinutes(minTime);
       if (pickedMinutes < minMinutes) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+          SnackBar(
             content: Text('Reservation time must be at least 2 hours from now'),
             backgroundColor: AppColors.error,
           ),
@@ -276,7 +276,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
     );
     if (isToday && selectedDateTime.isBefore(now)) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text('Selected time is in the past'),
           backgroundColor: AppColors.error,
         ),
@@ -290,7 +290,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
     );
     if (isAlreadyBooked) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text(
             'This time slot is already booked. Please select a different time.',
           ),
@@ -312,7 +312,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
 
     if (hasConflictWithinOneHour) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text(
             'Please select a time at least 1 hour from existing reservations',
           ),
@@ -356,7 +356,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
       future: _getUnavailableTables(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return Center(child: CircularProgressIndicator());
         }
 
         final unavailableTables = snapshot.data ?? [];
@@ -372,7 +372,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
             ),
             if (_selectedDate == null || _selectedTime == null)
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                padding: EdgeInsets.symmetric(vertical: 8.0),
                 child: Text(
                   'Select date and time to see real-time availability',
                   style: AppTextStyles.bodySmall.copyWith(
@@ -382,10 +382,10 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                 ),
               )
             else
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
             GridView.builder(
               shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: screenWidth > 600 ? 8 : 5,
                 crossAxisSpacing: 12,
@@ -426,7 +426,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
       _selectedTime!.minute,
     );
     // Assume 2 hour default duration for the new reservation
-    final selectedEnd = selectedStart.add(const Duration(hours: 2));
+    final selectedEnd = selectedStart.add(Duration(hours: 2));
 
     final unavailableTables = <int>{};
 
@@ -437,7 +437,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
           reservation.status != ReservationStatus.cancelled) {
         final resStart = reservation.startTime;
         // Assume 2 hours duration for existing reservations too
-        final resEnd = resStart.add(const Duration(hours: 2));
+        final resEnd = resStart.add(Duration(hours: 2));
 
         // specific check: existing.start < new.end && new.start < existing.end
         if (resStart.isBefore(selectedEnd) && selectedStart.isBefore(resEnd)) {
@@ -570,7 +570,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
 
     if (_selectedDate == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text('Please select a date'),
           backgroundColor: AppColors.error,
         ),
@@ -580,7 +580,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
 
     if (_selectedTime == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text('Please select a time'),
           backgroundColor: AppColors.error,
         ),
@@ -632,7 +632,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
 
       if (reservationId != null && mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+          SnackBar(
             content: Text('Reservation created successfully'),
             backgroundColor: AppColors.success,
             behavior: SnackBarBehavior.floating,
@@ -642,7 +642,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
       } else {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
+            SnackBar(
               content: Text('Failed to create reservation'),
               backgroundColor: AppColors.error,
             ),
@@ -652,7 +652,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+          SnackBar(
             content: Text('An error occurred'),
             backgroundColor: AppColors.error,
           ),
@@ -679,7 +679,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
         backgroundColor: AppColors.cardBackground,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.close, color: AppColors.textPrimary),
+          icon: Icon(Icons.close, color: AppColors.textPrimary),
           onPressed: () => Navigator.pop(context),
         ),
         title: Column(
@@ -710,25 +710,25 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 20),
+                SizedBox(height: 20),
                 // Active Offers Banner
                 if (_activeOffers.isNotEmpty) ...[
                   _buildOffersBanner(),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20),
                 ],
                 // Guest Information Section
                 _buildSectionHeader(
                   icon: CupertinoIcons.person_fill,
                   title: 'Guest Information',
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildTextField(
                   controller: _guestNameController,
                   label: 'Guest Name',
                   isRequired: true,
                   hintText: 'John Doe',
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildTextField(
                   controller: _phoneNumberController,
                   label: 'Phone Number',
@@ -752,7 +752,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildTextField(
                   controller: _emailController,
                   label: 'Email (Optional)',
@@ -770,21 +770,21 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 32),
+                SizedBox(height: 32),
                 // Booking Details Section
                 _buildSectionHeader(
                   icon: CupertinoIcons.calendar,
                   title: 'Booking Details',
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildDateField(),
-                const SizedBox(height: 32),
+                SizedBox(height: 32),
                 // Guest Information Section
                 _buildSectionHeader(
                   icon: CupertinoIcons.person_2_fill,
                   title: 'Guest Details',
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildDropdownField<int>(
                   label: 'Number of Guests',
                   isRequired: true,
@@ -802,34 +802,34 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                   displayText: (value) =>
                       '$value ${value == 1 ? 'Guest' : 'Guests'}',
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildTimeField(),
-                const SizedBox(height: 32),
+                SizedBox(height: 32),
 
                 // Special Preferences
                 _buildSectionHeader(
                   icon: CupertinoIcons.info,
                   title: 'Special Preferences',
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildTextArea(
                   controller: _specialPreferencesController,
                   hintText: 'preferences, or special occasions...',
                 ),
-                const SizedBox(height: 32),
+                SizedBox(height: 32),
                 // Table Selection Section (New)
                 _buildTableSelectionSection(screenWidth),
-                const SizedBox(height: 32),
+                SizedBox(height: 32),
 
                 // Action Buttons
                 Row(
                   children: [
                     Expanded(child: _buildCancelButton(isTablet)),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12),
                     Expanded(flex: 2, child: _buildCreateButton(isTablet)),
                   ],
                 ),
-                const SizedBox(height: 32),
+                SizedBox(height: 32),
               ],
             ),
           ),
@@ -842,7 +842,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
     return Row(
       children: [
         Icon(icon, color: AppColors.success, size: 20),
-        const SizedBox(width: 8),
+        SizedBox(width: 8),
         Text(
           title,
           style: AppTextStyles.h6.copyWith(
@@ -875,7 +875,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
             fontWeight: FontWeight.w500,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         TextFormField(
           controller: controller,
           keyboardType: keyboardType,
@@ -904,7 +904,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(color: AppColors.primary, width: 2),
             ),
-            contentPadding: const EdgeInsets.symmetric(
+            contentPadding: EdgeInsets.symmetric(
               horizontal: 16,
               vertical: 14,
             ),
@@ -968,12 +968,12 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
             fontWeight: FontWeight.w500,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         InkWell(
           onTap: _selectDate,
           borderRadius: BorderRadius.circular(12),
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
             decoration: BoxDecoration(
               color: AppColors.cardBackground,
               borderRadius: BorderRadius.circular(12),
@@ -1019,12 +1019,12 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
             fontWeight: FontWeight.w500,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         InkWell(
           onTap: _selectTime,
           borderRadius: BorderRadius.circular(12),
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
             decoration: BoxDecoration(
               color: AppColors.cardBackground,
               borderRadius: BorderRadius.circular(12),
@@ -1073,9 +1073,9 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
             fontWeight: FontWeight.w500,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
             color: AppColors.cardBackground,
             borderRadius: BorderRadius.circular(12),
@@ -1142,18 +1142,18 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(color: AppColors.primary, width: 2),
         ),
-        contentPadding: const EdgeInsets.all(16),
+        contentPadding: EdgeInsets.all(16),
       ),
     );
   }
 
   Widget _buildOffersBanner() {
     if (_activeOffers.isEmpty) {
-      return const SizedBox.shrink();
+      return SizedBox.shrink();
     }
 
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: AppColors.primary.withOpacity(0.1),
         borderRadius: BorderRadius.circular(12),
@@ -1165,7 +1165,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
           Row(
             children: [
               Icon(Icons.local_offer, color: AppColors.primary, size: 20),
-              const SizedBox(width: 8),
+              SizedBox(width: 8),
               Text(
                 'Special Offers',
                 style: AppTextStyles.bodyMedium.copyWith(
@@ -1175,10 +1175,10 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           ..._activeOffers.take(3).map((offer) {
             return Padding(
-              padding: const EdgeInsets.only(bottom: 4),
+              padding: EdgeInsets.only(bottom: 4),
               child: Row(
                 children: [
                   Container(
@@ -1189,7 +1189,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                       shape: BoxShape.circle,
                     ),
                   ),
-                  const SizedBox(width: 8),
+                  SizedBox(width: 8),
                   Expanded(
                     child: Text(
                       offer.title,
@@ -1242,7 +1242,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
           ),
         ),
         child: _isSubmitting
-            ? const SizedBox(
+            ? SizedBox(
                 width: 20,
                 height: 20,
                 child: CircularProgressIndicator(

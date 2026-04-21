@@ -12,7 +12,7 @@ import '../offers_tab/customer_offers_screen.dart';
 import '../takeaway_tab/my_takeaway_orders_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key, this.initialTabIndex = 0});
+  HomeScreen({super.key, this.initialTabIndex = 0});
 
   final int initialTabIndex;
 
@@ -64,31 +64,31 @@ class HomeScreenState extends State<HomeScreen> {
       // Admin: 0=Home, 1=Staff, 2=Reservation, 3=Menu
       switch (_selectedIndex) {
         case 0:
-          return const HomeTabScreen();
+          return HomeTabScreen();
         case 1:
-          return const StaffScreen();
+          return StaffScreen();
         case 2:
-          return const ReservationScreen();
+          return ReservationScreen();
         case 3:
-          return const RestaurantMenuScreen(showBackButton: false);
+          return RestaurantMenuScreen(showBackButton: false);
         default:
-          return const HomeTabScreen();
+          return HomeTabScreen();
       }
     } else {
       // Non-admin: 0=Home, 1=Reservation, 2=Offers, 3=Takeaway, 4=Menu
       switch (_selectedIndex) {
         case 0:
-          return const HomeTabScreen();
+          return HomeTabScreen();
         case 1:
-          return const ReservationScreen();
+          return ReservationScreen();
         case 2:
-          return const CustomerOffersScreen();
+          return CustomerOffersScreen();
         case 3:
-          return const MyTakeawayOrdersScreen();
+          return MyTakeawayOrdersScreen();
         case 4:
-          return const RestaurantMenuScreen(showBackButton: false);
+          return RestaurantMenuScreen(showBackButton: false);
         default:
-          return const HomeTabScreen();
+          return HomeTabScreen();
       }
     }
   }
@@ -169,7 +169,7 @@ class HomeScreenState extends State<HomeScreen> {
           BoxShadow(
             color: AppColors.black.withOpacity(0.2),
             blurRadius: 10,
-            offset: const Offset(0, -2),
+            offset: Offset(0, -2),
           ),
         ],
       ),
@@ -185,13 +185,13 @@ class HomeScreenState extends State<HomeScreen> {
               onTap: () => setState(() => _selectedIndex = index),
               behavior: HitTestBehavior.opaque,
               child: AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
+                duration: Duration(milliseconds: 300),
                 curve: Curves.easeOutCubic,
                 margin: EdgeInsets.symmetric(
                   vertical: isSelected ? 8 : 12,
                   horizontal: 4,
                 ),
-                decoration: const BoxDecoration(color: AppColors.transparent),
+                decoration: BoxDecoration(color: AppColors.transparent),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -215,14 +215,14 @@ class HomeScreenState extends State<HomeScreen> {
                             shadows: isSelected
                                 ? [
                                     Shadow(
-                                      offset: const Offset(0, 2),
+                                      offset: Offset(0, 2),
                                       blurRadius: 4,
                                       color: AppColors.primary.withOpacity(0.3),
                                     ),
                                   ]
                                 : null,
                           ),
-                    if (isSelected) const SizedBox(height: 2),
+                    if (isSelected) SizedBox(height: 2),
                     FittedBox(
                       fit: BoxFit.scaleDown,
                       child: Text(
@@ -239,12 +239,12 @@ class HomeScreenState extends State<HomeScreen> {
                               ? [
                                   // Stronger 3D Text Effect
                                   Shadow(
-                                    offset: const Offset(1, 1),
+                                    offset: Offset(1, 1),
                                     color: AppColors.black.withOpacity(0.3),
                                     blurRadius: 1,
                                   ),
                                   Shadow(
-                                    offset: const Offset(0, 2),
+                                    offset: Offset(0, 2),
                                     color: AppColors.primary.withOpacity(0.2),
                                     blurRadius: 3,
                                   ),

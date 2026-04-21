@@ -16,7 +16,7 @@ import '../../models/offer_model.dart';
 import '../../aws/aws_fields.dart';
 
 class AddOrderScreen extends StatefulWidget {
-  const AddOrderScreen({super.key, required this.event});
+  AddOrderScreen({super.key, required this.event});
 
   final dynamic
   event; // Accepts ReservationModel, EventModel, or TableBookingModel
@@ -270,7 +270,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
     if (_selectedItems.isEmpty) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please select at least one menu item')),
+        SnackBar(content: Text('Please select at least one menu item')),
       );
       return;
     }
@@ -279,7 +279,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
       if (!mounted) return;
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(const SnackBar(content: Text('Event ID is missing')));
+      ).showSnackBar(SnackBar(content: Text('Event ID is missing')));
       return;
     }
 
@@ -340,12 +340,12 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
 
     if (success && mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Menu items updated successfully')),
+        SnackBar(content: Text('Menu items updated successfully')),
       );
       Navigator.pop(context, true);
     } else if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text('Failed to update menu items. Please try again.'),
         ),
       );
@@ -386,7 +386,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
         backgroundColor: AppColors.cardBackground,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.close, color: AppColors.textPrimary),
+          icon: Icon(Icons.close, color: AppColors.textPrimary),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
@@ -409,7 +409,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                 children: [
                   // Event/Booking Info Card
                   Container(
-                    padding: const EdgeInsets.all(16),
+                    padding: EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       color: AppColors.cardBackground,
                       borderRadius: BorderRadius.circular(16),
@@ -429,7 +429,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              const SizedBox(height: 4),
+                              SizedBox(height: 4),
                               Text(
                                 _isTableBooking
                                     ? '${widget.event.numberOfGuests} guests • ${(widget.event as TableBookingModel).floor}'
@@ -444,7 +444,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  SizedBox(height: 24),
                   // Menu Selection
                   Text(
                     'Menu Items',
@@ -453,7 +453,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12),
                   // Search Bar
                   Container(
                     decoration: BoxDecoration(
@@ -476,13 +476,13 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                         hintStyle: AppTextStyles.bodyMedium.copyWith(
                           color: AppColors.textDisabled,
                         ),
-                        prefixIcon: const Icon(
+                        prefixIcon: Icon(
                           Icons.search,
                           color: AppColors.textDisabled,
                         ),
                         suffixIcon: _searchQuery.isNotEmpty
                             ? IconButton(
-                                icon: const Icon(Icons.clear),
+                                icon: Icon(Icons.clear),
                                 onPressed: () {
                                   _searchController.clear();
                                   setState(() {
@@ -492,16 +492,16 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                               )
                             : null,
                         border: InputBorder.none,
-                        contentPadding: const EdgeInsets.symmetric(
+                        contentPadding: EdgeInsets.symmetric(
                           vertical: 12,
                           horizontal: 16,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  SizedBox(height: 24),
                   if (_menu == null)
-                    const Center(
+                    Center(
                       child: Padding(
                         padding: EdgeInsets.all(32),
                         child: CircularProgressIndicator(),
@@ -510,7 +510,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                   else if (_menu!.categories.isEmpty)
                     Center(
                       child: Padding(
-                        padding: const EdgeInsets.all(32),
+                        padding: EdgeInsets.all(32),
                         child: Text(
                           'No menu items available',
                           style: AppTextStyles.bodyMedium.copyWith(
@@ -523,7 +523,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                     _buildMenuItemsList(),
                   // Selected Items Summary
                   if (_selectedItems.isNotEmpty) ...[
-                    const SizedBox(height: 24),
+                    SizedBox(height: 24),
                     _buildSelectedItemsCard(),
                   ],
                 ],
@@ -532,20 +532,20 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
           ),
           // Create Order Button
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(16),
             child: SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: _isSubmitting ? null : _updateEventMenuItems,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  padding: EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
                 child: _isSubmitting
-                    ? const SizedBox(
+                    ? SizedBox(
                         height: 20,
                         width: 20,
                         child: CircularProgressIndicator(
@@ -572,7 +572,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
 
   Widget _buildMenuItemsList() {
     if (_menu == null || _menu!.categories.isEmpty) {
-      return const SizedBox.shrink();
+      return SizedBox.shrink();
     }
 
     return Column(
@@ -589,7 +589,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
         }).toList();
 
         if (filteredItems.isEmpty) {
-          return const SizedBox.shrink();
+          return SizedBox.shrink();
         }
 
         return Column(
@@ -597,7 +597,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
           children: [
             // Category Header
             Padding(
-              padding: const EdgeInsets.only(bottom: 12, top: 8),
+              padding: EdgeInsets.only(bottom: 12, top: 8),
               child: Text(
                 category.categoryName,
                 style: AppTextStyles.bodyMedium.copyWith(
@@ -627,8 +627,8 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                   : 0;
 
               return Container(
-                margin: const EdgeInsets.only(bottom: 12),
-                padding: const EdgeInsets.all(12),
+                margin: EdgeInsets.only(bottom: 12),
+                padding: EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   color: AppColors.cardBackground,
                   borderRadius: BorderRadius.circular(12),
@@ -649,7 +649,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                             width: 60,
                             height: 60,
                             color: AppColors.surface,
-                            child: const Icon(
+                            child: Icon(
                               Icons.restaurant_menu,
                               color: AppColors.textDisabled,
                               size: 20,
@@ -658,7 +658,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                         ),
                       ),
                     if (item.imagePath != null && item.imagePath!.isNotEmpty)
-                      const SizedBox(width: 12),
+                      SizedBox(width: 12),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -670,7 +670,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          const SizedBox(height: 4),
+                          SizedBox(height: 4),
                           Text(
                             item.description,
                             style: AppTextStyles.bodySmall.copyWith(
@@ -678,7 +678,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                               fontSize: 11,
                             ),
                           ),
-                          const SizedBox(height: 4),
+                          SizedBox(height: 4),
                           Row(
                             children: [
                               Text(
@@ -689,7 +689,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                                 ),
                               ),
                               if (discountedPrice < item.priceAed) ...[
-                                const SizedBox(width: 8),
+                                SizedBox(width: 8),
                                 Text(
                                   'AED ${item.priceAed.toStringAsFixed(0)}',
                                   style: AppTextStyles.bodySmall.copyWith(
@@ -704,13 +704,13 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                         ],
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         if (offerText != null) ...[
                           Container(
-                            padding: const EdgeInsets.symmetric(
+                            padding: EdgeInsets.symmetric(
                               horizontal: 6,
                               vertical: 2,
                             ),
@@ -727,7 +727,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                               ),
                             ),
                           ),
-                          const SizedBox(height: 6),
+                          SizedBox(height: 6),
                         ],
                         if (quantity > 0)
                           Row(
@@ -761,7 +761,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                                 },
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(
+                                padding: EdgeInsets.symmetric(
                                   horizontal: 12,
                                 ),
                                 child: Text(
@@ -818,7 +818,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.primary,
                               foregroundColor: AppColors.white,
-                              padding: const EdgeInsets.symmetric(
+                              padding: EdgeInsets.symmetric(
                                 horizontal: 16,
                                 vertical: 8,
                               ),
@@ -828,7 +828,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                             ),
-                            child: const Text('Add'),
+                            child: Text('Add'),
                           ),
                       ],
                     ),
@@ -867,7 +867,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
     final subtotal = _calculateSubtotal();
 
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
@@ -882,10 +882,10 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           ..._selectedItems.map((item) {
             return Padding(
-              padding: const EdgeInsets.only(bottom: 8),
+              padding: EdgeInsets.only(bottom: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -905,8 +905,8 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
               ),
             );
           }),
-          const Divider(color: AppColors.border),
-          const SizedBox(height: 8),
+          Divider(color: AppColors.border),
+          SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -926,8 +926,8 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
               ),
             ],
           ),
-          const Divider(color: AppColors.border),
-          const SizedBox(height: 8),
+          Divider(color: AppColors.border),
+          SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

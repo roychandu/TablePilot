@@ -18,7 +18,7 @@ class TableBookingsScreen extends StatefulWidget {
   final Widget Function(double)? viewSelectionButtons;
   final bool skipScaffold;
 
-  const TableBookingsScreen({
+  TableBookingsScreen({
     super.key,
     this.viewSelectionButtons,
     this.skipScaffold = false,
@@ -36,7 +36,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
     List<TableBookingModel> bookings,
     List<ReservationModel> reservations,
   ) {
-    const maxTable = 20;
+    final maxTable = 20;
     final allTableNumbers = List.generate(maxTable, (index) => index + 1);
 
     final now = DateTime.now();
@@ -61,7 +61,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
 
         // Calculate 30 minutes before reservation time
         final thirtyMinutesBefore = reservationStartTime.subtract(
-          const Duration(minutes: 30),
+          Duration(minutes: 30),
         );
 
         // Show as "Reserved" if current time is between 30 minutes before and reservation time
@@ -200,13 +200,13 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
 
             return RefreshIndicator(
               onRefresh: () async {
-                await Future.delayed(const Duration(milliseconds: 500));
+                await Future.delayed(Duration(milliseconds: 500));
               },
               color: AppColors.primary,
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   return SingleChildScrollView(
-                    physics: const AlwaysScrollableScrollPhysics(),
+                    physics: AlwaysScrollableScrollPhysics(),
                     padding: EdgeInsets.symmetric(
                       horizontal: horizontalPadding,
                       vertical: verticalSpacing,
@@ -313,7 +313,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
           BoxShadow(
             color: AppColors.shadow,
             blurRadius: 8,
-            offset: const Offset(0, 4),
+            offset: Offset(0, 4),
           ),
         ],
       ),
@@ -348,8 +348,8 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
     final isTablet = screenWidth > 600;
     final cardHeight = isTablet ? 100.0 : 90.0;
     final padding = isTablet
-        ? const EdgeInsets.symmetric(vertical: 16, horizontal: 8)
-        : const EdgeInsets.symmetric(vertical: 14, horizontal: 6);
+        ? EdgeInsets.symmetric(vertical: 16, horizontal: 8)
+        : EdgeInsets.symmetric(vertical: 14, horizontal: 6);
     final valueFontSize = isTablet ? 28.0 : 24.0;
     final labelFontSize = isTablet ? 13.0 : 12.0;
 
@@ -451,7 +451,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
       child: Stack(
         children: [
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: isCancelled
                   ? AppColors.cardBackground.withOpacity(0.6)
@@ -464,7 +464,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                 BoxShadow(
                   color: AppColors.shadow,
                   blurRadius: 8,
-                  offset: const Offset(0, 4),
+                  offset: Offset(0, 4),
                 ),
               ],
             ),
@@ -498,7 +498,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                     ),
                     if (!isCancelled)
                       Container(
-                        padding: const EdgeInsets.symmetric(
+                        padding: EdgeInsets.symmetric(
                           horizontal: 8,
                           vertical: 4,
                         ),
@@ -517,7 +517,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                       ),
                   ],
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 // Details in 2 columns
                 Row(
                   children: [
@@ -534,7 +534,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                                 size: 16,
                                 color: AppColors.textSecondary,
                               ),
-                              const SizedBox(width: 6),
+                              SizedBox(width: 6),
                               Expanded(
                                 child: Text(
                                   formattedDate,
@@ -549,7 +549,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 12),
+                          SizedBox(height: 12),
                           // Guests
                           Row(
                             children: [
@@ -558,7 +558,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                                 size: 16,
                                 color: AppColors.textSecondary,
                               ),
-                              const SizedBox(width: 6),
+                              SizedBox(width: 6),
                               Expanded(
                                 child: Text(
                                   '${booking.numberOfGuests} ${booking.numberOfGuests == 1 ? 'guest' : 'guests'}',
@@ -589,7 +589,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                                 size: 16,
                                 color: AppColors.textSecondary,
                               ),
-                              const SizedBox(width: 6),
+                              SizedBox(width: 6),
                               Expanded(
                                 child: Text(
                                   formattedTime,
@@ -604,7 +604,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 12),
+                          SizedBox(height: 12),
                           // Menu Items
                           if (menuItemsCount > 0)
                             Row(
@@ -614,7 +614,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                                   size: 16,
                                   color: AppColors.textSecondary,
                                 ),
-                                const SizedBox(width: 6),
+                                SizedBox(width: 6),
                                 Expanded(
                                   child: Text(
                                     '$menuItemsCount ${menuItemsCount == 1 ? 'item' : 'items'}${totalMenuQuantity > menuItemsCount ? ' ($totalMenuQuantity)' : ''}',
@@ -638,7 +638,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                 if ((booking.phoneNumber != null &&
                         booking.phoneNumber!.isNotEmpty) ||
                     (booking.email != null && booking.email!.isNotEmpty)) ...[
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12),
                   Wrap(
                     spacing: 16,
                     runSpacing: 8,
@@ -653,7 +653,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                               size: 16,
                               color: AppColors.textSecondary,
                             ),
-                            const SizedBox(width: 6),
+                            SizedBox(width: 6),
                             Flexible(
                               child: Text(
                                 booking.phoneNumber!,
@@ -675,7 +675,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                               size: 16,
                               color: AppColors.textSecondary,
                             ),
-                            const SizedBox(width: 6),
+                            SizedBox(width: 6),
                             Flexible(
                               child: Text(
                                 booking.email!,
@@ -694,7 +694,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                 // Special Preferences
                 if (booking.specialPreferences != null &&
                     booking.specialPreferences!.isNotEmpty) ...[
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -703,7 +703,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                         size: 16,
                         color: AppColors.textSecondary,
                       ),
-                      const SizedBox(width: 6),
+                      SizedBox(width: 6),
                       Expanded(
                         child: Text(
                           booking.specialPreferences!,
@@ -727,7 +727,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
               top: 8,
               right: 8,
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
                   color: AppColors.error,
                   borderRadius: BorderRadius.circular(6),
@@ -735,7 +735,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                     BoxShadow(
                       color: AppColors.error.withOpacity(0.3),
                       blurRadius: 4,
-                      offset: const Offset(0, 2),
+                      offset: Offset(0, 2),
                     ),
                   ],
                 ),
@@ -743,7 +743,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(Icons.cancel, color: AppColors.white, size: 14),
-                    const SizedBox(width: 4),
+                    SizedBox(width: 4),
                     Text(
                       'CANCELLED',
                       style: AppTextStyles.bodySmall.copyWith(
@@ -787,7 +787,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
     double screenWidth,
   ) {
     // Limit to first 20 tables (T1–T20)
-    const maxTable = 20;
+    final maxTable = 20;
     final allTableNumbers = List.generate(maxTable, (index) => index + 1);
 
     // Get tables that have bookings (for today or future)
@@ -827,7 +827,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
 
         // Calculate 30 minutes before reservation time
         final thirtyMinutesBefore = reservationStartTime.subtract(
-          const Duration(minutes: 30),
+          Duration(minutes: 30),
         );
 
         // Show as "Reserved" if current time is between 30 minutes before and reservation time
@@ -850,11 +850,11 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
             fontSize: screenWidth > 600 ? 20 : 18,
           ),
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: 12),
         GridView.builder(
           shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          physics: NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 5,
             crossAxisSpacing: 12,
             mainAxisSpacing: 12,
@@ -945,9 +945,9 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
             ),
             if (isReserved)
               Padding(
-                padding: const EdgeInsets.only(top: 4),
+                padding: EdgeInsets.only(top: 4),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(
+                  padding: EdgeInsets.symmetric(
                     horizontal: 6,
                     vertical: 2,
                   ),
@@ -967,7 +967,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
               )
             else if (hasBooking)
               Padding(
-                padding: const EdgeInsets.only(top: 4),
+                padding: EdgeInsets.only(top: 4),
                 child: Icon(
                   Icons.check_circle,
                   color: AppColors.info,
@@ -998,7 +998,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
           reservation.status != ReservationStatus.completed) {
         final reservationStartTime = reservation.startTime;
         final thirtyMinutesBefore = reservationStartTime.subtract(
-          const Duration(minutes: 30),
+          Duration(minutes: 30),
         );
 
         // Show as "Reserved" if current time is between 30 minutes before and reservation time
@@ -1084,9 +1084,9 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
       builder: (context) => AlertDialog(
         backgroundColor: AppColors.cardBackground,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+        insetPadding: EdgeInsets.symmetric(horizontal: 20),
         contentPadding: EdgeInsets.zero,
-        titlePadding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
+        titlePadding: EdgeInsets.fromLTRB(20, 20, 20, 16),
         title: Text(
           'Change Status',
           style: AppTextStyles.h5.copyWith(
@@ -1096,7 +1096,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
         ),
         content: Container(
           width: screenWidth - 40,
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -1108,7 +1108,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                   },
                   borderRadius: BorderRadius.circular(12),
                   child: Container(
-                    padding: const EdgeInsets.all(16),
+                    padding: EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       color: AppColors.info.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(12),
@@ -1124,7 +1124,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                           color: AppColors.info,
                           size: 24,
                         ),
-                        const SizedBox(width: 12),
+                        SizedBox(width: 12),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1136,7 +1136,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              const SizedBox(height: 4),
+                              SizedBox(height: 4),
                               Text(
                                 'Table needs cleaning',
                                 style: AppTextStyles.bodySmall.copyWith(
@@ -1156,7 +1156,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: 12),
               ],
               // Completed option
               InkWell(
@@ -1164,7 +1164,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                     Navigator.pop(context, TableBookingStatus.completed),
                 borderRadius: BorderRadius.circular(12),
                 child: Container(
-                  padding: const EdgeInsets.all(16),
+                  padding: EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: AppColors.success.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(12),
@@ -1180,7 +1180,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                         color: AppColors.success,
                         size: 24,
                       ),
-                      const SizedBox(width: 12),
+                      SizedBox(width: 12),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -1192,7 +1192,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            const SizedBox(height: 4),
+                            SizedBox(height: 4),
                             Text(
                               'Booking is completed',
                               style: AppTextStyles.bodySmall.copyWith(
@@ -1215,7 +1215,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
             ],
           ),
         ),
-        actionsPadding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+        actionsPadding: EdgeInsets.fromLTRB(20, 0, 20, 20),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
@@ -1259,12 +1259,12 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
                 'Status updated to ${getTableBookingStatusDisplayText(newStatus)}',
               ),
               backgroundColor: AppColors.success,
-              duration: const Duration(seconds: 2),
+              duration: Duration(seconds: 2),
             ),
           );
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
+            SnackBar(
               content: Text('Failed to update status'),
               backgroundColor: AppColors.error,
               duration: Duration(seconds: 2),
@@ -1278,7 +1278,7 @@ class _TableBookingsScreenState extends State<TableBookingsScreen> {
           SnackBar(
             content: Text('Error: $e'),
             backgroundColor: AppColors.error,
-            duration: const Duration(seconds: 2),
+            duration: Duration(seconds: 2),
           ),
         );
       }
@@ -1348,7 +1348,7 @@ class _TableDetailsBottomSheet extends StatefulWidget {
   final ReservationService reservationService;
   final Function(TableBookingModel) onStatusChange;
 
-  const _TableDetailsBottomSheet({
+  _TableDetailsBottomSheet({
     required this.tableNumber,
     required this.seatCount,
     required this.initialActiveBooking,
@@ -1463,7 +1463,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
       ),
       decoration: BoxDecoration(
         color: AppColors.background,
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
@@ -1473,7 +1473,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
         children: [
           // Drag handle
           Container(
-            margin: const EdgeInsets.only(top: 12, bottom: 8),
+            margin: EdgeInsets.only(top: 12, bottom: 8),
             width: 40,
             height: 4,
             decoration: BoxDecoration(
@@ -1483,7 +1483,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
           ),
           // Header
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
             child: Row(
               children: [
                 Expanded(
@@ -1496,25 +1496,25 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                   ),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.close, color: AppColors.textPrimary),
+                  icon: Icon(Icons.close, color: AppColors.textPrimary),
                   onPressed: () => Navigator.pop(context),
                 ),
               ],
             ),
           ),
-          const Divider(color: AppColors.border),
+          Divider(color: AppColors.border),
           // Content
           Flexible(
             child: _isLoading
-                ? const Center(child: CircularProgressIndicator())
+                ? Center(child: CircularProgressIndicator())
                 : SingleChildScrollView(
-                    padding: const EdgeInsets.all(20),
+                    padding: EdgeInsets.all(20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // Table Info Card
                         Container(
-                          padding: const EdgeInsets.all(16),
+                          padding: EdgeInsets.all(16),
                           decoration: BoxDecoration(
                             color: AppColors.cardBackground,
                             borderRadius: BorderRadius.circular(12),
@@ -1538,7 +1538,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                        const SizedBox(height: 4),
+                                        SizedBox(height: 4),
                                         Text(
                                           'Capacity: ${widget.seatCount} ${widget.seatCount == 1 ? 'Seat' : 'Seats'}',
                                           style: AppTextStyles.bodySmall
@@ -1551,7 +1551,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 16),
+                              SizedBox(height: 16),
                               // Status
                               Row(
                                 children: [
@@ -1561,9 +1561,9 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                                       color: AppColors.textSecondary,
                                     ),
                                   ),
-                                  const SizedBox(width: 8),
+                                  SizedBox(width: 8),
                                   Container(
-                                    padding: const EdgeInsets.symmetric(
+                                    padding: EdgeInsets.symmetric(
                                       horizontal: 12,
                                       vertical: 6,
                                     ),
@@ -1584,12 +1584,12 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        SizedBox(height: 20),
                         // Reservation/Booking Details Section
                         if (_isReservation && _activeReservation != null) ...[
                           // Reservation Details Card
                           Container(
-                            padding: const EdgeInsets.all(16),
+                            padding: EdgeInsets.all(16),
                             decoration: BoxDecoration(
                               color: AppColors.cardBackground,
                               borderRadius: BorderRadius.circular(12),
@@ -1604,7 +1604,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                                const SizedBox(height: 12),
+                                SizedBox(height: 12),
                                 // Reservation Name
                                 Row(
                                   children: [
@@ -1613,7 +1613,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                                       size: 16,
                                       color: AppColors.textSecondary,
                                     ),
-                                    const SizedBox(width: 8),
+                                    SizedBox(width: 8),
                                     Expanded(
                                       child: Column(
                                         crossAxisAlignment:
@@ -1632,7 +1632,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                                     ),
                                   ],
                                 ),
-                                const SizedBox(height: 12),
+                                SizedBox(height: 12),
                                 // Contact Person
                                 Row(
                                   children: [
@@ -1641,7 +1641,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                                       size: 16,
                                       color: AppColors.textSecondary,
                                     ),
-                                    const SizedBox(width: 8),
+                                    SizedBox(width: 8),
                                     Expanded(
                                       child: Text(
                                         _activeReservation!.contactPerson,
@@ -1652,7 +1652,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                                     ),
                                   ],
                                 ),
-                                const SizedBox(height: 8),
+                                SizedBox(height: 8),
                                 // Phone
                                 if (_activeReservation!.phone.isNotEmpty)
                                   Row(
@@ -1662,7 +1662,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                                         size: 16,
                                         color: AppColors.textSecondary,
                                       ),
-                                      const SizedBox(width: 8),
+                                      SizedBox(width: 8),
                                       Expanded(
                                         child: Text(
                                           _activeReservation!.phone,
@@ -1675,7 +1675,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                                     ],
                                   ),
                                 if (_activeReservation!.phone.isNotEmpty)
-                                  const SizedBox(height: 8),
+                                  SizedBox(height: 8),
                                 // Email
                                 if (_activeReservation!.email.isNotEmpty)
                                   Row(
@@ -1685,7 +1685,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                                         size: 16,
                                         color: AppColors.textSecondary,
                                       ),
-                                      const SizedBox(width: 8),
+                                      SizedBox(width: 8),
                                       Expanded(
                                         child: Text(
                                           _activeReservation!.email,
@@ -1700,7 +1700,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                                     ],
                                   ),
                                 if (_activeReservation!.email.isNotEmpty)
-                                  const SizedBox(height: 8),
+                                  SizedBox(height: 8),
                                 // Start Time
                                 Row(
                                   children: [
@@ -1709,7 +1709,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                                       size: 16,
                                       color: AppColors.textSecondary,
                                     ),
-                                    const SizedBox(width: 8),
+                                    SizedBox(width: 8),
                                     Expanded(
                                       child: Text(
                                         _formatReservationTime(
@@ -1722,7 +1722,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                                     ),
                                   ],
                                 ),
-                                const SizedBox(height: 8),
+                                SizedBox(height: 8),
                                 // Number of Guests
                                 Row(
                                   children: [
@@ -1731,7 +1731,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                                       size: 16,
                                       color: AppColors.textSecondary,
                                     ),
-                                    const SizedBox(width: 8),
+                                    SizedBox(width: 8),
                                     Expanded(
                                       child: Text(
                                         '${_activeReservation!.numberOfGuests} ${_activeReservation!.numberOfGuests == 1 ? 'guest' : 'guests'}',
@@ -1745,7 +1745,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                               ],
                             ),
                           ),
-                          const SizedBox(height: 20),
+                          SizedBox(height: 20),
                         ],
                         // Order Section
                         Text(
@@ -1755,10 +1755,10 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        const SizedBox(height: 12),
+                        SizedBox(height: 12),
                         if (_menuItems.isEmpty)
                           Container(
-                            padding: const EdgeInsets.all(16),
+                            padding: EdgeInsets.all(16),
                             decoration: BoxDecoration(
                               color: AppColors.cardBackground,
                               borderRadius: BorderRadius.circular(12),
@@ -1774,7 +1774,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                           )
                         else
                           Container(
-                            padding: const EdgeInsets.all(16),
+                            padding: EdgeInsets.all(16),
                             decoration: BoxDecoration(
                               color: AppColors.cardBackground,
                               borderRadius: BorderRadius.circular(12),
@@ -1782,7 +1782,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                             child: Column(
                               children: _menuItems.map((item) {
                                 return Padding(
-                                  padding: const EdgeInsets.only(bottom: 8),
+                                  padding: EdgeInsets.only(bottom: 8),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -1810,7 +1810,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                               }).toList(),
                             ),
                           ),
-                        const SizedBox(height: 20),
+                        SizedBox(height: 20),
                         // Action Buttons
                         if (!_isReservation) ...[
                           Row(
@@ -1836,7 +1836,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                                   },
                                   style: OutlinedButton.styleFrom(
                                     side: BorderSide(color: AppColors.border),
-                                    padding: const EdgeInsets.symmetric(
+                                    padding: EdgeInsets.symmetric(
                                       vertical: 12,
                                     ),
                                     shape: RoundedRectangleBorder(
@@ -1852,7 +1852,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                                   ),
                                 ),
                               ),
-                              const SizedBox(width: 12),
+                              SizedBox(width: 12),
                               Expanded(
                                 child: OutlinedButton(
                                   onPressed:
@@ -1879,7 +1879,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                                               ScaffoldMessenger.of(
                                                 context,
                                               ).showSnackBar(
-                                                const SnackBar(
+                                                SnackBar(
                                                   content: Text(
                                                     'Menu items updated successfully',
                                                   ),
@@ -1899,7 +1899,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                                           ? AppColors.border.withOpacity(0.5)
                                           : AppColors.border,
                                     ),
-                                    padding: const EdgeInsets.symmetric(
+                                    padding: EdgeInsets.symmetric(
                                       vertical: 12,
                                     ),
                                     shape: RoundedRectangleBorder(
@@ -1927,7 +1927,7 @@ class _TableDetailsBottomSheetState extends State<_TableDetailsBottomSheet> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 12),
+                          SizedBox(height: 12),
                         ],
                       ],
                     ),

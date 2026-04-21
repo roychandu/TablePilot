@@ -65,7 +65,7 @@ class CustomTextField extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
         ],
         // Input height: 48px (for single-line fields)
         // Padding: 12px 16px, Rounded: 10px
@@ -124,7 +124,7 @@ class CustomTextField extends StatelessWidget {
                 borderRadius: BorderRadius.circular(
                   AppDesignSystem.radiusInput,
                 ),
-                borderSide: const BorderSide(
+                borderSide: BorderSide(
                   color: AppColors.primary, // Blue border with glow effect
                   width: 2,
                 ),
@@ -133,15 +133,15 @@ class CustomTextField extends StatelessWidget {
                 borderRadius: BorderRadius.circular(
                   AppDesignSystem.radiusInput,
                 ),
-                borderSide: const BorderSide(color: AppColors.error, width: 2),
+                borderSide: BorderSide(color: AppColors.error, width: 2),
               ),
               focusedErrorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(
                   AppDesignSystem.radiusInput,
                 ),
-                borderSide: const BorderSide(color: AppColors.error, width: 2),
+                borderSide: BorderSide(color: AppColors.error, width: 2),
               ),
-              contentPadding: const EdgeInsets.symmetric(
+              contentPadding: EdgeInsets.symmetric(
                 horizontal: AppDesignSystem.spacingMd, // 16px
                 vertical: 12, // 12px
               ),

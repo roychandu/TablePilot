@@ -7,7 +7,7 @@ import '../../models/offer_model.dart';
 import '../../services/offer_service.dart';
 
 class CustomerOffersScreen extends StatefulWidget {
-  const CustomerOffersScreen({super.key});
+  CustomerOffersScreen({super.key});
 
   @override
   State<CustomerOffersScreen> createState() => _CustomerOffersScreenState();
@@ -159,7 +159,7 @@ class _CustomerOffersScreenState extends State<CustomerOffersScreen>
           labelColor: AppColors.primary,
           unselectedLabelColor: AppColors.textSecondary,
           indicatorColor: AppColors.primary,
-          tabs: const [
+          tabs: [
             Tab(text: 'Active'),
             Tab(text: 'Inactive'),
             Tab(text: 'Past'),
@@ -167,13 +167,13 @@ class _CustomerOffersScreenState extends State<CustomerOffersScreen>
         ),
       ),
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? Center(child: CircularProgressIndicator())
           : RefreshIndicator(
               onRefresh: _loadOffers,
               child: offers.isEmpty
                   ? _buildEmptyState()
                   : ListView.builder(
-                      padding: const EdgeInsets.all(16),
+                      padding: EdgeInsets.all(16),
                       itemCount: offers.length,
                       itemBuilder: (context, index) {
                         return _buildOfferCard(offers[index]);
@@ -193,14 +193,14 @@ class _CustomerOffersScreenState extends State<CustomerOffersScreen>
             size: 64,
             color: AppColors.textSecondary,
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           Text(
             'No offers available',
             style: AppTextStyles.bodyLarge.copyWith(
               color: AppColors.textSecondary,
             ),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           Text(
             'Check back later for new offers',
             style: AppTextStyles.bodySmall.copyWith(
@@ -218,7 +218,7 @@ class _CustomerOffersScreenState extends State<CustomerOffersScreen>
     final discountText = _getDiscountText(offer);
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
+      margin: EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
@@ -226,7 +226,7 @@ class _CustomerOffersScreenState extends State<CustomerOffersScreen>
           BoxShadow(
             color: AppColors.shadow,
             blurRadius: 8,
-            offset: const Offset(0, 4),
+            offset: Offset(0, 4),
           ),
         ],
       ),
@@ -236,7 +236,7 @@ class _CustomerOffersScreenState extends State<CustomerOffersScreen>
           // Banner Image
           if (offer.bannerImageUrl != null && offer.bannerImageUrl!.isNotEmpty)
             ClipRRect(
-              borderRadius: const BorderRadius.vertical(
+              borderRadius: BorderRadius.vertical(
                 top: Radius.circular(16),
               ),
               child: Image.network(
@@ -267,13 +267,13 @@ class _CustomerOffersScreenState extends State<CustomerOffersScreen>
                     AppColors.primary.withOpacity(0.7),
                   ],
                 ),
-                borderRadius: const BorderRadius.vertical(
+                borderRadius: BorderRadius.vertical(
                   top: Radius.circular(16),
                 ),
               ),
             ),
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -282,7 +282,7 @@ class _CustomerOffersScreenState extends State<CustomerOffersScreen>
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(
+                      padding: EdgeInsets.symmetric(
                         horizontal: 12,
                         vertical: 6,
                       ),
@@ -299,7 +299,7 @@ class _CustomerOffersScreenState extends State<CustomerOffersScreen>
                       ),
                     ),
                     Container(
-                      padding: const EdgeInsets.symmetric(
+                      padding: EdgeInsets.symmetric(
                         horizontal: 8,
                         vertical: 4,
                       ),
@@ -318,7 +318,7 @@ class _CustomerOffersScreenState extends State<CustomerOffersScreen>
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: 12),
                 // Title
                 Text(
                   offer.title,
@@ -327,7 +327,7 @@ class _CustomerOffersScreenState extends State<CustomerOffersScreen>
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8),
                 // Description
                 if (offer.description.isNotEmpty)
                   Text(
@@ -338,7 +338,7 @@ class _CustomerOffersScreenState extends State<CustomerOffersScreen>
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                   ),
-                const SizedBox(height: 12),
+                SizedBox(height: 12),
                 // Valid Dates
                 Row(
                   children: [
@@ -347,7 +347,7 @@ class _CustomerOffersScreenState extends State<CustomerOffersScreen>
                       size: 16,
                       color: AppColors.textSecondary,
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                     Text(
                       'Valid: ${_formatDate(offer.validFrom)} - ${_formatDate(offer.validUntil)}',
                       style: AppTextStyles.bodySmall.copyWith(
@@ -359,7 +359,7 @@ class _CustomerOffersScreenState extends State<CustomerOffersScreen>
                 // Minimum Order Value
                 if (offer.minimumOrderValue != null &&
                     offer.minimumOrderValue! > 0) ...[
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8),
                   Row(
                     children: [
                       Icon(
@@ -367,7 +367,7 @@ class _CustomerOffersScreenState extends State<CustomerOffersScreen>
                         size: 16,
                         color: AppColors.textSecondary,
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8),
                       Text(
                         'Min. order: AED ${offer.minimumOrderValue!.toStringAsFixed(0)}',
                         style: AppTextStyles.bodySmall.copyWith(
@@ -380,10 +380,10 @@ class _CustomerOffersScreenState extends State<CustomerOffersScreen>
                 // Terms & Conditions
                 if (offer.termsAndConditions != null &&
                     offer.termsAndConditions!.isNotEmpty) ...[
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12),
                   ExpansionTile(
                     tilePadding: EdgeInsets.zero,
-                    childrenPadding: const EdgeInsets.only(bottom: 8),
+                    childrenPadding: EdgeInsets.only(bottom: 8),
                     title: Text(
                       'Terms & Conditions',
                       style: AppTextStyles.bodySmall.copyWith(

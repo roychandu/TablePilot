@@ -15,7 +15,7 @@ import 'calendar_view_screen.dart';
 import 'reservation_detail_screen.dart';
 
 class ReservationScreen extends StatefulWidget {
-  const ReservationScreen({super.key, this.initialView});
+  ReservationScreen({super.key, this.initialView});
 
   final String? initialView; // 'list' or 'calendar'
 
@@ -60,7 +60,7 @@ class _ReservationScreenState extends State<ReservationScreen>
             builder: (_) => Scaffold(
               backgroundColor: AppColors.background,
               body: CalendarViewScreen(
-                viewSelectionButtons: (_) => const SizedBox.shrink(),
+                viewSelectionButtons: (_) => SizedBox.shrink(),
               ),
             ),
           ),
@@ -125,7 +125,7 @@ class _ReservationScreenState extends State<ReservationScreen>
             builder: (_) => Scaffold(
               backgroundColor: AppColors.background,
               body: CalendarViewScreen(
-                viewSelectionButtons: (_) => const SizedBox.shrink(),
+                viewSelectionButtons: (_) => SizedBox.shrink(),
               ),
             ),
           ),
@@ -150,12 +150,12 @@ class _ReservationScreenState extends State<ReservationScreen>
                       final created = await Navigator.push<bool>(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const AddReservationScreen(),
+                          builder: (_) => AddReservationScreen(),
                         ),
                       );
                       if (created == true && mounted) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
+                          SnackBar(
                             content: Text('Reservation created successfully'),
                             backgroundColor: AppColors.success,
                           ),
@@ -163,7 +163,7 @@ class _ReservationScreenState extends State<ReservationScreen>
                       }
                     },
                     backgroundColor: AppColors.primary,
-                    child: const Icon(Icons.add, color: AppColors.white),
+                    child: Icon(Icons.add, color: AppColors.white),
                   )
                 : null)
           : (_hasReservations
@@ -172,12 +172,12 @@ class _ReservationScreenState extends State<ReservationScreen>
                       final created = await Navigator.push<bool>(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const AddReservationScreen(),
+                          builder: (_) => AddReservationScreen(),
                         ),
                       );
                       if (created == true && mounted) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
+                          SnackBar(
                             content: Text('Reservation created successfully'),
                             backgroundColor: AppColors.success,
                           ),
@@ -185,7 +185,7 @@ class _ReservationScreenState extends State<ReservationScreen>
                       }
                     },
                     backgroundColor: AppColors.primary,
-                    child: const Icon(Icons.add, color: AppColors.white),
+                    child: Icon(Icons.add, color: AppColors.white),
                   )
                 : null),
       appBar: AppBar(
@@ -209,7 +209,7 @@ class _ReservationScreenState extends State<ReservationScreen>
                   fontWeight: FontWeight.w600,
                 ),
                 unselectedLabelStyle: AppTextStyles.bodyMedium,
-                tabs: const [
+                tabs: [
                   Tab(text: 'Table Booking'),
                   Tab(text: 'Reservation Booking'),
                 ],
@@ -217,7 +217,7 @@ class _ReservationScreenState extends State<ReservationScreen>
             : null,
         actions: [
           IconButton(
-            icon: const Icon(CupertinoIcons.calendar),
+            icon: Icon(CupertinoIcons.calendar),
             color: AppColors.textPrimary,
             onPressed: () {
               Navigator.push(
@@ -226,7 +226,7 @@ class _ReservationScreenState extends State<ReservationScreen>
                   builder: (_) => Scaffold(
                     backgroundColor: AppColors.background,
                     body: CalendarViewScreen(
-                      viewSelectionButtons: (_) => const SizedBox.shrink(),
+                      viewSelectionButtons: (_) => SizedBox.shrink(),
                     ),
                   ),
                 ),
@@ -241,7 +241,7 @@ class _ReservationScreenState extends State<ReservationScreen>
                 controller: _tabController,
                 children: [
                   // Table Booking Tab
-                  const _TableBookingTabContent(),
+                  _TableBookingTabContent(),
                   // Reservation Booking Tab
                   StreamBuilder<List<ReservationModel>>(
                     stream: _eventService.getReservationsStream(),
@@ -309,14 +309,14 @@ class _ReservationScreenState extends State<ReservationScreen>
                       return RefreshIndicator(
                         onRefresh: () async {
                           await Future.delayed(
-                            const Duration(milliseconds: 500),
+                            Duration(milliseconds: 500),
                           );
                         },
                         color: AppColors.primary,
                         child: LayoutBuilder(
                           builder: (context, constraints) {
                             return SingleChildScrollView(
-                              physics: const AlwaysScrollableScrollPhysics(),
+                              physics: AlwaysScrollableScrollPhysics(),
                               padding: EdgeInsets.symmetric(
                                 horizontal: horizontalPadding,
                                 vertical: verticalSpacing,
@@ -335,7 +335,7 @@ class _ReservationScreenState extends State<ReservationScreen>
                                       GridView.builder(
                                         shrinkWrap: true,
                                         physics:
-                                            const NeverScrollableScrollPhysics(),
+                                            NeverScrollableScrollPhysics(),
                                         gridDelegate:
                                             SliverGridDelegateWithFixedCrossAxisCount(
                                               crossAxisCount: isTablet ? 3 : 2,
@@ -431,13 +431,13 @@ class _ReservationScreenState extends State<ReservationScreen>
 
                   return RefreshIndicator(
                     onRefresh: () async {
-                      await Future.delayed(const Duration(milliseconds: 500));
+                      await Future.delayed(Duration(milliseconds: 500));
                     },
                     color: AppColors.primary,
                     child: LayoutBuilder(
                       builder: (context, constraints) {
                         return SingleChildScrollView(
-                          physics: const AlwaysScrollableScrollPhysics(),
+                          physics: AlwaysScrollableScrollPhysics(),
                           padding: EdgeInsets.symmetric(
                             horizontal: horizontalPadding,
                             vertical: verticalSpacing,
@@ -459,7 +459,7 @@ class _ReservationScreenState extends State<ReservationScreen>
                                   GridView.builder(
                                     shrinkWrap: true,
                                     physics:
-                                        const NeverScrollableScrollPhysics(),
+                                        NeverScrollableScrollPhysics(),
                                     gridDelegate:
                                         SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: isTablet ? 3 : 2,
@@ -536,7 +536,7 @@ class _ReservationScreenState extends State<ReservationScreen>
       final success = await _eventService.deleteReservation(reservation.id!);
       if (success && mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+          SnackBar(
             content: Text('Reservation deleted successfully'),
             backgroundColor: AppColors.success,
             behavior: SnackBarBehavior.floating,
@@ -612,7 +612,7 @@ class _ReservationScreenState extends State<ReservationScreen>
         );
         if (updated == true && mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
+            SnackBar(
               content: Text('Reservation updated successfully'),
               behavior: SnackBarBehavior.floating,
               backgroundColor: AppColors.success,
@@ -620,20 +620,20 @@ class _ReservationScreenState extends State<ReservationScreen>
           );
         }
       },
-      borderRadius: const BorderRadius.vertical(top: Radius.circular(100)),
+      borderRadius: BorderRadius.vertical(top: Radius.circular(100)),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(100)),
-          image: const DecorationImage(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(100)),
+          image: DecorationImage(
             image: AssetImage('assets/restro-background.png'),
             fit: BoxFit.fill,
           ),
         ),
         child: ClipRRect(
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(100)),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(100)),
           child: Container(
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 32),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 32),
             // Subtle dark overlay to ensure text contrast if the image is too bright
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -644,7 +644,7 @@ class _ReservationScreenState extends State<ReservationScreen>
                   height: 70,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    image: const DecorationImage(
+                    image: DecorationImage(
                       image: AssetImage('assets/cir-background.png'),
                       fit: BoxFit.cover,
                     ),
@@ -662,25 +662,25 @@ class _ReservationScreenState extends State<ReservationScreen>
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: 20),
                 // Info Rows
                 _buildIconLabel(Icons.calendar_today, formattedDate),
-                const SizedBox(height: 10),
+                SizedBox(height: 10),
                 _buildIconLabel(Icons.access_time, formattedTime),
-                const SizedBox(height: 10),
+                SizedBox(height: 10),
                 _buildIconLabel(
                   Icons.table_restaurant,
                   'Table ${reservation.tableNumber ?? "N/A"}',
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: 10),
                 _buildIconLabel(
                   Icons.people_outline,
                   '${reservation.numberOfGuests} Guests',
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: 20),
                 // Status Badge
                 Container(
-                  padding: const EdgeInsets.symmetric(
+                  padding: EdgeInsets.symmetric(
                     horizontal: 12,
                     vertical: 8,
                   ),
@@ -699,7 +699,7 @@ class _ReservationScreenState extends State<ReservationScreen>
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Icon(statusIcon, color: statusColor, size: 14),
-                      const SizedBox(width: 6),
+                      SizedBox(width: 6),
                       Flexible(
                         child: Text(
                           statusText,
@@ -715,10 +715,10 @@ class _ReservationScreenState extends State<ReservationScreen>
                   ),
                 ),
                 if (isCancelled || isRejected) ...[
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12),
                   TextButton.icon(
                     onPressed: () => _deleteReservation(reservation),
-                    icon: const Icon(
+                    icon: Icon(
                       CupertinoIcons.delete,
                       size: 16,
                       color: AppColors.textSecondary,
@@ -746,12 +746,12 @@ class _ReservationScreenState extends State<ReservationScreen>
 
   Widget _buildIconLabel(IconData icon, String label) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 14),
+      padding: EdgeInsets.symmetric(horizontal: 14),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Icon(icon, color: AppColors.white.withOpacity(0.9), size: 14),
-          const SizedBox(width: 8),
+          SizedBox(width: 8),
           Expanded(
             child: Text(
               label,
@@ -822,12 +822,12 @@ class _ReservationScreenState extends State<ReservationScreen>
                 final created = await Navigator.push<bool>(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const AddReservationScreen(),
+                    builder: (_) => AddReservationScreen(),
                   ),
                 );
                 if (created == true && mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
+                    SnackBar(
                       content: Text('Reservation created successfully'),
                       backgroundColor: AppColors.success,
                     ),
@@ -862,10 +862,10 @@ class _ReservationScreenState extends State<ReservationScreen>
 
 // Table Booking Tab Content (extracted body from TableBookingsScreen)
 class _TableBookingTabContent extends StatelessWidget {
-  const _TableBookingTabContent();
+  _TableBookingTabContent();
 
   @override
   Widget build(BuildContext context) {
-    return const TableBookingsScreen(skipScaffold: true);
+    return TableBookingsScreen(skipScaffold: true);
   }
 }

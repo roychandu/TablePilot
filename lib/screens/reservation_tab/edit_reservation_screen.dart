@@ -12,7 +12,7 @@ import '../../services/reservation_service.dart';
 import '../../services/table_booking_service.dart';
 
 class EditReservationScreen extends StatefulWidget {
-  const EditReservationScreen({super.key, required this.event});
+  EditReservationScreen({super.key, required this.event});
 
   final dynamic event; // Accepts ReservationModel or EventModel
 
@@ -47,7 +47,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
   // Filtered based on number of guests
   List<int> get _tableOptions {
     // Limit to first 20 tables (T1–T20)
-    const maxTable = 20;
+    final maxTable = 20;
     return List.generate(
       maxTable,
       (index) => index + 1,
@@ -162,7 +162,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
       context: context,
       initialDate: _selectedDate ?? DateTime.now(),
       firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(const Duration(days: 365)),
+      lastDate: DateTime.now().add(Duration(days: 365)),
       builder: (context, child) {
         return Theme(
           data: Theme.of(context).copyWith(
@@ -193,7 +193,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
   Future<void> _selectTime() async {
     if (_selectedDate == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text('Please select a date first'),
           backgroundColor: AppColors.error,
         ),
@@ -203,7 +203,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
 
     if (_selectedTable == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text('Please select a table first'),
           backgroundColor: AppColors.error,
         ),
@@ -274,8 +274,8 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
     }
 
     // Allowed time window: 9:30 AM to 9:30 PM
-    const minAllowedTime = TimeOfDay(hour: 9, minute: 30);
-    const maxAllowedTime = TimeOfDay(hour: 21, minute: 30);
+    final minAllowedTime = TimeOfDay(hour: 9, minute: 30);
+    final maxAllowedTime = TimeOfDay(hour: 21, minute: 30);
 
     final now = DateTime.now();
 
@@ -287,7 +287,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
         _selectedDate!.day == now.day;
 
     if (isToday) {
-      final minDateTime = now.add(const Duration(hours: 2));
+      final minDateTime = now.add(Duration(hours: 2));
       minTime = TimeOfDay.fromDateTime(minDateTime);
     }
 
@@ -355,7 +355,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
     if (pickedMinutes < minAllowedMinutes ||
         pickedMinutes > maxAllowedMinutes) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text('Time must be between 9:30 AM and 9:30 PM'),
           backgroundColor: AppColors.error,
         ),
@@ -370,7 +370,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
       final minMinutes = toMinutes(minTime);
       if (pickedMinutes < minMinutes) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+          SnackBar(
             content: Text('Reservation time must be at least 2 hours from now'),
             backgroundColor: AppColors.error,
           ),
@@ -389,7 +389,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
     );
     if (isToday && selectedDateTime.isBefore(now)) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text('Selected time is in the past'),
           backgroundColor: AppColors.error,
         ),
@@ -403,7 +403,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
     );
     if (isAlreadyBooked) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text(
             'This time slot is already booked or reserved for this table, If you want to book this table, please wait for 1 hour from the existing bookings/reservations',
           ),
@@ -425,7 +425,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
 
     if (hasConflictWithinOneHour) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text(
             'This table should be booked after 1 hour from existing bookings/reservations',
           ),
@@ -447,7 +447,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
 
     if (_selectedDate == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text('Please select a date'),
           backgroundColor: AppColors.error,
         ),
@@ -457,7 +457,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
 
     if (_selectedTime == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text('Please select a time'),
           backgroundColor: AppColors.error,
         ),
@@ -467,7 +467,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
 
     if (_selectedTable == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text('Please select a table'),
           backgroundColor: AppColors.error,
         ),
@@ -523,7 +523,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
 
       if (success && mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+          SnackBar(
             content: Text('Reservation updated successfully'),
             backgroundColor: AppColors.success,
             behavior: SnackBarBehavior.floating,
@@ -533,7 +533,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
       } else {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
+            SnackBar(
               content: Text('Failed to update reservation'),
               backgroundColor: AppColors.error,
             ),
@@ -543,7 +543,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+          SnackBar(
             content: Text('An error occurred'),
             backgroundColor: AppColors.error,
           ),
@@ -570,7 +570,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
         backgroundColor: AppColors.cardBackground,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.close, color: AppColors.textPrimary),
+          icon: Icon(Icons.close, color: AppColors.textPrimary),
           onPressed: () => Navigator.pop(context),
         ),
         title: Column(
@@ -601,20 +601,20 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 20),
+                SizedBox(height: 20),
                 // Guest Information Section
                 _buildSectionHeader(
                   icon: CupertinoIcons.person_fill,
                   title: 'Guest Information',
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildTextField(
                   controller: _guestNameController,
                   label: 'Guest Name',
                   isRequired: true,
                   hintText: 'John Doe',
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildTextField(
                   controller: _phoneNumberController,
                   label: 'Phone Number',
@@ -628,7 +628,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
                     LengthLimitingTextInputFormatter(10),
                   ],
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildTextField(
                   controller: _emailController,
                   label: 'Email',
@@ -638,21 +638,21 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
                   errorText: _emailError,
                   onChanged: _onEmailChanged,
                 ),
-                const SizedBox(height: 32),
+                SizedBox(height: 32),
                 // Booking Details Section
                 _buildSectionHeader(
                   icon: CupertinoIcons.calendar,
                   title: 'Booking Details',
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildDateField(),
-                const SizedBox(height: 32),
+                SizedBox(height: 32),
                 // Table Selection Section
                 _buildSectionHeader(
                   icon: CupertinoIcons.location_fill,
                   title: 'Table Selection',
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildDropdownField<int>(
                   label: 'Number of Guests',
                   isRequired: true,
@@ -675,7 +675,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
                   displayText: (value) =>
                       '$value ${value == 1 ? 'Guest' : 'Guests'}',
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 // Table Selection Grid
                 Text(
                   'Table *',
@@ -684,31 +684,31 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: 12),
                 _buildTableGrid(),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildTimeField(),
-                const SizedBox(height: 32),
+                SizedBox(height: 32),
                 // Special Preferences
                 _buildSectionHeader(
                   icon: CupertinoIcons.info,
                   title: 'Special Preferences',
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildTextArea(
                   controller: _specialPreferencesController,
                   hintText: 'preferences, or special occasions...',
                 ),
-                const SizedBox(height: 32),
+                SizedBox(height: 32),
                 // Action Buttons
                 Row(
                   children: [
                     Expanded(child: _buildCancelButton(isTablet)),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12),
                     Expanded(flex: 2, child: _buildUpdateButton(isTablet)),
                   ],
                 ),
-                const SizedBox(height: 32),
+                SizedBox(height: 32),
               ],
             ),
           ),
@@ -721,7 +721,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
     return Row(
       children: [
         Icon(icon, color: AppColors.success, size: 20),
-        const SizedBox(width: 8),
+        SizedBox(width: 8),
         Text(
           title,
           style: AppTextStyles.h6.copyWith(
@@ -753,7 +753,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
             fontWeight: FontWeight.w500,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         TextFormField(
           controller: controller,
           keyboardType: keyboardType,
@@ -782,7 +782,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(color: AppColors.primary, width: 2),
             ),
-            contentPadding: const EdgeInsets.symmetric(
+            contentPadding: EdgeInsets.symmetric(
               horizontal: 16,
               vertical: 14,
             ),
@@ -813,12 +813,12 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
             fontWeight: FontWeight.w500,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         InkWell(
           onTap: _selectDate,
           borderRadius: BorderRadius.circular(12),
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
             decoration: BoxDecoration(
               color: AppColors.cardBackground,
               borderRadius: BorderRadius.circular(12),
@@ -864,12 +864,12 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
             fontWeight: FontWeight.w500,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         InkWell(
           onTap: _selectTime,
           borderRadius: BorderRadius.circular(12),
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
             decoration: BoxDecoration(
               color: AppColors.cardBackground,
               borderRadius: BorderRadius.circular(12),
@@ -918,9 +918,9 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
             fontWeight: FontWeight.w500,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
             color: AppColors.cardBackground,
             borderRadius: BorderRadius.circular(12),
@@ -965,7 +965,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
 
     if (availableTables.isEmpty) {
       return Container(
-        padding: const EdgeInsets.all(24),
+        padding: EdgeInsets.all(24),
         decoration: BoxDecoration(
           color: AppColors.cardBackground,
           borderRadius: BorderRadius.circular(12),
@@ -984,8 +984,8 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
 
     return GridView.builder(
       shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      physics: NeverScrollableScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 5,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
@@ -1051,7 +1051,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
             ),
             if (isSelected)
               Padding(
-                padding: const EdgeInsets.only(top: 4),
+                padding: EdgeInsets.only(top: 4),
                 child: Icon(
                   Icons.check_circle,
                   color: AppColors.primary,
@@ -1091,7 +1091,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(color: AppColors.primary, width: 2),
         ),
-        contentPadding: const EdgeInsets.all(16),
+        contentPadding: EdgeInsets.all(16),
       ),
     );
   }
@@ -1130,7 +1130,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
           ),
         ),
         child: _isSubmitting
-            ? const SizedBox(
+            ? SizedBox(
                 width: 20,
                 height: 20,
                 child: CircularProgressIndicator(

@@ -11,7 +11,7 @@ import '../../services/reservation_service.dart';
 class CalendarViewScreen extends StatefulWidget {
   final Widget Function(double) viewSelectionButtons;
 
-  const CalendarViewScreen({super.key, required this.viewSelectionButtons});
+  CalendarViewScreen({super.key, required this.viewSelectionButtons});
 
   @override
   State<CalendarViewScreen> createState() => _CalendarViewScreenState();
@@ -55,7 +55,7 @@ class _CalendarViewScreenState extends State<CalendarViewScreen> {
             // Show loading indicator while initial data is being fetched
             if (eventsSnapshot.connectionState == ConnectionState.waiting &&
                 !eventsSnapshot.hasData) {
-              return const Center(
+              return Center(
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
                 ),
@@ -68,11 +68,11 @@ class _CalendarViewScreenState extends State<CalendarViewScreen> {
 
             return RefreshIndicator(
               onRefresh: () async {
-                await Future.delayed(const Duration(milliseconds: 400));
+                await Future.delayed(Duration(milliseconds: 400));
               },
               color: AppColors.primary,
               child: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
+                physics: AlwaysScrollableScrollPhysics(),
                 padding: EdgeInsets.symmetric(
                   horizontal: horizontalPadding,
                   vertical: verticalSpacing,
@@ -112,9 +112,9 @@ class _CalendarViewScreenState extends State<CalendarViewScreen> {
           onPressed: () {
             setState(() {
               if (_selectedTimeframe == 'day') {
-                _selectedDate = _selectedDate.subtract(const Duration(days: 1));
+                _selectedDate = _selectedDate.subtract(Duration(days: 1));
               } else if (_selectedTimeframe == 'week') {
-                _selectedDate = _selectedDate.subtract(const Duration(days: 7));
+                _selectedDate = _selectedDate.subtract(Duration(days: 7));
               } else {
                 // month
                 _selectedDate = DateTime(
@@ -131,7 +131,7 @@ class _CalendarViewScreenState extends State<CalendarViewScreen> {
             size: isTablet ? 24 : 20,
           ),
         ),
-        const SizedBox(width: 16),
+        SizedBox(width: 16),
         Text(
           formattedDate,
           style: AppTextStyles.h5.copyWith(
@@ -140,14 +140,14 @@ class _CalendarViewScreenState extends State<CalendarViewScreen> {
             fontSize: isTablet ? 20 : 18,
           ),
         ),
-        const SizedBox(width: 16),
+        SizedBox(width: 16),
         IconButton(
           onPressed: () {
             setState(() {
               if (_selectedTimeframe == 'day') {
-                _selectedDate = _selectedDate.add(const Duration(days: 1));
+                _selectedDate = _selectedDate.add(Duration(days: 1));
               } else if (_selectedTimeframe == 'week') {
-                _selectedDate = _selectedDate.add(const Duration(days: 7));
+                _selectedDate = _selectedDate.add(Duration(days: 7));
               } else {
                 // month
                 _selectedDate = DateTime(
@@ -212,8 +212,8 @@ class _CalendarViewScreenState extends State<CalendarViewScreen> {
   }) {
     final isTablet = screenWidth > 600;
     final padding = isTablet
-        ? const EdgeInsets.symmetric(vertical: 14, horizontal: 20)
-        : const EdgeInsets.symmetric(vertical: 12, horizontal: 16);
+        ? EdgeInsets.symmetric(vertical: 14, horizontal: 20)
+        : EdgeInsets.symmetric(vertical: 12, horizontal: 16);
     final fontSize = isTablet ? 16.0 : 15.0;
     // Use success color for selected timeframe
     final selectedColor = AppColors.success;
@@ -295,8 +295,8 @@ class _CalendarViewScreenState extends State<CalendarViewScreen> {
     final isTablet = screenWidth > 600;
     final cardHeight = isTablet ? 100.0 : 90.0;
     final padding = isTablet
-        ? const EdgeInsets.symmetric(vertical: 16, horizontal: 12)
-        : const EdgeInsets.symmetric(vertical: 14, horizontal: 10);
+        ? EdgeInsets.symmetric(vertical: 16, horizontal: 12)
+        : EdgeInsets.symmetric(vertical: 14, horizontal: 10);
     final valueFontSize = isTablet ? 24.0 : 20.0;
     final labelFontSize = isTablet ? 12.0 : 11.0;
 
@@ -310,7 +310,7 @@ class _CalendarViewScreenState extends State<CalendarViewScreen> {
           BoxShadow(
             color: AppColors.shadow,
             blurRadius: 8,
-            offset: const Offset(0, 4),
+            offset: Offset(0, 4),
           ),
         ],
       ),
@@ -560,7 +560,7 @@ class _CalendarViewScreenState extends State<CalendarViewScreen> {
   ) {
     final eventItems = <EventItem>[];
     final dateStart = DateTime(date.year, date.month, date.day);
-    final dateEnd = dateStart.add(const Duration(days: 1));
+    final dateEnd = dateStart.add(Duration(days: 1));
 
     for (final reservation in reservations) {
       // Check if reservation is on the selected date
@@ -652,7 +652,7 @@ class EventItem {
   factory EventItem.empty() {
     return EventItem(
       name: '',
-      time: const TimeOfDay(hour: 0, minute: 0),
+      time: TimeOfDay(hour: 0, minute: 0),
       guests: 0,
       location: '',
       status: '',

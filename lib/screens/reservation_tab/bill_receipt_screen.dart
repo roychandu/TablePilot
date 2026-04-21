@@ -9,7 +9,7 @@ import '../../models/table_booking_model.dart';
 class BillReceiptScreen extends StatelessWidget {
   final TableBookingModel booking;
 
-  const BillReceiptScreen({super.key, required this.booking});
+  BillReceiptScreen({super.key, required this.booking});
 
   String _formatDate(DateTime date) {
     return DateFormat('MMMM dd, yyyy').format(date);
@@ -46,7 +46,7 @@ class BillReceiptScreen extends StatelessWidget {
     for (final item in booking.menuItems) {
       subtotal += item.totalPrice;
     }
-    const taxRate = 0.18; // 18% tax
+    final taxRate = 0.18; // 18% tax
     final tax = subtotal * taxRate;
     final total = subtotal + tax;
 
@@ -56,7 +56,7 @@ class BillReceiptScreen extends StatelessWidget {
         backgroundColor: AppColors.cardBackground,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back_ios_new_rounded,
             color: AppColors.textPrimary,
           ),
@@ -75,22 +75,22 @@ class BillReceiptScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             // Restaurant Information Card
             _buildRestaurantInfoCard(),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             // Order Information Card
             _buildOrderInfoCard(),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             // Order Items Card
             _buildOrderItemsCard(subtotal),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             // Bill Summary Card
             _buildBillSummaryCard(subtotal, tax, total),
-            const SizedBox(height: 40),
+            SizedBox(height: 40),
             // Thank you message
             _buildThankYouMessage(),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
           ],
         ),
       ),
@@ -99,7 +99,7 @@ class BillReceiptScreen extends StatelessWidget {
 
   Widget _buildRestaurantInfoCard() {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
@@ -107,7 +107,7 @@ class BillReceiptScreen extends StatelessWidget {
           BoxShadow(
             color: AppColors.shadow,
             blurRadius: 8,
-            offset: const Offset(0, 4),
+            offset: Offset(0, 4),
           ),
         ],
       ),
@@ -120,13 +120,13 @@ class BillReceiptScreen extends StatelessWidget {
               color: AppColors.success,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: const Icon(
+            child: Icon(
               Icons.receipt_long,
               color: AppColors.white,
               size: 32,
             ),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           Text(
             'SFC Plus - Southern Fried Chicken',
             style: AppTextStyles.h5.copyWith(
@@ -135,7 +135,7 @@ class BillReceiptScreen extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -144,7 +144,7 @@ class BillReceiptScreen extends StatelessWidget {
                 size: 16,
                 color: AppColors.textSecondary,
               ),
-              const SizedBox(width: 6),
+              SizedBox(width: 6),
               Text(
                 'Abu Dhabi, United Arab Emirates',
                 style: AppTextStyles.bodySmall.copyWith(
@@ -160,7 +160,7 @@ class BillReceiptScreen extends StatelessWidget {
 
   Widget _buildOrderInfoCard() {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
@@ -168,7 +168,7 @@ class BillReceiptScreen extends StatelessWidget {
           BoxShadow(
             color: AppColors.shadow,
             blurRadius: 8,
-            offset: const Offset(0, 4),
+            offset: Offset(0, 4),
           ),
         ],
       ),
@@ -184,13 +184,13 @@ class BillReceiptScreen extends StatelessWidget {
                   color: AppColors.success,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.receipt_long,
                   color: AppColors.white,
                   size: 20,
                 ),
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: 12),
               Text(
                 'Order Information',
                 style: AppTextStyles.h6.copyWith(
@@ -200,13 +200,13 @@ class BillReceiptScreen extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           _buildInfoRow(
             icon: CupertinoIcons.number,
             label: 'Order Number',
             value: _generateOrderNumber(),
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           _buildInfoRow(
             icon: CupertinoIcons.calendar,
             label: 'Date & Time',
@@ -214,7 +214,7 @@ class BillReceiptScreen extends StatelessWidget {
                 '${_formatDate(booking.bookingDate)} | ${_formatTime(booking.bookingTime)}',
           ),
           if (booking.tableNumber != null) ...[
-            const SizedBox(height: 12),
+            SizedBox(height: 12),
             _buildInfoRow(
               icon: CupertinoIcons.square_grid_2x2,
               label: 'Table',
@@ -234,7 +234,7 @@ class BillReceiptScreen extends StatelessWidget {
     return Row(
       children: [
         Icon(icon, size: 18, color: AppColors.textSecondary),
-        const SizedBox(width: 12),
+        SizedBox(width: 12),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -246,7 +246,7 @@ class BillReceiptScreen extends StatelessWidget {
                   fontSize: 12,
                 ),
               ),
-              const SizedBox(height: 4),
+              SizedBox(height: 4),
               Text(
                 value,
                 style: AppTextStyles.bodyMedium.copyWith(
@@ -263,7 +263,7 @@ class BillReceiptScreen extends StatelessWidget {
 
   Widget _buildOrderItemsCard(double subtotal) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
@@ -271,7 +271,7 @@ class BillReceiptScreen extends StatelessWidget {
           BoxShadow(
             color: AppColors.shadow,
             blurRadius: 8,
-            offset: const Offset(0, 4),
+            offset: Offset(0, 4),
           ),
         ],
       ),
@@ -287,13 +287,13 @@ class BillReceiptScreen extends StatelessWidget {
                   color: AppColors.success,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.restaurant_menu,
                   color: AppColors.white,
                   size: 20,
                 ),
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: 12),
               Text(
                 'Order Items',
                 style: AppTextStyles.h6.copyWith(
@@ -303,10 +303,10 @@ class BillReceiptScreen extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           if (booking.menuItems.isEmpty)
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
+              padding: EdgeInsets.symmetric(vertical: 20),
               child: Center(
                 child: Text(
                   'No items ordered',
@@ -319,7 +319,7 @@ class BillReceiptScreen extends StatelessWidget {
           else
             ...booking.menuItems.map((item) {
               return Padding(
-                padding: const EdgeInsets.only(bottom: 16),
+                padding: EdgeInsets.only(bottom: 16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -335,7 +335,7 @@ class BillReceiptScreen extends StatelessWidget {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          const SizedBox(height: 4),
+                          SizedBox(height: 4),
                           Text(
                             'Qty: ${item.quantity} x ${item.priceAed.toStringAsFixed(2)} AED',
                             style: AppTextStyles.bodySmall.copyWith(
@@ -364,7 +364,7 @@ class BillReceiptScreen extends StatelessWidget {
 
   Widget _buildBillSummaryCard(double subtotal, double tax, double total) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
@@ -372,7 +372,7 @@ class BillReceiptScreen extends StatelessWidget {
           BoxShadow(
             color: AppColors.shadow,
             blurRadius: 8,
-            offset: const Offset(0, 4),
+            offset: Offset(0, 4),
           ),
         ],
       ),
@@ -386,11 +386,11 @@ class BillReceiptScreen extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           _buildSummaryRow('Subtotal', subtotal),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           _buildSummaryRow('Tax (18%)', tax),
-          const Divider(color: AppColors.border, height: 24),
+          Divider(color: AppColors.border, height: 24),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -442,7 +442,7 @@ class BillReceiptScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(Icons.favorite, color: AppColors.success, size: 20),
-          const SizedBox(width: 8),
+          SizedBox(width: 8),
           Text(
             'Thank you for your order!',
             style: AppTextStyles.bodyMedium.copyWith(

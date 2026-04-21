@@ -14,7 +14,7 @@ import '../../services/auth_service.dart';
 import '../../aws/aws_fields.dart';
 
 class CartScreen extends StatefulWidget {
-  const CartScreen({super.key});
+  CartScreen({super.key});
 
   @override
   State<CartScreen> createState() => _CartScreenState();
@@ -92,7 +92,7 @@ class _CartScreenState extends State<CartScreen> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          duration: const Duration(seconds: 1),
+          duration: Duration(seconds: 1),
         ),
       );
     }
@@ -113,7 +113,7 @@ class _CartScreenState extends State<CartScreen> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          duration: const Duration(seconds: 1),
+          duration: Duration(seconds: 1),
         ),
       );
     }
@@ -338,37 +338,37 @@ class _CartScreenState extends State<CartScreen> {
       backgroundColor: AppColors.background,
       appBar: _buildAppBar(),
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? Center(child: CircularProgressIndicator())
           : _cart.isEmpty
           ? _buildEmptyCart()
           : RefreshIndicator(
               onRefresh: _loadCart,
               color: AppColors.primary,
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                     // Cart Items
                     ..._cart.items.map((item) => _buildCartItem(item)),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                     // Discount Applied Section
                     if (_cart.appliedCouponCode != null)
                       _buildDiscountSection(),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                     // Bill Summary
                     _buildBillSummary(),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                     // Payment Information
                     _buildPaymentInfo(),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                     // Priority Order Description
                     _buildPriorityOrderDescription(),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                     // Send to Kitchen Button
                     _buildSendToKitchenButton(),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                   ],
                 ),
               ),
@@ -381,7 +381,7 @@ class _CartScreenState extends State<CartScreen> {
       backgroundColor: AppColors.cardBackground,
       elevation: 0,
       leading: IconButton(
-        icon: const Icon(
+        icon: Icon(
           Icons.arrow_back_ios_new_rounded,
           color: AppColors.textPrimary,
         ),
@@ -414,7 +414,7 @@ class _CartScreenState extends State<CartScreen> {
   Widget _buildEmptyCart() {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(32),
+        padding: EdgeInsets.all(32),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -423,7 +423,7 @@ class _CartScreenState extends State<CartScreen> {
               size: 80,
               color: AppColors.textSecondary.withOpacity(0.5),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
             Text(
               'Your cart is empty',
               style: AppTextStyles.h5.copyWith(
@@ -431,7 +431,7 @@ class _CartScreenState extends State<CartScreen> {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             Text(
               'Add items to get started',
               style: AppTextStyles.bodyMedium.copyWith(
@@ -486,8 +486,8 @@ class _CartScreenState extends State<CartScreen> {
 
   Widget _buildCartItem(CartItem item) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(12),
+      margin: EdgeInsets.only(bottom: 12),
+      padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(12),
@@ -522,7 +522,7 @@ class _CartScreenState extends State<CartScreen> {
                     ),
             ),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12),
           // Item Details
           Expanded(
             child: Column(
@@ -551,7 +551,7 @@ class _CartScreenState extends State<CartScreen> {
                 if ((item.customizationNotes != null &&
                         item.customizationNotes!.isNotEmpty) ||
                     (item.description.isNotEmpty)) ...[
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4),
                   Text(
                     item.customizationNotes ?? item.description,
                     style: AppTextStyles.bodySmall.copyWith(
@@ -562,7 +562,7 @@ class _CartScreenState extends State<CartScreen> {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],
-                const SizedBox(height: 10),
+                SizedBox(height: 10),
                 // Quantity Selector
                 Row(
                   mainAxisSize: MainAxisSize.min,
@@ -587,14 +587,14 @@ class _CartScreenState extends State<CartScreen> {
                           color: AppColors.primary,
                           borderRadius: BorderRadius.circular(6),
                         ),
-                        child: const Icon(
+                        child: Icon(
                           Icons.remove,
                           size: 16,
                           color: AppColors.white,
                         ),
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12),
                     Text(
                       '${item.quantity}',
                       style: AppTextStyles.bodyLarge.copyWith(
@@ -603,7 +603,7 @@ class _CartScreenState extends State<CartScreen> {
                         fontSize: 15,
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12),
                     GestureDetector(
                       onTap: () {
                         _updateQuantity(
@@ -620,7 +620,7 @@ class _CartScreenState extends State<CartScreen> {
                           color: AppColors.primary,
                           borderRadius: BorderRadius.circular(6),
                         ),
-                        child: const Icon(
+                        child: Icon(
                           Icons.add,
                           size: 16,
                           color: AppColors.white,
@@ -639,7 +639,7 @@ class _CartScreenState extends State<CartScreen> {
 
   Widget _buildDiscountSection() {
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: AppColors.warning.withOpacity(0.2),
         borderRadius: BorderRadius.circular(12),
@@ -648,18 +648,18 @@ class _CartScreenState extends State<CartScreen> {
       child: Row(
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
+            padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
               color: AppColors.warning,
               borderRadius: BorderRadius.circular(8),
             ),
-            child: const Icon(
+            child: Icon(
               Icons.local_offer,
               color: AppColors.black,
               size: 20,
             ),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -671,7 +671,7 @@ class _CartScreenState extends State<CartScreen> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                const SizedBox(height: 2),
+                SizedBox(height: 2),
                 Text(
                   'You saved AED ${_cart.discount.toStringAsFixed(2)} on this order',
                   style: AppTextStyles.bodySmall.copyWith(
@@ -685,7 +685,7 @@ class _CartScreenState extends State<CartScreen> {
           TextButton(
             onPressed: _removeCoupon,
             style: TextButton.styleFrom(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
+              padding: EdgeInsets.symmetric(horizontal: 8),
               minimumSize: Size.zero,
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             ),
@@ -738,9 +738,9 @@ class _CartScreenState extends State<CartScreen> {
             letterSpacing: 1,
           ),
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: 12),
         Container(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: AppColors.cardBackground,
             borderRadius: BorderRadius.circular(12),
@@ -754,7 +754,7 @@ class _CartScreenState extends State<CartScreen> {
                 valueColor: AppColors.warning,
               ),
               if (totalOfferDiscount > 0) ...[
-                const SizedBox(height: 8),
+                SizedBox(height: 8),
                 _buildBillRow(
                   'Store Discount',
                   '-AED ${totalOfferDiscount.toStringAsFixed(2)}',
@@ -762,20 +762,20 @@ class _CartScreenState extends State<CartScreen> {
                 ),
               ],
               if (couponDiscount > 0) ...[
-                const SizedBox(height: 8),
+                SizedBox(height: 8),
                 _buildBillRow(
                   'Coupon Discount',
                   '-AED ${couponDiscount.toStringAsFixed(2)}',
                   valueColor: AppColors.success,
                 ),
               ],
-              const SizedBox(height: 8),
+              SizedBox(height: 8),
               _buildBillRow(
                 'Taxes & Charges',
                 'AED ${tax.toStringAsFixed(2)}',
                 valueColor: AppColors.warning,
               ),
-              const Divider(color: AppColors.border, height: 24),
+              Divider(color: AppColors.border, height: 24),
               _buildBillRow(
                 'Grand Total',
                 'AED ${grandTotal.toStringAsFixed(2)}',
@@ -826,7 +826,7 @@ class _CartScreenState extends State<CartScreen> {
 
   Widget _buildPaymentInfo() {
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(12),
@@ -836,14 +836,14 @@ class _CartScreenState extends State<CartScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
+            padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
               color: AppColors.info.withOpacity(0.2),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(Icons.info_outline, color: AppColors.info, size: 20),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -855,7 +855,7 @@ class _CartScreenState extends State<CartScreen> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 4),
                 Text(
                   'You will not be charged rightnow payment will be collected at counter upon arrival',
                   style: AppTextStyles.bodySmall.copyWith(
@@ -873,7 +873,7 @@ class _CartScreenState extends State<CartScreen> {
 
   Widget _buildPriorityOrderDescription() {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.primary.withOpacity(0.1),
         borderRadius: BorderRadius.circular(12),
@@ -883,7 +883,7 @@ class _CartScreenState extends State<CartScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
+            padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
               color: AppColors.primary.withOpacity(0.2),
               borderRadius: BorderRadius.circular(8),
@@ -894,7 +894,7 @@ class _CartScreenState extends State<CartScreen> {
               size: 24,
             ),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -907,7 +907,7 @@ class _CartScreenState extends State<CartScreen> {
                     fontSize: 15,
                   ),
                 ),
-                const SizedBox(height: 6),
+                SizedBox(height: 6),
                 Text(
                   'Your order will be prioritized when you come to the restaurant and pay at the counter. Prepare your order in advance for faster service!',
                   style: AppTextStyles.bodySmall.copyWith(
@@ -943,7 +943,7 @@ class _CartScreenState extends State<CartScreen> {
             : () => _sendOrderToKitchen(),
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
-          padding: const EdgeInsets.symmetric(vertical: 16),
+          padding: EdgeInsets.symmetric(vertical: 16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
@@ -962,12 +962,12 @@ class _CartScreenState extends State<CartScreen> {
             : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.restaurant_menu,
                     color: AppColors.white,
                     size: 20,
                   ),
-                  const SizedBox(width: 8),
+                  SizedBox(width: 8),
                   Text(
                     'Send to Kitchen',
                     style: AppTextStyles.bodyLarge.copyWith(
@@ -975,7 +975,7 @@ class _CartScreenState extends State<CartScreen> {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  const SizedBox(width: 8),
+                  SizedBox(width: 8),
                   Text(
                     '(AED ${grandTotal.toStringAsFixed(0)})',
                     style: AppTextStyles.bodyMedium.copyWith(
@@ -1071,12 +1071,12 @@ class _CartScreenState extends State<CartScreen> {
               style: AppTextStyles.bodyMedium.copyWith(color: AppColors.white),
             ),
             backgroundColor: AppColors.success,
-            duration: const Duration(seconds: 3),
+            duration: Duration(seconds: 3),
           ),
         );
 
         // Navigate back after a short delay
-        await Future.delayed(const Duration(seconds: 1));
+        await Future.delayed(Duration(seconds: 1));
         if (mounted) {
           Navigator.pop(context);
         }
@@ -1093,7 +1093,7 @@ class _CartScreenState extends State<CartScreen> {
               style: AppTextStyles.bodyMedium.copyWith(color: AppColors.white),
             ),
             backgroundColor: AppColors.error,
-            duration: const Duration(seconds: 3),
+            duration: Duration(seconds: 3),
           ),
         );
       }

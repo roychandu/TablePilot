@@ -10,7 +10,7 @@ import 'add_staff_screen.dart';
 import 'staff_profile_screen.dart';
 
 class StaffScreen extends StatefulWidget {
-  const StaffScreen({super.key});
+  StaffScreen({super.key});
 
   @override
   State<StaffScreen> createState() => _StaffScreenState();
@@ -20,7 +20,7 @@ class _StaffScreenState extends State<StaffScreen> {
   final StaffService _staffService = StaffService();
   final TextEditingController _searchController = TextEditingController();
 
-  final List<String> _categories = const ['All', 'Cleaner', 'Cook', 'Waiter'];
+  final List<String> _categories = ['All', 'Cleaner', 'Cook', 'Waiter'];
 
   String _selectedCategory = 'All';
 
@@ -60,7 +60,7 @@ class _StaffScreenState extends State<StaffScreen> {
     final success = await _staffService.updateInFloor(id, newValue);
     if (!success && mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text('Failed to update in-floor status. Please try again.'),
         ),
       );
@@ -92,7 +92,7 @@ class _StaffScreenState extends State<StaffScreen> {
             return Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(
+                  padding: EdgeInsets.symmetric(
                     horizontal: 16,
                     vertical: 12,
                   ),
@@ -101,7 +101,7 @@ class _StaffScreenState extends State<StaffScreen> {
                 SizedBox(
                   height: 40,
                   child: ListView.separated(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: EdgeInsets.symmetric(horizontal: 16),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       final category = _categories[index];
@@ -127,17 +127,17 @@ class _StaffScreenState extends State<StaffScreen> {
                         },
                         backgroundColor: AppColors.cardBackground,
                         selectedColor: AppColors.primary,
-                        shape: const StadiumBorder(),
+                        shape: StadiumBorder(),
                       );
                     },
-                    separatorBuilder: (_, __) => const SizedBox(width: 8),
+                    separatorBuilder: (_, __) => SizedBox(width: 8),
                     itemCount: _categories.length,
                   ),
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: 12),
                 Expanded(
                   child: snapshot.connectionState == ConnectionState.waiting
-                      ? const Center(child: CircularProgressIndicator())
+                      ? Center(child: CircularProgressIndicator())
                       : filtered.isEmpty
                       ? Center(
                           child: Text(
@@ -148,7 +148,7 @@ class _StaffScreenState extends State<StaffScreen> {
                           ),
                         )
                       : ListView.builder(
-                          padding: const EdgeInsets.symmetric(
+                          padding: EdgeInsets.symmetric(
                             horizontal: 16,
                             vertical: 8,
                           ),
@@ -169,15 +169,15 @@ class _StaffScreenState extends State<StaffScreen> {
         onPressed: () async {
           final created = await Navigator.push<bool>(
             context,
-            MaterialPageRoute(builder: (_) => const AddStaffScreen()),
+            MaterialPageRoute(builder: (_) => AddStaffScreen()),
           );
           if (created == true && mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Staff added successfully')),
+              SnackBar(content: Text('Staff added successfully')),
             );
           }
         },
-        child: const Icon(Icons.add),
+        child: Icon(Icons.add),
       ),
     );
   }
@@ -225,8 +225,8 @@ class _StaffScreenState extends State<StaffScreen> {
       },
       borderRadius: BorderRadius.circular(16),
       child: Container(
-        margin: const EdgeInsets.only(bottom: 12),
-        padding: const EdgeInsets.all(16),
+        margin: EdgeInsets.only(bottom: 12),
+        padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: AppColors.cardBackground,
           borderRadius: BorderRadius.circular(16),
@@ -234,7 +234,7 @@ class _StaffScreenState extends State<StaffScreen> {
             BoxShadow(
               color: AppColors.shadow,
               blurRadius: 8,
-              offset: const Offset(0, 4),
+              offset: Offset(0, 4),
             ),
           ],
         ),
@@ -242,7 +242,7 @@ class _StaffScreenState extends State<StaffScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildStaffAvatar(staff, initials),
-            const SizedBox(width: 16),
+            SizedBox(width: 16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -254,7 +254,7 @@ class _StaffScreenState extends State<StaffScreen> {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4),
                   Text(
                     'Work : ${staff.category}',
                     style: AppTextStyles.bodySmall.copyWith(
@@ -277,7 +277,7 @@ class _StaffScreenState extends State<StaffScreen> {
                 ],
               ),
             ),
-            const SizedBox(width: 12),
+            SizedBox(width: 12),
             _buildInFloorToggle(staff),
           ],
         ),
@@ -341,7 +341,7 @@ class _StaffScreenState extends State<StaffScreen> {
             fontSize: 11,
           ),
         ),
-        const SizedBox(height: 6),
+        SizedBox(height: 6),
         Transform.scale(
           scale: 0.75,
           child: Switch(
@@ -353,7 +353,7 @@ class _StaffScreenState extends State<StaffScreen> {
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
         ),
-        const SizedBox(height: 2),
+        SizedBox(height: 2),
         Text(
           isActive ? 'Active' : 'In-active',
           style: AppTextStyles.bodySmall.copyWith(

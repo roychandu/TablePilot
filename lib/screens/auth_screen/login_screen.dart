@@ -5,7 +5,7 @@ import '../../services/auth_service.dart';
 import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -75,13 +75,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _showSnackBar(
     String message, {
-    Color backgroundColor = AppColors.error,
+    Color? backgroundColor,
   }) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
         behavior: SnackBarBehavior.floating,
-        backgroundColor: backgroundColor,
+        backgroundColor: backgroundColor ?? AppColors.error,
       ),
     );
   }
@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void _handleRegister() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const RegisterScreen()),
+      MaterialPageRoute(builder: (context) => RegisterScreen()),
     );
   }
 
@@ -160,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -170,7 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: SafeArea(
           child: Center(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(10.0),
               child: Card(
                 color: AppColors.cardBackground,
                 elevation: 8,
@@ -179,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Container(
-                  padding: const EdgeInsets.all(32.0),
+                  padding: EdgeInsets.all(32.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -191,7 +191,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 32),
+                      SizedBox(height: 32),
 
                       // Email Input
                       Column(
@@ -204,7 +204,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               color: AppColors.textPrimary,
                             ),
                           ),
-                          const SizedBox(height: 8),
+                          SizedBox(height: 8),
                           Container(
                             decoration: BoxDecoration(
                               color: AppColors.textFieldBackground,
@@ -227,19 +227,19 @@ class _LoginScreenState extends State<LoginScreen> {
                                 fillColor: AppColors.textFieldBackground,
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12),
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: AppColors.border,
                                     width: 1.5,
                                   ),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12),
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: AppColors.primary,
                                     width: 2,
                                   ),
                                 ),
-                                contentPadding: const EdgeInsets.symmetric(
+                                contentPadding: EdgeInsets.symmetric(
                                   horizontal: 16,
                                   vertical: 16,
                                 ),
@@ -249,7 +249,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 24),
+                      SizedBox(height: 24),
 
                       // Password Input
                       Column(
@@ -262,7 +262,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               color: AppColors.textPrimary,
                             ),
                           ),
-                          const SizedBox(height: 8),
+                          SizedBox(height: 8),
                           Container(
                             decoration: BoxDecoration(
                               color: AppColors.textFieldBackground,
@@ -294,19 +294,19 @@ class _LoginScreenState extends State<LoginScreen> {
                                 fillColor: AppColors.textFieldBackground,
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12),
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: AppColors.border,
                                     width: 1.5,
                                   ),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12),
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: AppColors.primary,
                                     width: 2,
                                   ),
                                 ),
-                                contentPadding: const EdgeInsets.symmetric(
+                                contentPadding: EdgeInsets.symmetric(
                                   horizontal: 16,
                                   vertical: 16,
                                 ),
@@ -316,7 +316,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 32),
+                      SizedBox(height: 32),
 
                       // Login Button
                       SizedBox(
@@ -333,7 +333,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             elevation: 0,
                           ),
                           child: _isLoginLoading
-                              ? const SizedBox(
+                              ? SizedBox(
                                   height: 20,
                                   width: 20,
                                   child: CircularProgressIndicator(
@@ -351,7 +351,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                         ),
                       ),
-                      const SizedBox(height: 24),
+                      SizedBox(height: 24),
 
                       // Register Link
                       Row(
@@ -375,7 +375,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 24),
+                      SizedBox(height: 24),
 
                       // Separator
                       Row(
@@ -387,7 +387,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            padding: EdgeInsets.symmetric(horizontal: 16),
                             child: Text(
                               'or',
                               style: AppTextStyles.bodyMedium.copyWith(
@@ -403,7 +403,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 24),
+                      SizedBox(height: 24),
 
                       // Continue as Guest Button
                       SizedBox(
@@ -422,7 +422,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           child: _isGuestLoading
-                              ? const SizedBox(
+                              ? SizedBox(
                                   height: 20,
                                   width: 20,
                                   child: CircularProgressIndicator(
@@ -440,7 +440,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: 16),
 
                       // Sign in with Apple Button
                       SizedBox(
@@ -459,7 +459,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             elevation: 0,
                           ),
                           icon: _isAppleLoading
-                              ? const SizedBox(
+                              ? SizedBox(
                                   height: 20,
                                   width: 20,
                                   child: CircularProgressIndicator(
@@ -469,7 +469,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                   ),
                                 )
-                              : const Icon(
+                              : Icon(
                                   Icons.apple,
                                   color: AppColors.appleButtonTextColor,
                                   size: 24,

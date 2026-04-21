@@ -14,7 +14,7 @@ import '../../aws/aws_fields.dart';
 class CreateEditOfferScreen extends StatefulWidget {
   final OfferModel? offer;
 
-  const CreateEditOfferScreen({super.key, this.offer});
+  CreateEditOfferScreen({super.key, this.offer});
 
   @override
   State<CreateEditOfferScreen> createState() => _CreateEditOfferScreenState();
@@ -54,7 +54,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
       _initializeFromOffer(widget.offer!);
     } else {
       _validFrom = DateTime.now();
-      _validUntil = DateTime.now().add(const Duration(days: 7));
+      _validUntil = DateTime.now().add(Duration(days: 7));
     }
   }
 
@@ -196,9 +196,9 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
       context: context,
       initialDate: isFromDate
           ? (_validFrom ?? DateTime.now())
-          : (_validUntil ?? DateTime.now().add(const Duration(days: 7))),
+          : (_validUntil ?? DateTime.now().add(Duration(days: 7))),
       firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(const Duration(days: 365)),
+      lastDate: DateTime.now().add(Duration(days: 365)),
       builder: (context, child) {
         return Theme(
           data: Theme.of(context).copyWith(
@@ -218,7 +218,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
         if (isFromDate) {
           _validFrom = picked;
           if (_validUntil != null && _validUntil!.isBefore(_validFrom!)) {
-            _validUntil = _validFrom!.add(const Duration(days: 7));
+            _validUntil = _validFrom!.add(Duration(days: 7));
           }
         } else {
           _validUntil = picked;
@@ -233,7 +233,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
         context: context,
         backgroundColor: AppColors.transparent,
         builder: (context) => Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             color: AppColors.cardBackground,
             borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
           ),
@@ -241,7 +241,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                margin: const EdgeInsets.only(top: 8),
+                margin: EdgeInsets.only(top: 8),
                 width: 40,
                 height: 4,
                 decoration: BoxDecoration(
@@ -249,27 +249,27 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
               ListTile(
-                leading: const Icon(Icons.camera_alt, color: AppColors.primary),
-                title: const Text(
+                leading: Icon(Icons.camera_alt, color: AppColors.primary),
+                title: Text(
                   'Camera',
                   style: TextStyle(color: AppColors.textPrimary),
                 ),
                 onTap: () => Navigator.pop(context, ImageSource.camera),
               ),
               ListTile(
-                leading: const Icon(
+                leading: Icon(
                   Icons.photo_library,
                   color: AppColors.primary,
                 ),
-                title: const Text(
+                title: Text(
                   'Gallery',
                   style: TextStyle(color: AppColors.textPrimary),
                 ),
                 onTap: () => Navigator.pop(context, ImageSource.gallery),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
             ],
           ),
         ),
@@ -402,19 +402,19 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
         ),
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: const Icon(Icons.arrow_back_ios_new, color: AppColors.primary),
+          icon: Icon(Icons.arrow_back_ios_new, color: AppColors.primary),
         ),
       ),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Banner Image
               _buildBannerImageSection(),
-              const SizedBox(height: 24),
+              SizedBox(height: 24),
               // Title
               _buildTextField(
                 controller: _titleController,
@@ -428,7 +428,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
                   return null;
                 },
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               // Description
               _buildTextField(
                 controller: _descriptionController,
@@ -443,7 +443,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
                   return null;
                 },
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               // Offer Type
               _buildDropdown<OfferType>(
                 label: 'Offer Type',
@@ -456,7 +456,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
                 },
                 displayText: (type) => getOfferTypeDisplayText(type),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               // Discount Value
               _buildTextField(
                 controller: _discountValueController,
@@ -480,13 +480,13 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
                   return null;
                 },
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               // Apply To
               _buildApplyToSection(),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               // Valid Dates
               _buildDateSection(),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               // Minimum Order Value
               _buildTextField(
                 controller: _minimumOrderValueController,
@@ -494,7 +494,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
                 hint: 'e.g., 50',
                 keyboardType: TextInputType.number,
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               // Terms & Conditions
               _buildTextField(
                 controller: _termsController,
@@ -502,7 +502,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
                 hint: 'Enter terms and conditions',
                 maxLines: 4,
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               // Visible to Customers
               SwitchListTile(
                 title: Text(
@@ -520,7 +520,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
                 },
                 activeColor: AppColors.primary,
               ),
-              const SizedBox(height: 32),
+              SizedBox(height: 32),
               // Buttons
               Row(
                 children: [
@@ -530,8 +530,8 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
                           ? null
                           : () => Navigator.pop(context),
                       style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        side: const BorderSide(color: AppColors.border),
+                        padding: EdgeInsets.symmetric(vertical: 16),
+                        side: BorderSide(color: AppColors.border),
                       ),
                       child: Text(
                         'Cancel',
@@ -541,16 +541,16 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16),
                   Expanded(
                     child: ElevatedButton(
                       onPressed: _isLoading ? null : _saveOffer,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
-                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        padding: EdgeInsets.symmetric(vertical: 16),
                       ),
                       child: _isLoading
-                          ? const SizedBox(
+                          ? SizedBox(
                               height: 20,
                               width: 20,
                               child: CircularProgressIndicator(
@@ -570,7 +570,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 32),
+              SizedBox(height: 32),
             ],
           ),
         ),
@@ -589,7 +589,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         GestureDetector(
           onTap: _pickBannerImage,
           child: Container(
@@ -630,7 +630,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
           size: 48,
           color: AppColors.textSecondary,
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         Text(
           'Tap to add banner image',
           style: AppTextStyles.bodySmall.copyWith(
@@ -660,7 +660,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         TextFormField(
           controller: controller,
           maxLines: maxLines,
@@ -675,15 +675,15 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
             fillColor: AppColors.textFieldBackground,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: AppColors.border),
+              borderSide: BorderSide(color: AppColors.border),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: AppColors.border),
+              borderSide: BorderSide(color: AppColors.border),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: AppColors.primary, width: 2),
+              borderSide: BorderSide(color: AppColors.primary, width: 2),
             ),
           ),
         ),
@@ -708,9 +708,9 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
             color: AppColors.textFieldBackground,
             borderRadius: BorderRadius.circular(12),
@@ -747,7 +747,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         Wrap(
           spacing: 8,
           runSpacing: 8,
@@ -791,11 +791,11 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
           }).toList(),
         ),
         if (_selectedApplyTo.contains(OfferApplyTo.specificCategory)) ...[
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           _buildCategorySelector(),
         ],
         if (_selectedApplyTo.contains(OfferApplyTo.specificItems)) ...[
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           _buildItemSelector(),
         ],
       ],
@@ -817,7 +817,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
 
   Widget _buildCategorySelector() {
     if (_menu == null) {
-      return const SizedBox.shrink();
+      return SizedBox.shrink();
     }
 
     final categories = _menu!.categories.map((c) => c.categoryName).toList();
@@ -831,7 +831,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
             color: AppColors.textSecondary,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         Wrap(
           spacing: 8,
           runSpacing: 8,
@@ -870,7 +870,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
 
   Widget _buildItemSelector() {
     if (_menu == null) {
-      return const SizedBox.shrink();
+      return SizedBox.shrink();
     }
 
     final allItems = <String>[];
@@ -889,7 +889,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
             color: AppColors.textSecondary,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         Wrap(
           spacing: 8,
           runSpacing: 8,
@@ -937,7 +937,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         Row(
           children: [
             Expanded(
@@ -947,7 +947,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
                 onTap: () => _selectDate(context, true),
               ),
             ),
-            const SizedBox(width: 16),
+            SizedBox(width: 16),
             Expanded(
               child: _buildDateField(
                 label: 'Valid Until',
@@ -969,7 +969,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: AppColors.textFieldBackground,
           borderRadius: BorderRadius.circular(12),
@@ -984,7 +984,7 @@ class _CreateEditOfferScreenState extends State<CreateEditOfferScreen> {
                 color: AppColors.textSecondary,
               ),
             ),
-            const SizedBox(height: 4),
+            SizedBox(height: 4),
             Text(
               date != null
                   ? '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}'

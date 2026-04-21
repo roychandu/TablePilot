@@ -11,7 +11,7 @@ import '../../common_widgets/app_colors.dart';
 import '../../services/auth_service.dart';
 
 class EditProfileScreen extends StatefulWidget {
-  const EditProfileScreen({super.key});
+  EditProfileScreen({super.key});
 
   @override
   State<EditProfileScreen> createState() => _EditProfileScreenState();
@@ -148,7 +148,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         context: context,
         backgroundColor: AppColors.transparent,
         builder: (context) => Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             color: AppColors.cardBackground,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20),
@@ -160,7 +160,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             children: [
               // Handle bar
               Container(
-                margin: const EdgeInsets.only(top: 8),
+                margin: EdgeInsets.only(top: 8),
                 width: 40,
                 height: 4,
                 decoration: BoxDecoration(
@@ -168,8 +168,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
-              const SizedBox(height: 20),
-              const Text(
+              SizedBox(height: 20),
+              Text(
                 'Select Image Source',
                 style: TextStyle(
                   fontSize: 18,
@@ -177,10 +177,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   color: AppColors.primary,
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
               Row(
                 children: [
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16),
                   Expanded(
                     child: _buildImageSourceOption(
                       icon: Icons.camera_alt,
@@ -189,7 +189,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       onTap: () => Navigator.pop(context, ImageSource.camera),
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16),
                   Expanded(
                     child: _buildImageSourceOption(
                       icon: Icons.photo_library,
@@ -198,10 +198,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       onTap: () => Navigator.pop(context, ImageSource.gallery),
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16),
                 ],
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
             ],
           ),
         ),
@@ -269,7 +269,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         behavior: SnackBarBehavior.floating,
         content: Text(message),
         backgroundColor: color,
-        duration: const Duration(seconds: 3),
+        duration: Duration(seconds: 3),
       ),
     );
   }
@@ -283,9 +283,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         elevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: const Icon(Icons.arrow_back_ios_new, color: AppColors.primary),
+          icon: Icon(Icons.arrow_back_ios_new, color: AppColors.primary),
         ),
-        title: const Text(
+        title: Text(
           'Edit Profile',
           style: TextStyle(
             color: AppColors.primary,
@@ -294,7 +294,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ),
         ),
         centerTitle: true,
-        shape: const RoundedRectangleBorder(
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(AppDesignSystem.radiusCard),
             bottomRight: Radius.circular(AppDesignSystem.radiusCard),
@@ -302,11 +302,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         ),
       ),
       body: _isLoadingData
-          ? const Center(
+          ? Center(
               child: CupertinoActivityIndicator(color: AppColors.primary),
             )
           : SingleChildScrollView(
-              padding: const EdgeInsets.all(24),
+              padding: EdgeInsets.all(24),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -333,7 +333,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                       BoxShadow(
                                         color: AppColors.shadow,
                                         blurRadius: 8,
-                                        offset: const Offset(0, 2),
+                                        offset: Offset(0, 2),
                                       ),
                                     ],
                                   ),
@@ -357,7 +357,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                                         error,
                                                         stackTrace,
                                                       ) {
-                                                        return const Icon(
+                                                        return Icon(
                                                           Icons.person,
                                                           size: 60,
                                                           color:
@@ -366,7 +366,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                                       },
                                                 ),
                                         )
-                                      : const Icon(
+                                      : Icon(
                                           Icons.person,
                                           size: 60,
                                           color: AppColors.primary,
@@ -389,7 +389,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         width: 2,
                                       ),
                                     ),
-                                    child: const Icon(
+                                    child: Icon(
                                       Icons.edit,
                                       color: AppColors.white,
                                       size: 16,
@@ -399,8 +399,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 8),
-                          const Text(
+                          SizedBox(height: 8),
+                          Text(
                             'Profile Photo',
                             style: TextStyle(
                               color: AppColors.textSecondary,
@@ -410,11 +410,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 32),
+                    SizedBox(height: 32),
 
                     // User Information Section
                     _buildSectionHeader('User Information'),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
 
                     // Name Field
                     _buildFormField(
@@ -428,7 +428,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         return null;
                       },
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
 
                     // Email Field (Read-only)
                     _buildFormField(
@@ -438,9 +438,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       keyboardType: TextInputType.emailAddress,
                       isReadOnly: true,
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
 
-                    const SizedBox(height: 40),
+                    SizedBox(height: 40),
 
                     // Save Button
                     SizedBox(
@@ -457,7 +457,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           elevation: 0,
                         ),
                         child: _isLoading
-                            ? const SizedBox(
+                            ? SizedBox(
                                 height: 20,
                                 width: 20,
                                 child: CircularProgressIndicator(
@@ -467,7 +467,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   ),
                                 ),
                               )
-                            : const Text(
+                            : Text(
                                 'Save Changes',
                                 style: TextStyle(
                                   fontSize: 16,
@@ -485,14 +485,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   Widget _buildSectionHeader(String title) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
         color: AppColors.primary.withOpacity(0.1),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
         title,
-        style: const TextStyle(
+        style: TextStyle(
           color: AppColors.primary,
           fontWeight: FontWeight.bold,
           fontSize: 18,
@@ -517,22 +517,22 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           children: [
             Text(
               label,
-              style: const TextStyle(
+              style: TextStyle(
                 color: AppColors.primary,
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
               ),
             ),
-            const SizedBox(width: 8),
+            SizedBox(width: 8),
             if (isReadOnly)
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 decoration: BoxDecoration(
                   color: AppColors.warning.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: AppColors.warning, width: 1),
                 ),
-                child: const Text(
+                child: Text(
                   'READ-ONLY',
                   style: TextStyle(
                     color: AppColors.warning,
@@ -543,13 +543,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               )
             else
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 decoration: BoxDecoration(
                   color: AppColors.success.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: AppColors.success, width: 1),
                 ),
-                child: const Text(
+                child: Text(
                   'EDITABLE',
                   style: TextStyle(
                     color: AppColors.success,
@@ -560,7 +560,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               ),
           ],
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         Container(
           decoration: BoxDecoration(
             color: isReadOnly
@@ -577,7 +577,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     BoxShadow(
                       color: AppColors.shadow.withOpacity(0.1),
                       blurRadius: 4,
-                      offset: const Offset(0, 2),
+                      offset: Offset(0, 2),
                     ),
                   ],
           ),
@@ -597,17 +597,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 fontStyle: isReadOnly ? FontStyle.italic : FontStyle.normal,
               ),
               border: InputBorder.none,
-              contentPadding: const EdgeInsets.symmetric(
+              contentPadding: EdgeInsets.symmetric(
                 horizontal: 16,
                 vertical: 16,
               ),
               suffixIcon: isReadOnly
-                  ? const Icon(
+                  ? Icon(
                       Icons.lock_outline,
                       color: AppColors.textSecondary,
                       size: 20,
                     )
-                  : const Icon(
+                  : Icon(
                       Icons.edit_outlined,
                       color: AppColors.primary,
                       size: 20,
@@ -633,7 +633,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: AppColors.cardBackground,
           borderRadius: BorderRadius.circular(12),
@@ -642,26 +642,26 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             BoxShadow(
               color: AppColors.shadow.withOpacity(0.1),
               blurRadius: 4,
-              offset: const Offset(0, 2),
+              offset: Offset(0, 2),
             ),
           ],
         ),
         child: Column(
           children: [
             Icon(icon, size: 32, color: AppColors.primary),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             Text(
               title,
-              style: const TextStyle(
+              style: TextStyle(
                 color: AppColors.primary,
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
               ),
             ),
-            const SizedBox(height: 4),
+            SizedBox(height: 4),
             Text(
               subtitle,
-              style: const TextStyle(
+              style: TextStyle(
                 color: AppColors.textSecondary,
                 fontSize: 12,
               ),

@@ -8,7 +8,7 @@ import '../../models/reservation_model.dart';
 import '../../services/reservation_service.dart';
 
 class ReservationRequestScreen extends StatefulWidget {
-  const ReservationRequestScreen({super.key});
+  ReservationRequestScreen({super.key});
 
   @override
   State<ReservationRequestScreen> createState() =>
@@ -151,13 +151,13 @@ class _ReservationRequestScreenState extends State<ReservationRequestScreen>
 
   void _showSnackBar(
     String message, {
-    Color backgroundColor = AppColors.error,
+    Color? backgroundColor,
   }) {
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: backgroundColor,
+        backgroundColor: backgroundColor ?? AppColors.error,
         behavior: SnackBarBehavior.floating,
       ),
     );
@@ -204,7 +204,7 @@ class _ReservationRequestScreenState extends State<ReservationRequestScreen>
           indicatorColor: AppColors.primary,
           labelColor: AppColors.primary,
           unselectedLabelColor: AppColors.textSecondary,
-          tabs: const [
+          tabs: [
             Tab(text: 'Pending'),
             Tab(text: 'Confirmed'),
             Tab(text: 'Rejected'),
@@ -212,14 +212,14 @@ class _ReservationRequestScreenState extends State<ReservationRequestScreen>
         ),
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back_ios_new_rounded,
             color: AppColors.textPrimary,
           ),
         ),
       ),
       body: _isLoading
-          ? const Center(
+          ? Center(
               child: CircularProgressIndicator(color: AppColors.primary),
             )
           : RefreshIndicator(
@@ -244,7 +244,7 @@ class _ReservationRequestScreenState extends State<ReservationRequestScreen>
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.event_busy, size: 64, color: AppColors.textTertiary),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
             Text(
               'No reservations found',
               style: AppTextStyles.body.copyWith(
@@ -257,7 +257,7 @@ class _ReservationRequestScreenState extends State<ReservationRequestScreen>
     }
 
     return ListView.builder(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       itemCount: reservations.length,
       itemBuilder: (context, index) {
         return _buildReservationCard(reservations[index]);
@@ -270,7 +270,7 @@ class _ReservationRequestScreenState extends State<ReservationRequestScreen>
     final status = reservation.status;
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
+      margin: EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(12),
@@ -281,10 +281,10 @@ class _ReservationRequestScreenState extends State<ReservationRequestScreen>
         children: [
           // Header with status
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
             decoration: BoxDecoration(
               color: _getStatusColor(status).withOpacity(0.1),
-              borderRadius: const BorderRadius.only(
+              borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(12),
                 topRight: Radius.circular(12),
               ),
@@ -306,7 +306,7 @@ class _ReservationRequestScreenState extends State<ReservationRequestScreen>
                           fontSize: 16,
                         ),
                       ),
-                      const SizedBox(height: 4),
+                      SizedBox(height: 4),
                       Row(
                         children: [
                           Text(
@@ -330,9 +330,9 @@ class _ReservationRequestScreenState extends State<ReservationRequestScreen>
                     ],
                   ),
                 ),
-                const SizedBox(width: 8),
+                SizedBox(width: 8),
                 Container(
-                  padding: const EdgeInsets.symmetric(
+                  padding: EdgeInsets.symmetric(
                     horizontal: 6,
                     vertical: 3,
                   ),
@@ -355,7 +355,7 @@ class _ReservationRequestScreenState extends State<ReservationRequestScreen>
 
           // Reservation details
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -373,13 +373,13 @@ class _ReservationRequestScreenState extends State<ReservationRequestScreen>
                             'Contact Person',
                             reservation.contactPerson,
                           ),
-                          const SizedBox(height: 8),
+                          SizedBox(height: 8),
                           _buildDetailRow(
                             Icons.email,
                             'Email',
                             reservation.email,
                           ),
-                          const SizedBox(height: 8),
+                          SizedBox(height: 8),
                           _buildDetailRow(
                             Icons.phone,
                             'Phone',
@@ -388,7 +388,7 @@ class _ReservationRequestScreenState extends State<ReservationRequestScreen>
                         ],
                       ),
                     ),
-                    const SizedBox(width: 16),
+                    SizedBox(width: 16),
                     // Right column
                     Expanded(
                       child: Column(
@@ -399,7 +399,7 @@ class _ReservationRequestScreenState extends State<ReservationRequestScreen>
                             'Number of Guests',
                             '${reservation.numberOfGuests}',
                           ),
-                          const SizedBox(height: 8),
+                          SizedBox(height: 8),
                           _buildDetailRow(
                             Icons.access_time,
                             'Time',
@@ -412,7 +412,7 @@ class _ReservationRequestScreenState extends State<ReservationRequestScreen>
                 ),
                 // Additional fields below (full width)
                 if (reservation.tableNumber != null) ...[
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8),
                   _buildDetailRow(
                     Icons.table_restaurant,
                     'Table Number',
@@ -420,7 +420,7 @@ class _ReservationRequestScreenState extends State<ReservationRequestScreen>
                   ),
                 ],
                 if (reservation.estimatedTotalCost > 0) ...[
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8),
                   _buildDetailRow(
                     Icons.attach_money,
                     'Estimated Cost',
@@ -428,7 +428,7 @@ class _ReservationRequestScreenState extends State<ReservationRequestScreen>
                   ),
                 ],
                 if (reservation.specialDietaryRequirements.isNotEmpty) ...[
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8),
                   _buildDetailRow(
                     Icons.restaurant,
                     'Dietary Requirements',
@@ -442,7 +442,7 @@ class _ReservationRequestScreenState extends State<ReservationRequestScreen>
           // Action buttons (only for pending reservations)
           if (status == ReservationStatus.upcoming)
             Container(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
                 border: Border(
                   top: BorderSide(color: AppColors.border, width: 1),
@@ -456,31 +456,31 @@ class _ReservationRequestScreenState extends State<ReservationRequestScreen>
                         reservationWithUser,
                         ReservationStatus.completed,
                       ),
-                      icon: const Icon(Icons.check, size: 18),
-                      label: const Text('Confirm'),
+                      icon: Icon(Icons.check, size: 18),
+                      label: Text('Confirm'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.success,
                         foregroundColor: AppColors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        padding: EdgeInsets.symmetric(vertical: 12),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  SizedBox(width: 12),
                   Expanded(
                     child: ElevatedButton.icon(
                       onPressed: () => _updateReservationStatus(
                         reservationWithUser,
                         ReservationStatus.rejected,
                       ),
-                      icon: const Icon(Icons.close, size: 18),
-                      label: const Text('Reject'),
+                      icon: Icon(Icons.close, size: 18),
+                      label: Text('Reject'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.error,
                         foregroundColor: AppColors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        padding: EdgeInsets.symmetric(vertical: 12),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -500,7 +500,7 @@ class _ReservationRequestScreenState extends State<ReservationRequestScreen>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Icon(icon, size: 18, color: AppColors.textSecondary),
-        const SizedBox(width: 8),
+        SizedBox(width: 8),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -511,7 +511,7 @@ class _ReservationRequestScreenState extends State<ReservationRequestScreen>
                   color: AppColors.textTertiary,
                 ),
               ),
-              const SizedBox(height: 2),
+              SizedBox(height: 2),
               Text(
                 value,
                 style: AppTextStyles.body.copyWith(

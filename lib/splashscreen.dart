@@ -5,9 +5,9 @@ import 'package:table_pilot/common_widgets/app_colors.dart';
 import 'package:table_pilot/main.dart';
 
 class SplashScreen extends StatefulWidget {
-  // static const String routeName = '/splash';
+  // static String routeName = '/splash';
 
-  const SplashScreen({super.key});
+  SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -21,10 +21,10 @@ class _SplashScreenState extends State<SplashScreen> {
     debugPrint('isOnboardDone: SplashScreen called');
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Future.delayed(const Duration(milliseconds: 200), () async {
+      Future.delayed(Duration(milliseconds: 200), () async {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const AppFlowWrapper()),
+          MaterialPageRoute(builder: (context) => AppFlowWrapper()),
         );
       });
     });
@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
         child: CircularProgressIndicator.adaptive(
           backgroundColor: AppColors.white,

@@ -28,8 +28,8 @@ class CustomCard extends StatelessWidget {
     final radius = BorderRadius.circular(borderRadius);
 
     Widget cardWidget = Container(
-      margin: margin ?? const EdgeInsets.all(AppDesignSystem.spacingSm),
-      padding: padding ?? const EdgeInsets.all(AppDesignSystem.cardPadding), // 16px
+      margin: margin ?? EdgeInsets.all(AppDesignSystem.spacingSm),
+      padding: padding ?? EdgeInsets.all(AppDesignSystem.cardPadding), // 16px
       decoration: BoxDecoration(
         color: backgroundColor ?? AppColors.cardBackground, // Slate 800 (#1E293B)
         borderRadius: radius, // 16px

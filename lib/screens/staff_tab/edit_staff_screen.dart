@@ -8,7 +8,7 @@ import '../../models/staff_model.dart';
 import '../../services/staff_service.dart';
 
 class EditStaffScreen extends StatefulWidget {
-  const EditStaffScreen({super.key, required this.staff});
+  EditStaffScreen({super.key, required this.staff});
 
   final StaffModel staff;
 
@@ -23,7 +23,7 @@ class _EditStaffScreenState extends State<EditStaffScreen> {
 
   final StaffService _staffService = StaffService();
 
-  final List<String> _categories = const [
+  final List<String> _categories = [
     'Security',
     'Cook',
     'Cleaner',
@@ -33,7 +33,7 @@ class _EditStaffScreenState extends State<EditStaffScreen> {
     'Waiter',
   ];
 
-  final List<String> _shifts = const ['Morning', 'Evening', 'Night'];
+  final List<String> _shifts = ['Morning', 'Evening', 'Night'];
 
   String? _selectedCategory;
   String? _selectedShift;
@@ -97,7 +97,7 @@ class _EditStaffScreenState extends State<EditStaffScreen> {
         _startDate == null) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(const SnackBar(content: Text('Please fill all fields')));
+      ).showSnackBar(SnackBar(content: Text('Please fill all fields')));
       return;
     }
 
@@ -131,12 +131,12 @@ class _EditStaffScreenState extends State<EditStaffScreen> {
 
     if (success) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Staff updated successfully')),
+        SnackBar(content: Text('Staff updated successfully')),
       );
       Navigator.pop(context, true);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text('Failed to update staff. Please try again.'),
         ),
       );
@@ -153,7 +153,7 @@ class _EditStaffScreenState extends State<EditStaffScreen> {
         backgroundColor: AppColors.cardBackground,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back_ios_new_rounded,
             color: AppColors.textPrimary,
           ),
@@ -169,7 +169,7 @@ class _EditStaffScreenState extends State<EditStaffScreen> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(16),
           child: Form(
             key: _formKey,
             child: Column(
@@ -179,7 +179,7 @@ class _EditStaffScreenState extends State<EditStaffScreen> {
                 Row(
                   children: [
                     _buildAvatar(),
-                    const SizedBox(width: 16),
+                    SizedBox(width: 16),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -191,7 +191,7 @@ class _EditStaffScreenState extends State<EditStaffScreen> {
                               fontWeight: FontWeight.w700,
                             ),
                           ),
-                          const SizedBox(height: 4),
+                          SizedBox(height: 4),
                           Text(
                             _staff.category,
                             style: AppTextStyles.bodyMedium.copyWith(
@@ -203,19 +203,19 @@ class _EditStaffScreenState extends State<EditStaffScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: 24),
                 _buildReadOnlyField(
                   label: 'Email',
                   value: _staff.email,
                   icon: Icons.email_outlined,
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildReadOnlyField(
                   label: 'Phone',
                   value: _staff.phone,
                   icon: Icons.phone_outlined,
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: 24),
                 // Editable fields
                 _buildDropdownField(
                   label: 'Category',
@@ -228,7 +228,7 @@ class _EditStaffScreenState extends State<EditStaffScreen> {
                     });
                   },
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildDropdownField(
                   label: 'Shift',
                   value: _selectedShift,
@@ -240,32 +240,32 @@ class _EditStaffScreenState extends State<EditStaffScreen> {
                     });
                   },
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildEditableField(
                   label: 'Salary (AED)',
                   controller: _salaryController,
                   hintText: '3500',
                   keyboardType: TextInputType.number,
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 _buildEditableField(
                   label: 'Experience (years)',
                   controller: _experienceController,
                   hintText: '3',
                   keyboardType: TextInputType.number,
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 Text(
                   'Start Date',
                   style: AppTextStyles.bodySmall.copyWith(
                     color: AppColors.textSecondary,
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8),
                 GestureDetector(
                   onTap: _pickStartDate,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
+                    padding: EdgeInsets.symmetric(
                       horizontal: 16,
                       vertical: 16,
                     ),
@@ -295,13 +295,13 @@ class _EditStaffScreenState extends State<EditStaffScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 32),
+                SizedBox(height: 32),
                 Row(
                   children: [
                     Expanded(
                       child: OutlinedButton(
                         style: OutlinedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          padding: EdgeInsets.symmetric(vertical: 16),
                           side: BorderSide(color: AppColors.cardBackground),
                           backgroundColor: AppColors.cardBackground,
                           shape: RoundedRectangleBorder(
@@ -318,19 +318,19 @@ class _EditStaffScreenState extends State<EditStaffScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 16),
+                    SizedBox(width: 16),
                     Expanded(
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary,
-                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          padding: EdgeInsets.symmetric(vertical: 16),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
                           ),
                         ),
                         onPressed: _isSubmitting ? null : _submit,
                         child: _isSubmitting
-                            ? const SizedBox(
+                            ? SizedBox(
                                 height: 20,
                                 width: 20,
                                 child: CircularProgressIndicator(
@@ -376,13 +376,13 @@ class _EditStaffScreenState extends State<EditStaffScreen> {
                 color: AppColors.textSecondary,
               ),
             ),
-            const SizedBox(width: 6),
+            SizedBox(width: 6),
             Icon(Icons.lock_outline, size: 14, color: AppColors.textSecondary),
           ],
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           decoration: BoxDecoration(
             color: AppColors.cardBackground,
             borderRadius: BorderRadius.circular(16),
@@ -392,7 +392,7 @@ class _EditStaffScreenState extends State<EditStaffScreen> {
             children: [
               if (icon != null) ...[
                 Icon(icon, size: 18, color: AppColors.textSecondary),
-                const SizedBox(width: 8),
+                SizedBox(width: 8),
               ],
               Expanded(
                 child: Text(
@@ -428,11 +428,11 @@ class _EditStaffScreenState extends State<EditStaffScreen> {
                 color: AppColors.textSecondary,
               ),
             ),
-            const SizedBox(width: 6),
+            SizedBox(width: 6),
             Icon(Icons.edit_outlined, size: 14, color: AppColors.textSecondary),
           ],
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         TextFormField(
           controller: controller,
           keyboardType: keyboardType,
@@ -481,9 +481,9 @@ class _EditStaffScreenState extends State<EditStaffScreen> {
             color: AppColors.textSecondary,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: EdgeInsets.symmetric(horizontal: 12),
           decoration: BoxDecoration(
             color: AppColors.cardBackground,
             borderRadius: BorderRadius.circular(16),

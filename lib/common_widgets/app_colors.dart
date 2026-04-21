@@ -1,89 +1,92 @@
 import 'package:flutter/material.dart';
+import '../provider/theme_provider.dart';
 
 class AppColors {
-  // Primary theme – Ocean Blue
-  static const Color primary = Color(0xFF6FD373); // Blue 500
-  static const Color primaryHover = Color(0xFF2563EB); // Blue 600
-  static const Color primaryLight = Color(0xFF60A5FA); // Blue 400
+  static AppPalette _palette = DarkPalette();
+
+  static void updatePalette(AppPalette palette) {
+    _palette = palette;
+  }
+
+  // Primary theme
+  static Color get primary => _palette.primary;
+  static Color get primaryHover => _palette.primaryHover;
+  static Color get primaryLight => _palette.primaryLight;
 
   // Backgrounds
-  static const Color background = Color(0xFF0F172A); // Slate 900
-  static const Color cardBackground = Color(0xFF1E293B); // Slate 800
-  static const Color surface = Color(0xFF334155); // Slate 700
-  static const Color elevated = Color(0xFF475569); // Slate 600
+  static Color get background => _palette.background;
+  static Color get cardBackground => _palette.cardBackground;
+  static Color get surface => _palette.surface;
+  static Color get elevated => _palette.elevated;
 
   // Text colors
-  static const Color textPrimary = Color(0xFFF8FAFC); // Slate 50
-  static const Color textSecondary = Color(0xFFCBD5E1); // Slate 300
-  static const Color textTertiary = Color(0xFF94A3B8); // Slate 400
-  static const Color textDisabled = Color(0xFF64748B); // Slate 500
-  static const Color textLight = Color(0x80F8FAFC); // 50% primary text
-  static const Color primaryText = textPrimary;
-  static const Color primaryTextLight = textSecondary;
+  static Color get textPrimary => _palette.textPrimary;
+  static Color get textSecondary => _palette.textSecondary;
+  static Color get textTertiary => _palette.textTertiary;
+  static Color get textDisabled => _palette.textDisabled;
+  static Color get textLight => _palette.textPrimary.withOpacity(0.5);
+  static Color get primaryText => textPrimary;
+  static Color get primaryTextLight => textSecondary;
 
   // Status colors
-  static const Color success = Color(0xFF10B981); // Emerald 500
-  static const Color warning = Color(0xFFF59E0B); // Amber 500
-  static const Color error = Color(0xFFEF4444); // Red 500
-  static const Color info = Color(0xFF06B6D4); // Cyan 500
-  static const Color occupied = Color(0xFF8B5CF6); // Violet 500
+  static Color get success => _palette.success;
+  static Color get warning => _palette.warning;
+  static Color get error => _palette.error;
+  static Color get info => _palette.info;
+  static Color get occupied => _palette.occupied;
 
   // Accent colors
-  static const Color accent1 = Color(0xFFEC4899); // Pink 500
-  static const Color accent2 = Color(0xFF14B8A6); // Teal 500
+  static Color get accent1 => _palette.accent1;
+  static Color get accent2 => _palette.accent2;
 
   // Button gradients (primary)
-  static const Color primaryGradientStart = Color(0xFF3B82F6);
-  static const Color primaryGradientEnd = Color(0xFF2563EB);
+  static Color get primaryGradientStart => primary;
+  static Color get primaryGradientEnd => primaryHover;
 
-  // Borders / dividers suitable for dark UI
-  static const Color border = Color(0xFF334155); // Slate 700
-  static const Color borderMuted = Color(0xFF475569); // Slate 600
-  static const Color divider = Color(0x26FFFFFF); // subtle white divider
+  // Borders / dividers
+  static Color get border => _palette.border;
+  static Color get borderMuted => _palette.borderMuted;
+  static Color get divider => _palette.divider;
 
   // Shadow
-  static const Color shadow = Color(0x1A000000);
+  static Color get shadow => const Color(0x1A000000);
 
-  // Common colors (for compatibility)
-  static const Color white = Color(0xFFFFFFFF); // Pure white
-  static const Color black = Color(0xFF000000); // Pure black
-  static const Color transparent = Color(0x00000000); // Transparent
+  // Common colors
+  static Color get white => const Color(0xFFFFFFFF);
+  static Color get black => const Color(0xFF000000);
+  static Color get transparent => const Color(0x00000000);
 
-  // Additional semantic colors for UI elements
-  static const Color disabled = Color(
-    0x6664748B,
-  ); // ~40% Slate 500 for disabled states
-  static const Color overlay = Color(0x80000000); // 50% black overlay
+  static Color get disabled => _palette.textDisabled.withOpacity(0.4);
+  static Color get overlay => const Color(0x80000000);
 
-  static const Color appleButtonColor = Color(0xFFFFFFFF);
-  static const Color appleButtonTextColor = Color(0xFF000000);
+  static Color get appleButtonColor => white;
+  static Color get appleButtonTextColor => black;
 
-  // Compatibility aliases (map old names to the new palette to avoid breakages)
-  static const Color mainBackground = background;
-  static const Color text1 = textPrimary;
-  static const Color text2 = textSecondary;
-  static const Color highlight = error;
+  // Compatibility aliases
+  static Color get mainBackground => background;
+  static Color get text1 => textPrimary;
+  static Color get text2 => textSecondary;
+  static Color get highlight => error;
 
-  static const Color background2 = surface;
-  static const Color background3 = cardBackground;
-  static const Color ctaPrimary = primary;
-  static const Color ctaSecondary = primaryHover;
+  static Color get background2 => surface;
+  static Color get background3 => cardBackground;
+  static Color get ctaPrimary => primary;
+  static Color get ctaSecondary => primaryHover;
 
-  // Legacy semantic roles
-  static const Color secondary = accent1;
-  static const Color secondaryDark = accent1;
-  static const Color secondaryLight = accent1;
+  static Color get secondary => accent1;
+  static Color get secondaryDark => accent1;
+  static Color get secondaryLight => accent1;
 
-  static const Color textFieldBackground = surface;
+  static Color get textFieldBackground => surface;
 
-  static const Color ctaPrimaryGradientStart = primaryGradientStart;
-  static const Color ctaPrimaryGradientEnd = primaryGradientEnd;
-  static const Color ctaSecondaryGradientStart = primaryGradientStart;
-  static const Color ctaSecondaryGradientEnd = primaryGradientEnd;
+  static Color get ctaPrimaryGradientStart => primary;
+  static Color get ctaPrimaryGradientEnd => primaryHover;
+  static Color get ctaSecondaryGradientStart => primary;
+  static Color get ctaSecondaryGradientEnd => primaryHover;
 
-  static const Color sageMint = background;
-  static const Color coralRose = primary;
-  static const Color lavenderMist = surface;
-  static const Color deepCharcoal = textPrimary;
-  static const Color warmGray = textSecondary;
+  static Color get sageMint => background;
+  static Color get coralRose => primary;
+  static Color get lavenderMist => surface;
+  static Color get deepCharcoal => textPrimary;
+  static Color get warmGray => textSecondary;
 }

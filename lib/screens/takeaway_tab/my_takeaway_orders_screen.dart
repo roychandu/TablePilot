@@ -9,7 +9,7 @@ import '../../services/order_service.dart';
 import '../../services/auth_service.dart';
 
 class MyTakeawayOrdersScreen extends StatefulWidget {
-  const MyTakeawayOrdersScreen({super.key});
+  MyTakeawayOrdersScreen({super.key});
 
   @override
   State<MyTakeawayOrdersScreen> createState() => _MyTakeawayOrdersScreenState();
@@ -92,7 +92,7 @@ class _MyTakeawayOrdersScreenState extends State<MyTakeawayOrdersScreen> {
     // Only pending orders can be cancelled
     if (order.status != OrderStatus.pending) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Cannot cancel order in this status')),
+        SnackBar(content: Text('Cannot cancel order in this status')),
       );
       return;
     }
@@ -100,16 +100,16 @@ class _MyTakeawayOrdersScreenState extends State<MyTakeawayOrdersScreen> {
     final confirm = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Cancel Order'),
-        content: const Text('Are you sure you want to cancel this order?'),
+        title: Text('Cancel Order'),
+        content: Text('Are you sure you want to cancel this order?'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('No'),
+            child: Text('No'),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Yes', style: TextStyle(color: AppColors.error)),
+            child: Text('Yes', style: TextStyle(color: AppColors.error)),
           ),
         ],
       ),
@@ -125,7 +125,7 @@ class _MyTakeawayOrdersScreenState extends State<MyTakeawayOrdersScreen> {
         await _loadMyOrders(); // Refresh list
 
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+          SnackBar(
             content: Text('Order cancelled successfully'),
             backgroundColor: AppColors.success,
           ),
@@ -160,16 +160,16 @@ class _MyTakeawayOrdersScreenState extends State<MyTakeawayOrdersScreen> {
             false, // Managed by parent tab or add leading if pushed
       ),
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? Center(child: CircularProgressIndicator())
           : _myOrders.isEmpty
           ? _buildEmptyState()
           : RefreshIndicator(
               onRefresh: _loadMyOrders,
               child: ListView.separated(
-                padding: const EdgeInsets.all(16),
+                padding: EdgeInsets.all(16),
                 itemCount: _myOrders.length,
                 separatorBuilder: (context, index) =>
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                 itemBuilder: (context, index) {
                   return _buildOrderCard(_myOrders[index]);
                 },
@@ -188,7 +188,7 @@ class _MyTakeawayOrdersScreenState extends State<MyTakeawayOrdersScreen> {
             size: 64,
             color: AppColors.textSecondary,
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           Text(
             'No takeaway orders yet',
             style: AppTextStyles.bodyLarge.copyWith(
@@ -238,7 +238,7 @@ class _MyTakeawayOrdersScreenState extends State<MyTakeawayOrdersScreen> {
       showBadge: true,
       badgeContent: Text(
         statusText,
-        style: const TextStyle(
+        style: TextStyle(
           color: AppColors.white,
           fontSize: 10,
           fontWeight: FontWeight.bold,
@@ -248,7 +248,7 @@ class _MyTakeawayOrdersScreenState extends State<MyTakeawayOrdersScreen> {
         badgeColor: statusColor,
         shape: badges.BadgeShape.square,
         borderRadius: BorderRadius.circular(5),
-        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+        padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       ),
       child: Container(
         decoration: BoxDecoration(
@@ -259,12 +259,12 @@ class _MyTakeawayOrdersScreenState extends State<MyTakeawayOrdersScreen> {
             BoxShadow(
               color: AppColors.black.withOpacity(0.05),
               blurRadius: 10,
-              offset: const Offset(0, 4),
+              offset: Offset(0, 4),
             ),
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -286,10 +286,10 @@ class _MyTakeawayOrdersScreenState extends State<MyTakeawayOrdersScreen> {
                   ),
                 ],
               ),
-              const Divider(height: 24),
+              Divider(height: 24),
               ...order.items.map(
                 (item) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  padding: EdgeInsets.symmetric(vertical: 4),
                   child: Row(
                     children: [
                       Text(
@@ -299,7 +299,7 @@ class _MyTakeawayOrdersScreenState extends State<MyTakeawayOrdersScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8),
                       Expanded(
                         child: Text(
                           item.itemName,
@@ -319,7 +319,7 @@ class _MyTakeawayOrdersScreenState extends State<MyTakeawayOrdersScreen> {
                   ),
                 ),
               ),
-              const Divider(height: 24),
+              Divider(height: 24),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -339,19 +339,19 @@ class _MyTakeawayOrdersScreenState extends State<MyTakeawayOrdersScreen> {
                 ],
               ),
               if (isPending) ...[
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 SizedBox(
                   width: double.infinity,
                   child: OutlinedButton(
                     onPressed: () => _cancelOrder(order),
                     style: OutlinedButton.styleFrom(
                       foregroundColor: AppColors.error,
-                      side: const BorderSide(color: AppColors.error),
+                      side: BorderSide(color: AppColors.error),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    child: const Text('Cancel Order'),
+                    child: Text('Cancel Order'),
                   ),
                 ),
               ],

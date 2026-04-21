@@ -10,7 +10,7 @@ import '../../services/order_service.dart';
 import '../../services/auth_service.dart';
 
 class TakeawayScreen extends StatefulWidget {
-  const TakeawayScreen({super.key});
+  TakeawayScreen({super.key});
 
   @override
   State<TakeawayScreen> createState() => _TakeawayScreenState();
@@ -43,7 +43,7 @@ class _TakeawayScreenState extends State<TakeawayScreen>
 
   Future<void> _initializeScreen() async {
     // Wait for auth to be ready before checking admin status
-    await Future.delayed(const Duration(milliseconds: 100));
+    await Future.delayed(Duration(milliseconds: 100));
 
     if (!mounted) return;
 
@@ -63,7 +63,7 @@ class _TakeawayScreenState extends State<TakeawayScreen>
     // Set up periodic refresh every 30 seconds for admin view (only refresh data, don't show loading)
     if (mounted && _isAdmin) {
       _refreshTimer?.cancel();
-      _refreshTimer = Timer.periodic(const Duration(seconds: 30), (timer) {
+      _refreshTimer = Timer.periodic(Duration(seconds: 30), (timer) {
         if (mounted && _isAdmin) {
           _loadOrders(showLoading: false);
         } else {
@@ -160,7 +160,7 @@ class _TakeawayScreenState extends State<TakeawayScreen>
           labelColor: AppColors.primary,
           unselectedLabelColor: AppColors.textSecondary,
           indicatorColor: AppColors.primary,
-          tabs: const [
+          tabs: [
             Tab(text: 'Pending'),
             Tab(text: 'Completed'),
             Tab(text: 'Rejected'),
@@ -210,7 +210,7 @@ class _TakeawayScreenState extends State<TakeawayScreen>
       child: orders.isEmpty
           ? _buildEmptyState(screenWidth, emptyMessage)
           : ListView.builder(
-              physics: const AlwaysScrollableScrollPhysics(),
+              physics: AlwaysScrollableScrollPhysics(),
               padding: EdgeInsets.symmetric(
                 horizontal: horizontalPadding,
                 vertical: verticalSpacing,
@@ -237,7 +237,7 @@ class _TakeawayScreenState extends State<TakeawayScreen>
     final statusText = _getStatusText(order.status);
 
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
@@ -246,7 +246,7 @@ class _TakeawayScreenState extends State<TakeawayScreen>
           BoxShadow(
             color: AppColors.shadow,
             blurRadius: 8,
-            offset: const Offset(0, 4),
+            offset: Offset(0, 4),
           ),
         ],
       ),
@@ -269,7 +269,7 @@ class _TakeawayScreenState extends State<TakeawayScreen>
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    SizedBox(height: 4),
                     Row(
                       children: [
                         Icon(
@@ -277,7 +277,7 @@ class _TakeawayScreenState extends State<TakeawayScreen>
                           size: 14,
                           color: AppColors.textSecondary,
                         ),
-                        const SizedBox(width: 4),
+                        SizedBox(width: 4),
                         Text(
                           '$formattedDate at $formattedTime',
                           style: AppTextStyles.bodySmall.copyWith(
@@ -290,7 +290,7 @@ class _TakeawayScreenState extends State<TakeawayScreen>
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: 10,
                   vertical: 6,
                 ),
@@ -309,7 +309,7 @@ class _TakeawayScreenState extends State<TakeawayScreen>
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           // Order Items
           if (order.items.isNotEmpty) ...[
             Text(
@@ -319,10 +319,10 @@ class _TakeawayScreenState extends State<TakeawayScreen>
                 fontWeight: FontWeight.w600,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             ...order.items.map(
               (item) => Padding(
-                padding: const EdgeInsets.only(bottom: 8),
+                padding: EdgeInsets.only(bottom: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -345,9 +345,9 @@ class _TakeawayScreenState extends State<TakeawayScreen>
                 ),
               ),
             ),
-            const SizedBox(height: 12),
-            const Divider(color: AppColors.border),
-            const SizedBox(height: 8),
+            SizedBox(height: 12),
+            Divider(color: AppColors.border),
+            SizedBox(height: 8),
           ],
           // Order Summary
           Row(
@@ -368,7 +368,7 @@ class _TakeawayScreenState extends State<TakeawayScreen>
             ],
           ),
           if (order.serviceCharge > 0) ...[
-            const SizedBox(height: 4),
+            SizedBox(height: 4),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -387,9 +387,9 @@ class _TakeawayScreenState extends State<TakeawayScreen>
               ],
             ),
           ],
-          const SizedBox(height: 8),
-          const Divider(color: AppColors.border),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
+          Divider(color: AppColors.border),
+          SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -411,9 +411,9 @@ class _TakeawayScreenState extends State<TakeawayScreen>
           ),
           // Status Update Buttons (for admin only)
           if (_isAdmin) ...[
-            const SizedBox(height: 16),
-            const Divider(color: AppColors.border),
-            const SizedBox(height: 12),
+            SizedBox(height: 16),
+            Divider(color: AppColors.border),
+            SizedBox(height: 12),
             _buildStatusButton(order),
           ],
         ],
@@ -431,7 +431,7 @@ class _TakeawayScreenState extends State<TakeawayScreen>
               onPressed: () => _updateOrderStatus(order, OrderStatus.cancelled),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.error,
-                padding: const EdgeInsets.symmetric(vertical: 12),
+                padding: EdgeInsets.symmetric(vertical: 12),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -446,13 +446,13 @@ class _TakeawayScreenState extends State<TakeawayScreen>
               ),
             ),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12),
           Expanded(
             child: ElevatedButton(
               onPressed: () => _updateOrderStatus(order, OrderStatus.preparing),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.success, // or AppColors.primary
-                padding: const EdgeInsets.symmetric(vertical: 12),
+                padding: EdgeInsets.symmetric(vertical: 12),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -481,7 +481,7 @@ class _TakeawayScreenState extends State<TakeawayScreen>
           onPressed: () => _updateOrderStatus(order, OrderStatus.completed),
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.success,
-            padding: const EdgeInsets.symmetric(vertical: 12),
+            padding: EdgeInsets.symmetric(vertical: 12),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
@@ -499,7 +499,7 @@ class _TakeawayScreenState extends State<TakeawayScreen>
     }
 
     // Show no button if order is already completed or cancelled
-    return const SizedBox.shrink();
+    return SizedBox.shrink();
   }
 
   Future<void> _updateOrderStatus(
@@ -530,7 +530,7 @@ class _TakeawayScreenState extends State<TakeawayScreen>
                 ),
               ),
               backgroundColor: AppColors.success,
-              duration: const Duration(seconds: 2),
+              duration: Duration(seconds: 2),
             ),
           );
         } else {
@@ -543,7 +543,7 @@ class _TakeawayScreenState extends State<TakeawayScreen>
                 ),
               ),
               backgroundColor: AppColors.error,
-              duration: const Duration(seconds: 2),
+              duration: Duration(seconds: 2),
             ),
           );
         }
@@ -558,7 +558,7 @@ class _TakeawayScreenState extends State<TakeawayScreen>
               style: AppTextStyles.bodyMedium.copyWith(color: AppColors.white),
             ),
             backgroundColor: AppColors.error,
-            duration: const Duration(seconds: 2),
+            duration: Duration(seconds: 2),
           ),
         );
       }

@@ -11,7 +11,7 @@ import '../../services/menu_service.dart';
 import '../../aws/aws_fields.dart';
 
 class AddMenuScreen extends StatefulWidget {
-  const AddMenuScreen({super.key});
+  AddMenuScreen({super.key});
 
   @override
   State<AddMenuScreen> createState() => _AddMenuScreenState();
@@ -126,7 +126,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
         builder: (context) => Container(
           decoration: BoxDecoration(
             color: AppColors.cardBackground,
-            borderRadius: const BorderRadius.only(
+            borderRadius: BorderRadius.only(
               topLeft: Radius.circular(16),
               topRight: Radius.circular(16),
             ),
@@ -135,7 +135,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                margin: const EdgeInsets.only(top: 12),
+                margin: EdgeInsets.only(top: 12),
                 width: 40,
                 height: 4,
                 decoration: BoxDecoration(
@@ -143,7 +143,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
               Text(
                 'Select Image Source',
                 style: TextStyle(
@@ -152,10 +152,10 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                   color: AppColors.textPrimary,
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
               Row(
                 children: [
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16),
                   Expanded(
                     child: _buildImageSourceOption(
                       icon: Icons.camera_alt,
@@ -164,7 +164,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                       onTap: () => Navigator.pop(context, ImageSource.camera),
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16),
                   Expanded(
                     child: _buildImageSourceOption(
                       icon: Icons.photo_library,
@@ -173,10 +173,10 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                       onTap: () => Navigator.pop(context, ImageSource.gallery),
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16),
                 ],
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
             ],
           ),
         ),
@@ -212,7 +212,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
     // Scroll to top
     Scrollable.ensureVisible(
       context,
-      duration: const Duration(milliseconds: 300),
+      duration: Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
   }
@@ -344,7 +344,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
         behavior: SnackBarBehavior.floating,
         content: Text(message),
         backgroundColor: color,
-        duration: const Duration(seconds: 3),
+        duration: Duration(seconds: 3),
       ),
     );
   }
@@ -356,9 +356,9 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
         .showSnackBar(
           SnackBar(
             behavior: SnackBarBehavior.floating,
-            content: const Text('Menu item saved successfully!'),
+            content: Text('Menu item saved successfully!'),
             backgroundColor: AppColors.success,
-            duration: const Duration(seconds: 4),
+            duration: Duration(seconds: 4),
             action: SnackBarAction(
               label: 'Add Another',
               textColor: AppColors.textPrimary,
@@ -386,7 +386,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
         backgroundColor: AppColors.cardBackground,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back_ios_new,
             color: AppColors.textPrimary,
             size: 20,
@@ -406,17 +406,17 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(20),
+          padding: EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Category Name Dropdown
               _buildCategoryDropdown(),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
 
               // Item Image
               _buildImageField(),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
 
               // Item Name
               _buildTextField(
@@ -430,7 +430,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                   return null;
                 },
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
 
               // Description
               _buildTextArea(
@@ -444,14 +444,14 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                   return null;
                 },
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
 
               // Price
               _buildTextField(
                 label: 'Price (AED)',
                 controller: _priceController,
                 hintText: '0.00',
-                keyboardType: const TextInputType.numberWithOptions(
+                keyboardType: TextInputType.numberWithOptions(
                   decimal: true,
                 ),
                 validator: (value) {
@@ -465,7 +465,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                   return null;
                 },
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
 
               // Primary Ingredient
               _buildTextField(
@@ -473,11 +473,11 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                 controller: _primaryIngredientController,
                 hintText: 'e.g., Chicken, Paneer',
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
 
               // Veg/Non-Veg Toggle
               _buildVegNonVegToggle(),
-              const SizedBox(height: 40),
+              SizedBox(height: 40),
 
               // Save Button
               SizedBox(
@@ -494,7 +494,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                     elevation: 0,
                   ),
                   child: _isLoading
-                      ? const SizedBox(
+                      ? SizedBox(
                           height: 20,
                           width: 20,
                           child: CircularProgressIndicator(
@@ -504,7 +504,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                             ),
                           ),
                         )
-                      : const Text(
+                      : Text(
                           'Save Menu Item',
                           style: TextStyle(
                             fontSize: 16,
@@ -538,7 +538,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
             fontSize: 14,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         Container(
           decoration: BoxDecoration(
             color: AppColors.surface,
@@ -554,7 +554,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
             keyboardType: keyboardType,
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: const EdgeInsets.symmetric(
+              contentPadding: EdgeInsets.symmetric(
                 horizontal: 16,
                 vertical: 16,
               ),
@@ -592,7 +592,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
             fontSize: 14,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         Container(
           decoration: BoxDecoration(
             color: AppColors.surface,
@@ -608,7 +608,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
             maxLines: 3,
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: const EdgeInsets.symmetric(
+              contentPadding: EdgeInsets.symmetric(
                 horizontal: 16,
                 vertical: 16,
               ),
@@ -641,7 +641,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
             fontSize: 14,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         GestureDetector(
           onTap: _showImageSourceDialog,
           child: Container(
@@ -697,7 +697,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(Icons.image, size: 32, color: AppColors.textSecondary),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           Text(
             'Tap to add image',
             style: TextStyle(color: AppColors.textSecondary, fontSize: 12),
@@ -716,7 +716,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: AppColors.surface,
           borderRadius: BorderRadius.circular(8),
@@ -728,7 +728,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
         child: Column(
           children: [
             Icon(icon, size: 28, color: AppColors.primary),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             Text(
               title,
               style: TextStyle(
@@ -737,7 +737,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                 fontSize: 14,
               ),
             ),
-            const SizedBox(height: 4),
+            SizedBox(height: 4),
             Text(
               subtitle,
               style: TextStyle(color: AppColors.textSecondary, fontSize: 11),
@@ -829,7 +829,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
             fontSize: 14,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         Container(
           decoration: BoxDecoration(
             color: AppColors.surface,
@@ -843,7 +843,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
             value: _isNewCategory ? null : _selectedCategory,
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: const EdgeInsets.symmetric(
+              contentPadding: EdgeInsets.symmetric(
                 horizontal: 16,
                 vertical: 16,
               ),
@@ -874,7 +874,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                         color: AppColors.primary,
                         size: 20,
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8),
                     ],
                     Flexible(
                       fit: FlexFit.loose,
@@ -923,7 +923,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
         ),
         // Show text field for new category name if "Add new category" is selected
         if (_isNewCategory) ...[
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           _buildTextField(
             label: 'New Category Name',
             controller: _categoryNameController,
@@ -952,7 +952,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
             fontSize: 14,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         Container(
           decoration: BoxDecoration(
             color: AppColors.surface,
@@ -972,7 +972,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                     });
                   },
                   child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    padding: EdgeInsets.symmetric(vertical: 14),
                     decoration: BoxDecoration(
                       color: _isVeg
                           ? AppColors.success.withOpacity(0.2)
@@ -1004,14 +1004,14 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                             ),
                           ),
                           child: _isVeg
-                              ? const Icon(
+                              ? Icon(
                                   Icons.check,
                                   size: 8,
                                   color: AppColors.white,
                                 )
                               : null,
                         ),
-                        const SizedBox(width: 8),
+                        SizedBox(width: 8),
                         Text(
                           'Veg',
                           style: TextStyle(
@@ -1029,7 +1029,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                   ),
                 ),
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: 12),
               Expanded(
                 child: GestureDetector(
                   onTap: () {
@@ -1038,7 +1038,7 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                     });
                   },
                   child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    padding: EdgeInsets.symmetric(vertical: 14),
                     decoration: BoxDecoration(
                       color: !_isVeg
                           ? AppColors.warning.withOpacity(0.2)
@@ -1070,14 +1070,14 @@ class _AddMenuScreenState extends State<AddMenuScreen> {
                             ),
                           ),
                           child: !_isVeg
-                              ? const Icon(
+                              ? Icon(
                                   Icons.check,
                                   size: 8,
                                   color: AppColors.black,
                                 )
                               : null,
                         ),
-                        const SizedBox(width: 8),
+                        SizedBox(width: 8),
                         Text(
                           'Non-Veg',
                           style: TextStyle(

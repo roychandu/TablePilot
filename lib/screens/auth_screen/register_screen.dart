@@ -7,7 +7,7 @@ import '../../common_widgets/app_text_styles.dart';
 import '../../services/auth_service.dart';
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+  RegisterScreen({super.key});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -76,7 +76,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             password: _passwordController.text,
             name: _fullNameController.text.trim(),
           )
-          .timeout(const Duration(seconds: 12));
+          .timeout(Duration(seconds: 12));
 
       // After successful registration, navigate to home
       if (mounted) {
@@ -108,26 +108,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   void _showSnackBar(
     String message, {
-    Color backgroundColor = AppColors.error,
+    Color? backgroundColor,
   }) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         behavior: SnackBarBehavior.floating,
         content: Text(message),
-        backgroundColor: backgroundColor,
+        backgroundColor: backgroundColor ?? AppColors.error,
       ),
     );
   }
 
   void _handleBackToLogin() {
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => const LoginScreen()),
+      MaterialPageRoute(builder: (context) => LoginScreen()),
     );
   }
 
   void _handleLogin() {
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => const LoginScreen()),
+      MaterialPageRoute(builder: (context) => LoginScreen()),
     );
   }
 
@@ -162,7 +162,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -174,7 +174,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             children: [
               // Header with Back Button
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(16.0),
                 child: Row(
                   children: [
                     GestureDetector(
@@ -186,7 +186,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             color: AppColors.textPrimary,
                             size: 20,
                           ),
-                          const SizedBox(width: 8),
+                          SizedBox(width: 8),
                           Text(
                             'Back to Login',
                             style: AppTextStyles.bodyMedium.copyWith(
@@ -205,7 +205,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Expanded(
                 child: Center(
                   child: SingleChildScrollView(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: EdgeInsets.all(10.0),
                     child: Card(
                       color: AppColors.cardBackground,
                       elevation: 8,
@@ -214,7 +214,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Container(
-                        padding: const EdgeInsets.all(32.0),
+                        padding: EdgeInsets.all(32.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -226,7 +226,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            const SizedBox(height: 32),
+                            SizedBox(height: 32),
 
                             // Full Name Input
                             Column(
@@ -239,7 +239,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     color: AppColors.textPrimary,
                                   ),
                                 ),
-                                const SizedBox(height: 8),
+                                SizedBox(height: 8),
                                 Container(
                                   decoration: BoxDecoration(
                                     color: AppColors.textFieldBackground,
@@ -262,21 +262,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       fillColor: AppColors.textFieldBackground,
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(12),
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: AppColors.border,
                                           width: 1.5,
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(12),
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: AppColors.primary,
                                           width: 2,
                                         ),
                                       ),
                                       border: InputBorder.none,
                                       contentPadding:
-                                          const EdgeInsets.symmetric(
+                                          EdgeInsets.symmetric(
                                             horizontal: 16,
                                             vertical: 16,
                                           ),
@@ -288,7 +288,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 24),
+                            SizedBox(height: 24),
 
                             // Email Input
                             Column(
@@ -301,7 +301,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     color: AppColors.textPrimary,
                                   ),
                                 ),
-                                const SizedBox(height: 8),
+                                SizedBox(height: 8),
                                 Container(
                                   decoration: BoxDecoration(
                                     color: AppColors.textFieldBackground,
@@ -324,21 +324,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       fillColor: AppColors.textFieldBackground,
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(12),
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: AppColors.border,
                                           width: 1.5,
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(12),
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: AppColors.primary,
                                           width: 2,
                                         ),
                                       ),
                                       border: InputBorder.none,
                                       contentPadding:
-                                          const EdgeInsets.symmetric(
+                                          EdgeInsets.symmetric(
                                             horizontal: 16,
                                             vertical: 16,
                                           ),
@@ -350,7 +350,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 24),
+                            SizedBox(height: 24),
 
                             // Password Input
                             Column(
@@ -363,7 +363,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     color: AppColors.textPrimary,
                                   ),
                                 ),
-                                const SizedBox(height: 8),
+                                SizedBox(height: 8),
                                 Container(
                                   decoration: BoxDecoration(
                                     color: AppColors.textFieldBackground,
@@ -395,21 +395,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       fillColor: AppColors.textFieldBackground,
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(12),
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: AppColors.border,
                                           width: 1.5,
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(12),
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: AppColors.primary,
                                           width: 2,
                                         ),
                                       ),
                                       border: InputBorder.none,
                                       contentPadding:
-                                          const EdgeInsets.symmetric(
+                                          EdgeInsets.symmetric(
                                             horizontal: 16,
                                             vertical: 16,
                                           ),
@@ -421,7 +421,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 24),
+                            SizedBox(height: 24),
 
                             // Confirm Password Input
                             Column(
@@ -434,7 +434,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     color: AppColors.textPrimary,
                                   ),
                                 ),
-                                const SizedBox(height: 8),
+                                SizedBox(height: 8),
                                 Container(
                                   decoration: BoxDecoration(
                                     color: AppColors.textFieldBackground,
@@ -467,21 +467,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       fillColor: AppColors.textFieldBackground,
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(12),
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: AppColors.border,
                                           width: 1.5,
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(12),
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: AppColors.primary,
                                           width: 2,
                                         ),
                                       ),
                                       border: InputBorder.none,
                                       contentPadding:
-                                          const EdgeInsets.symmetric(
+                                          EdgeInsets.symmetric(
                                             horizontal: 16,
                                             vertical: 16,
                                           ),
@@ -493,7 +493,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 32),
+                            SizedBox(height: 32),
 
                             // Register Button
                             SizedBox(
@@ -512,7 +512,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   elevation: 0,
                                 ),
                                 child: _isRegisterLoading
-                                    ? const SizedBox(
+                                    ? SizedBox(
                                         height: 20,
                                         width: 20,
                                         child: CircularProgressIndicator(
@@ -530,7 +530,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       ),
                               ),
                             ),
-                            const SizedBox(height: 16),
+                            SizedBox(height: 16),
 
                             // Divider
                             Row(
@@ -542,7 +542,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(
+                                  padding: EdgeInsets.symmetric(
                                     horizontal: 16,
                                   ),
                                   child: Text(
@@ -560,7 +560,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 16),
+                            SizedBox(height: 16),
 
                             // Sign up with Apple Button
                             SizedBox(
@@ -578,12 +578,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12),
                                   ),
-                                  padding: const EdgeInsets.symmetric(
+                                  padding: EdgeInsets.symmetric(
                                     vertical: 12,
                                   ),
                                 ),
                                 icon: _isAppleLoading
-                                    ? const SizedBox(
+                                    ? SizedBox(
                                         height: 20,
                                         width: 20,
                                         child: CircularProgressIndicator(
@@ -594,7 +594,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                               ),
                                         ),
                                       )
-                                    : const Icon(
+                                    : Icon(
                                         Icons.apple,
                                         size: 24,
                                         color: AppColors.appleButtonTextColor,
@@ -607,7 +607,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 16),
+                            SizedBox(height: 16),
 
                             // Login Link
                             Row(

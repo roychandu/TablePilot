@@ -9,7 +9,7 @@ import '../../common_widgets/app_colors.dart';
 import '../../common_widgets/app_text_styles.dart';
 
 class PremiumScreen extends StatefulWidget {
-  const PremiumScreen({super.key});
+  PremiumScreen({super.key});
 
   @override
   State<PremiumScreen> createState() => _PremiumScreenState();
@@ -33,18 +33,18 @@ class _PremiumScreenState extends State<PremiumScreen> {
             child: Stack(
               children: [
                 SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 16),
+                      SizedBox(height: 16),
                       Align(
                         alignment: Alignment.centerLeft,
                         child: _BackButton(
                           onTap: () => Navigator.of(context).pop(),
                         ),
                       ),
-                      const SizedBox(height: 24),
+                      SizedBox(height: 24),
                       Center(
                         child: Text(
                           'Upgrade Now',
@@ -56,7 +56,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
                           textAlign: TextAlign.center,
                         ),
                       ),
-                      const SizedBox(height: 12),
+                      SizedBox(height: 12),
                       Center(
                         child: Text(
                           'Go Pro. Remove Ads. Boost\nProductivity.',
@@ -69,7 +69,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
                           textAlign: TextAlign.center,
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10),
                       Center(
                         child: SizedBox(
                           width: 260,
@@ -80,7 +80,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20),
                       Text(
                         'Enjoy a faster, distraction-free\nmanagement experience',
                         style: AppTextStyles.bodyLarge.copyWith(
@@ -90,7 +90,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
                         ),
                         textAlign: TextAlign.left,
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20),
                       Text(
                         'All in just....',
                         style: AppTextStyles.bodyMedium.copyWith(
@@ -98,7 +98,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      const SizedBox(height: 6),
+                      SizedBox(height: 6),
                       Text(
                         '\$0.99',
                         style: AppTextStyles.h2.copyWith(
@@ -107,7 +107,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
                           fontWeight: FontWeight.w800,
                         ),
                       ),
-                      const SizedBox(height: 24),
+                      SizedBox(height: 24),
                       if (!inAppPurchaseProvider.isPremiumMember)
                         SizedBox(
                           width: double.infinity,
@@ -142,7 +142,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
                         ),
                       if (inAppPurchaseProvider.isPremiumMember)
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          padding: EdgeInsets.symmetric(vertical: 12),
                           child: Text(
                             'You are already a premium member',
                             style: AppTextStyles.bodyLarge.copyWith(
@@ -152,7 +152,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                      const SizedBox(height: 12),
+                      SizedBox(height: 12),
                       TextButton(
                         onPressed: () {
                           setState(() {
@@ -174,7 +174,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 28),
+                      SizedBox(height: 28),
                     ],
                   ),
                 ),
@@ -188,12 +188,12 @@ class _PremiumScreenState extends State<PremiumScreen> {
 
   Widget _buildFeatureItem(String text) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
+      padding: EdgeInsets.only(bottom: 12),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Icon(Icons.check_circle, color: AppColors.primary, size: 22),
-          const SizedBox(width: 12),
+          SizedBox(width: 12),
           Expanded(
             child: Text(
               text,
@@ -224,7 +224,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
 
     try {
       // Simulate purchase process
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(Duration(seconds: 2));
 
       // Activate premium membership in both AuthService and InAppPurchaseProvider
       await AuthService().updatePremiumStatus(true);
@@ -249,7 +249,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(Icons.star, color: AppColors.primary, size: 24),
-              const SizedBox(width: 8),
+              SizedBox(width: 8),
               Text(
                 'Premium \nActivated!',
                 textAlign: TextAlign.center,
@@ -258,7 +258,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(width: 8),
+              SizedBox(width: 8),
               Icon(Icons.star, color: AppColors.primary, size: 24),
             ],
           ),
@@ -347,19 +347,19 @@ class _PremiumScreenState extends State<PremiumScreen> {
 class _BackButton extends StatelessWidget {
   final VoidCallback onTap;
 
-  const _BackButton({required this.onTap});
+  _BackButton({required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(8),
+        padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: AppColors.black.withOpacity(0.3),
           shape: BoxShape.circle,
         ),
-        child: const Icon(
+        child: Icon(
           Icons.arrow_back_ios_new,
           color: AppColors.white,
           size: 18,

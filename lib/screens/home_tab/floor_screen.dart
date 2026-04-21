@@ -12,7 +12,7 @@ import '../staff_tab/add_staff_screen.dart';
 enum _FloorTableStatus { available, booked, seated, cleaning, served }
 
 class _FloorTable {
-  const _FloorTable({
+  _FloorTable({
     required this.number,
     required this.seats,
     required this.status,
@@ -26,7 +26,7 @@ class _FloorTable {
 /// Floor plan screen modeled on the provided design.
 /// Now driven by live table statuses and floor number.
 class FloorScreen extends StatefulWidget {
-  const FloorScreen({super.key, required this.floorNum});
+  FloorScreen({super.key, required this.floorNum});
 
   final int floorNum;
 
@@ -41,7 +41,7 @@ class _FloorScreenState extends State<FloorScreen> {
   StreamSubscription<List<TableBookingModel>>? _bookingSubscription;
 
   // Settings
-  static const int _tablesPerFloor = 10;
+  static int _tablesPerFloor = 10;
 
   int _selectedFloor = 1;
   bool _isLoading = true;
@@ -172,27 +172,27 @@ class _FloorScreenState extends State<FloorScreen> {
         ),
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back_ios_new_rounded,
             color: AppColors.textPrimary,
           ),
         ),
       ),
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
               padding: EdgeInsets.zero,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(16),
+                    padding: EdgeInsets.all(16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
                           width: double.infinity,
-                          padding: const EdgeInsets.all(16),
+                          padding: EdgeInsets.all(16),
                           decoration: BoxDecoration(
                             color: AppColors.cardBackground,
                             borderRadius: BorderRadius.circular(12),
@@ -200,7 +200,7 @@ class _FloorScreenState extends State<FloorScreen> {
                               BoxShadow(
                                 color: AppColors.shadow,
                                 blurRadius: 6,
-                                offset: const Offset(0, 3),
+                                offset: Offset(0, 3),
                               ),
                             ],
                           ),
@@ -217,7 +217,7 @@ class _FloorScreenState extends State<FloorScreen> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  const SizedBox(height: 6),
+                                  SizedBox(height: 6),
                                   Text(
                                     'Tables overview',
                                     style: AppTextStyles.bodySmall.copyWith(
@@ -227,7 +227,7 @@ class _FloorScreenState extends State<FloorScreen> {
                                 ],
                               ),
                               Container(
-                                padding: const EdgeInsets.symmetric(
+                                padding: EdgeInsets.symmetric(
                                   horizontal: 12,
                                   vertical: 8,
                                 ),
@@ -250,11 +250,11 @@ class _FloorScreenState extends State<FloorScreen> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12),
                   _buildStatusChips(counts),
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12),
                   _buildGrid(tables),
-                  const SizedBox(height: 24),
+                  SizedBox(height: 24),
                 ],
               ),
             ),
@@ -279,7 +279,7 @@ class _FloorScreenState extends State<FloorScreen> {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
-        padding: const EdgeInsets.only(left: 16),
+        padding: EdgeInsets.only(left: 16),
         child: Row(
           children: [
             for (int i = 0; i < chipData.length; i++) ...[
@@ -290,7 +290,7 @@ class _FloorScreenState extends State<FloorScreen> {
                   final count = counts[status] ?? 0;
                   final color = _statusColor(status);
                   return Container(
-                    padding: const EdgeInsets.symmetric(
+                    padding: EdgeInsets.symmetric(
                       horizontal: 12,
                       vertical: 6,
                     ),
@@ -306,7 +306,7 @@ class _FloorScreenState extends State<FloorScreen> {
                   );
                 },
               ),
-              if (i != chipData.length - 1) const SizedBox(width: 8),
+              if (i != chipData.length - 1) SizedBox(width: 8),
             ],
           ],
         ),
@@ -320,7 +320,7 @@ class _FloorScreenState extends State<FloorScreen> {
         final mediaSize = MediaQuery.of(context).size;
         final screenWidth = mediaSize.width;
         final cardHeight = mediaSize.height / 3;
-        const spacing = 12.0;
+        final spacing = 12.0;
 
         // Split tables into 2 rows
         final midPoint = (tables.length / 2).ceil();
@@ -328,7 +328,7 @@ class _FloorScreenState extends State<FloorScreen> {
         final secondRowTables = tables.sublist(midPoint);
 
         // Calculate card width based on full available width (no side padding)
-        const horizontalPadding = 0.0;
+        final horizontalPadding = 0.0;
         final availableWidth = screenWidth - horizontalPadding;
         // Each card should take half of the available width
         final cardWidth = availableWidth / 2;
@@ -341,7 +341,7 @@ class _FloorScreenState extends State<FloorScreen> {
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 16),
+                  padding: EdgeInsets.only(left: 16),
                   child: Row(
                     children: firstRowTables.asMap().entries.map((entry) {
                       final index = entry.key;
@@ -367,7 +367,7 @@ class _FloorScreenState extends State<FloorScreen> {
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 16),
+                  padding: EdgeInsets.only(left: 16),
                   child: Row(
                     children: secondRowTables.asMap().entries.map((entry) {
                       final index = entry.key;
@@ -415,21 +415,21 @@ class _FloorScreenState extends State<FloorScreen> {
           GestureDetector(
             onTap: () => _showTableActions(table),
             child: Container(
-              padding: const EdgeInsets.fromLTRB(12, 12, 12, 16),
+              padding: EdgeInsets.fromLTRB(12, 12, 12, 16),
               decoration: BoxDecoration(
                 color: AppColors.cardBackground,
                 borderRadius: BorderRadius.only(
-                  topLeft: isFirst ? const Radius.circular(16) : Radius.zero,
-                  bottomLeft: isFirst ? const Radius.circular(16) : Radius.zero,
-                  topRight: isLast ? const Radius.circular(16) : Radius.zero,
-                  bottomRight: isLast ? const Radius.circular(16) : Radius.zero,
+                  topLeft: isFirst ? Radius.circular(16) : Radius.zero,
+                  bottomLeft: isFirst ? Radius.circular(16) : Radius.zero,
+                  topRight: isLast ? Radius.circular(16) : Radius.zero,
+                  bottomRight: isLast ? Radius.circular(16) : Radius.zero,
                 ),
                 border: Border.all(color: AppColors.white.withOpacity(0.04)),
                 boxShadow: [
                   BoxShadow(
                     color: AppColors.black.withOpacity(0.35),
                     blurRadius: 16,
-                    offset: const Offset(0, 8),
+                    offset: Offset(0, 8),
                   ),
                 ],
               ),
@@ -438,7 +438,7 @@ class _FloorScreenState extends State<FloorScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _StatusBadge(text: statusLabel, color: statusColor),
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12),
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
@@ -446,8 +446,8 @@ class _FloorScreenState extends State<FloorScreen> {
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(cardWidth),
                           topRight: Radius.circular(cardWidth),
-                          bottomLeft: const Radius.circular(18),
-                          bottomRight: const Radius.circular(18),
+                          bottomLeft: Radius.circular(18),
+                          bottomRight: Radius.circular(18),
                         ),
                         border: Border.all(
                           color: AppColors.white.withOpacity(0.05),
@@ -463,7 +463,7 @@ class _FloorScreenState extends State<FloorScreen> {
                                 height: 48,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  gradient: const LinearGradient(
+                                  gradient: LinearGradient(
                                     colors: [
                                       AppColors.primaryLight,
                                       AppColors.primaryGradientEnd,
@@ -479,7 +479,7 @@ class _FloorScreenState extends State<FloorScreen> {
                                     BoxShadow(
                                       color: AppColors.black.withOpacity(0.25),
                                       blurRadius: 10,
-                                      offset: const Offset(0, 6),
+                                      offset: Offset(0, 6),
                                     ),
                                   ],
                                 ),
@@ -493,7 +493,7 @@ class _FloorScreenState extends State<FloorScreen> {
                                   ),
                                 ),
                               ),
-                              const SizedBox(height: 14),
+                              SizedBox(height: 14),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -534,22 +534,22 @@ class _FloorScreenState extends State<FloorScreen> {
 
   List<Widget> _menuBricks() {
     return [
-      const Positioned(top: 18, left: 20, child: _MenuBrick(width: 42)),
-      const Positioned(top: 70, right: 30, child: _MenuBrick(width: 34)),
-      const Positioned(bottom: 32, left: 36, child: _MenuBrick(width: 30)),
-      const Positioned(top: 120, left: 60, child: _MenuBrick(width: 26)),
-      const Positioned(top: 32, right: 90, child: _MenuBrick(width: 24)),
-      const Positioned(bottom: 70, right: 24, child: _MenuBrick(width: 28)),
-      const Positioned(bottom: 120, left: 110, child: _MenuBrick(width: 22)),
-      const Positioned(top: 45, left: 85, child: _MenuBrick(width: 20)),
-      const Positioned(top: 95, right: 55, child: _MenuBrick(width: 32)),
-      const Positioned(bottom: 95, left: 50, child: _MenuBrick(width: 25)),
-      const Positioned(top: 150, right: 70, child: _MenuBrick(width: 23)),
-      const Positioned(bottom: 50, right: 50, child: _MenuBrick(width: 27)),
-      const Positioned(top: 55, left: 45, child: _MenuBrick(width: 19)),
-      const Positioned(bottom: 85, left: 75, child: _MenuBrick(width: 31)),
-      const Positioned(top: 135, left: 95, child: _MenuBrick(width: 21)),
-      const Positioned(bottom: 110, right: 40, child: _MenuBrick(width: 29)),
+      Positioned(top: 18, left: 20, child: _MenuBrick(width: 42)),
+      Positioned(top: 70, right: 30, child: _MenuBrick(width: 34)),
+      Positioned(bottom: 32, left: 36, child: _MenuBrick(width: 30)),
+      Positioned(top: 120, left: 60, child: _MenuBrick(width: 26)),
+      Positioned(top: 32, right: 90, child: _MenuBrick(width: 24)),
+      Positioned(bottom: 70, right: 24, child: _MenuBrick(width: 28)),
+      Positioned(bottom: 120, left: 110, child: _MenuBrick(width: 22)),
+      Positioned(top: 45, left: 85, child: _MenuBrick(width: 20)),
+      Positioned(top: 95, right: 55, child: _MenuBrick(width: 32)),
+      Positioned(bottom: 95, left: 50, child: _MenuBrick(width: 25)),
+      Positioned(top: 150, right: 70, child: _MenuBrick(width: 23)),
+      Positioned(bottom: 50, right: 50, child: _MenuBrick(width: 27)),
+      Positioned(top: 55, left: 45, child: _MenuBrick(width: 19)),
+      Positioned(bottom: 85, left: 75, child: _MenuBrick(width: 31)),
+      Positioned(top: 135, left: 95, child: _MenuBrick(width: 21)),
+      Positioned(bottom: 110, right: 40, child: _MenuBrick(width: 29)),
     ];
   }
 
@@ -589,12 +589,12 @@ class _FloorScreenState extends State<FloorScreen> {
     showModalBottomSheet(
       context: context,
       backgroundColor: AppColors.cardBackground,
-      shape: const RoundedRectangleBorder(
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
       builder: (context) {
         return Padding(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+          padding: EdgeInsets.fromLTRB(16, 16, 16, 24),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -621,14 +621,14 @@ class _FloorScreenState extends State<FloorScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 8),
+              SizedBox(height: 8),
               Text(
                 '${table.seats} seats',
                 style: AppTextStyles.bodySmall.copyWith(
                   color: AppColors.textSecondary,
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               Row(
                 children: [
                   Expanded(
@@ -642,7 +642,7 @@ class _FloorScreenState extends State<FloorScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        padding: EdgeInsets.symmetric(vertical: 12),
                       ),
                       child: Text(
                         'Assign Staff',
@@ -657,7 +657,7 @@ class _FloorScreenState extends State<FloorScreen> {
                   if (table.status == _FloorTableStatus.available ||
                       table.status == _FloorTableStatus.served ||
                       isCleaningOverride) ...[
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12),
                     Expanded(
                       child: OutlinedButton(
                         onPressed: () {
@@ -689,7 +689,7 @@ class _FloorScreenState extends State<FloorScreen> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          padding: EdgeInsets.symmetric(vertical: 12),
                         ),
                         child: Text(
                           isCleaningOverride ? 'Clean Done' : 'Mark Cleaning',
@@ -705,7 +705,7 @@ class _FloorScreenState extends State<FloorScreen> {
                   ],
                 ],
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               if (assignedStaff != null) ...[
                 Text(
                   'Assigned Staff',
@@ -714,7 +714,7 @@ class _FloorScreenState extends State<FloorScreen> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                const SizedBox(height: 6),
+                SizedBox(height: 6),
                 Text(
                   assignedStaff.fullName,
                   style: AppTextStyles.bodySmall.copyWith(
@@ -722,7 +722,7 @@ class _FloorScreenState extends State<FloorScreen> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
               ],
               if (bookings.isNotEmpty)
                 Text(
@@ -739,10 +739,10 @@ class _FloorScreenState extends State<FloorScreen> {
                     color: AppColors.textSecondary,
                   ),
                 ),
-              const SizedBox(height: 8),
+              SizedBox(height: 8),
               ...bookings.map(
                 (booking) => Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
+                  padding: EdgeInsets.only(bottom: 8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -793,13 +793,13 @@ class _FloorScreenState extends State<FloorScreen> {
     showModalBottomSheet(
       context: context,
       backgroundColor: AppColors.cardBackground,
-      shape: const RoundedRectangleBorder(
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
       builder: (bottomSheetContext) {
         if (_staff.isEmpty) {
           return Padding(
-            padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+            padding: EdgeInsets.fromLTRB(16, 16, 16, 24),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -810,7 +810,7 @@ class _FloorScreenState extends State<FloorScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8),
                 Text(
                   'Please add staff to assign them to tables.',
                   style: AppTextStyles.bodyMedium.copyWith(
@@ -818,7 +818,7 @@ class _FloorScreenState extends State<FloorScreen> {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: () async {
                     // Pop the bottom sheet using its own context
@@ -826,14 +826,14 @@ class _FloorScreenState extends State<FloorScreen> {
 
                     // Navigate using the widget's navigator
                     final created = await navigator.push<bool>(
-                      MaterialPageRoute(builder: (_) => const AddStaffScreen()),
+                      MaterialPageRoute(builder: (_) => AddStaffScreen()),
                     );
 
                     if (created == true && mounted) {
                       // Refresh staff list after adding
                       await _loadData();
                       scaffoldMessenger.showSnackBar(
-                        const SnackBar(
+                        SnackBar(
                           content: Text('Staff added successfully'),
                         ),
                       );
@@ -844,7 +844,7 @@ class _FloorScreenState extends State<FloorScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    padding: const EdgeInsets.symmetric(
+                    padding: EdgeInsets.symmetric(
                       horizontal: 24,
                       vertical: 12,
                     ),
@@ -864,7 +864,7 @@ class _FloorScreenState extends State<FloorScreen> {
         }
 
         return Padding(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+          padding: EdgeInsets.fromLTRB(16, 16, 16, 24),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -875,13 +875,13 @@ class _FloorScreenState extends State<FloorScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12),
               Flexible(
                 child: ListView.separated(
                   shrinkWrap: true,
                   itemCount: _staff.length,
                   separatorBuilder: (_, __) =>
-                      const Divider(color: AppColors.border, height: 1),
+                      Divider(color: AppColors.border, height: 1),
                   itemBuilder: (context, index) {
                     final staff = _staff[index];
                     final isSelected =
@@ -902,7 +902,7 @@ class _FloorScreenState extends State<FloorScreen> {
                         ),
                       ),
                       trailing: isSelected
-                          ? const Icon(Icons.check, color: AppColors.success)
+                          ? Icon(Icons.check, color: AppColors.success)
                           : null,
                       onTap: () {
                         setState(() {
@@ -921,7 +921,7 @@ class _FloorScreenState extends State<FloorScreen> {
                   },
                 ),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12),
               TextButton(
                 onPressed: () {
                   setState(() {
@@ -967,7 +967,7 @@ class _FloorScreenState extends State<FloorScreen> {
   List<TableBookingModel> _getBookingsForTable(int tableNumber) {
     final today = DateTime.now();
     final startOfDay = DateTime(today.year, today.month, today.day);
-    final endOfDay = startOfDay.add(const Duration(days: 1));
+    final endOfDay = startOfDay.add(Duration(days: 1));
 
     final slots =
         _bookings.where((b) {
@@ -1038,12 +1038,12 @@ class _StatusBadge extends StatelessWidget {
   final String text;
   final Color color;
 
-  const _StatusBadge({required this.text, required this.color});
+  _StatusBadge({required this.text, required this.color});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(6),
@@ -1051,7 +1051,7 @@ class _StatusBadge extends StatelessWidget {
           BoxShadow(
             color: color.withOpacity(0.3),
             blurRadius: 6,
-            offset: const Offset(0, 3),
+            offset: Offset(0, 3),
           ),
         ],
       ),
@@ -1069,7 +1069,7 @@ class _StatusBadge extends StatelessWidget {
 class _DashedDivider extends StatelessWidget {
   final Color color;
 
-  const _DashedDivider({required this.color});
+  _DashedDivider({required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -1077,8 +1077,8 @@ class _DashedDivider extends StatelessWidget {
       width: 8,
       child: LayoutBuilder(
         builder: (context, constraints) {
-          const dashHeight = 8.0;
-          const dashSpace = 6.0;
+          final dashHeight = 8.0;
+          final dashSpace = 6.0;
           final rawCount = (constraints.maxHeight / (dashHeight + dashSpace))
               .floor();
           final count = rawCount > 0 ? rawCount : 1;
@@ -1110,7 +1110,7 @@ class _DashedDivider extends StatelessWidget {
 class _MenuBrick extends StatelessWidget {
   final double width;
 
-  const _MenuBrick({this.width = 28});
+  _MenuBrick({this.width = 28});
 
   @override
   Widget build(BuildContext context) {

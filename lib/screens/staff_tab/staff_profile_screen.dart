@@ -9,7 +9,7 @@ import '../../services/staff_service.dart';
 import 'edit_staff_screen.dart';
 
 class StaffProfileScreen extends StatefulWidget {
-  const StaffProfileScreen({super.key, required this.staff});
+  StaffProfileScreen({super.key, required this.staff});
 
   final StaffModel staff;
 
@@ -104,7 +104,7 @@ class _StaffProfileScreenState extends State<StaffProfileScreen> {
             style: AppTextStyles.bodyMedium.copyWith(color: AppColors.white),
           ),
           backgroundColor: success ? AppColors.success : AppColors.error,
-          duration: const Duration(seconds: 2),
+          duration: Duration(seconds: 2),
           behavior: SnackBarBehavior.floating,
         ),
       );
@@ -120,7 +120,7 @@ class _StaffProfileScreenState extends State<StaffProfileScreen> {
         backgroundColor: AppColors.cardBackground,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back_ios_new_rounded,
             color: AppColors.textPrimary,
           ),
@@ -139,13 +139,13 @@ class _StaffProfileScreenState extends State<StaffProfileScreen> {
           children: [
             Expanded(child: _buildOverviewTab()),
             Padding(
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+              padding: EdgeInsets.fromLTRB(16, 8, 16, 16),
               child: Row(
                 children: [
                   Expanded(
                     child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        padding: EdgeInsets.symmetric(vertical: 14),
                         backgroundColor: AppColors.cardBackground,
                         side: BorderSide(color: AppColors.cardBackground),
                         shape: RoundedRectangleBorder(
@@ -162,12 +162,12 @@ class _StaffProfileScreenState extends State<StaffProfileScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16),
                   Expanded(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.highlight,
-                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        padding: EdgeInsets.symmetric(vertical: 14),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                         ),
@@ -193,16 +193,16 @@ class _StaffProfileScreenState extends State<StaffProfileScreen> {
 
   Widget _buildOverviewTab() {
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           Center(
             child: Column(
               children: [
                 _buildProfileAvatar(),
-                const SizedBox(height: 8),
+                SizedBox(height: 8),
                 Text(
                   _staff.category,
                   style: AppTextStyles.bodyLarge.copyWith(
@@ -213,13 +213,13 @@ class _StaffProfileScreenState extends State<StaffProfileScreen> {
               ],
             ),
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
           _sectionLabel('Email'),
-          const SizedBox(height: 4),
+          SizedBox(height: 4),
           Row(
             children: [
               Icon(Icons.email_outlined, color: AppColors.white.withOpacity(0.7), size: 18),
-              const SizedBox(width: 8),
+              SizedBox(width: 8),
               Text(
                 _staff.email,
                 style: AppTextStyles.bodyMedium.copyWith(
@@ -228,13 +228,13 @@ class _StaffProfileScreenState extends State<StaffProfileScreen> {
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           _sectionLabel('Phone'),
-          const SizedBox(height: 4),
+          SizedBox(height: 4),
           Row(
             children: [
               Icon(Icons.phone_outlined, color: AppColors.white.withOpacity(0.7), size: 18),
-              const SizedBox(width: 8),
+              SizedBox(width: 8),
               Text(
                 _staff.phone,
                 style: AppTextStyles.bodyMedium.copyWith(
@@ -243,7 +243,7 @@ class _StaffProfileScreenState extends State<StaffProfileScreen> {
               ),
             ],
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
           _buildDetailRow('Category', _staff.category),
           _buildDetailRow('Shift', _staff.shift),
           _buildDetailRow(
@@ -264,7 +264,7 @@ class _StaffProfileScreenState extends State<StaffProfileScreen> {
 
   Widget _buildDetailRow(String label, String value, {Color? valueColor}) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
+      padding: EdgeInsets.only(bottom: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

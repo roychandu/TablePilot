@@ -14,7 +14,7 @@ import 'bill_receipt_screen.dart';
 class TableDetailScreen extends StatefulWidget {
   final TableBookingModel booking;
 
-  const TableDetailScreen({super.key, required this.booking});
+  TableDetailScreen({super.key, required this.booking});
 
   @override
   State<TableDetailScreen> createState() => _TableDetailScreenState();
@@ -132,17 +132,17 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
             _booking = updatedBooking;
           });
           // Add a small delay to ensure Firebase propagates the update
-          await Future.delayed(const Duration(milliseconds: 300));
+          await Future.delayed(Duration(milliseconds: 300));
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Status updated to ${_getStatusText(newStatus)}'),
               backgroundColor: AppColors.success,
-              duration: const Duration(seconds: 2),
+              duration: Duration(seconds: 2),
             ),
           );
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
+            SnackBar(
               content: Text('Failed to update status'),
               backgroundColor: AppColors.error,
               duration: Duration(seconds: 2),
@@ -156,7 +156,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
           SnackBar(
             content: Text('Error: $e'),
             backgroundColor: AppColors.error,
-            duration: const Duration(seconds: 2),
+            duration: Duration(seconds: 2),
           ),
         );
       }
@@ -182,7 +182,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
         backgroundColor: AppColors.cardBackground,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back_ios_new_rounded,
             color: AppColors.textPrimary,
           ),
@@ -198,7 +198,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
       ),
       body: SafeArea(
         child: _isUpdating
-            ? const Center(
+            ? Center(
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
                 ),
@@ -227,7 +227,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                           value:
                               '${_formatDate(_booking.bookingDate)} • ${_formatTime(_booking.bookingTime)}',
                         ),
-                        const SizedBox(height: 16),
+                        SizedBox(height: 16),
                         // Number of Guests
                         _buildInfoRow(
                           icon: CupertinoIcons.person_2,
@@ -236,7 +236,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                               '${_booking.numberOfGuests} ${_booking.numberOfGuests == 1 ? 'Guest' : 'Guests'}',
                         ),
                         if (_booking.tableNumber != null) ...[
-                          const SizedBox(height: 16),
+                          SizedBox(height: 16),
                           // Selected Table
                           _buildInfoRow(
                             icon: CupertinoIcons.square_grid_2x2,
@@ -246,7 +246,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                         ],
                         if (_booking.specialPreferences != null &&
                             _booking.specialPreferences!.isNotEmpty) ...[
-                          const SizedBox(height: 16),
+                          SizedBox(height: 16),
                           // Special Preferences
                           _buildInfoRow(
                             icon: Icons.note,
@@ -298,7 +298,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
     final statusIcon = _getStatusIcon(_booking.status);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         color: statusColor.withOpacity(0.2),
         borderRadius: BorderRadius.circular(12),
@@ -308,7 +308,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(statusIcon, color: statusColor, size: 20),
-          const SizedBox(width: 8),
+          SizedBox(width: 8),
           Text(
             statusText,
             style: AppTextStyles.bodyMedium.copyWith(
@@ -325,7 +325,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
     return Row(
       children: [
         Icon(icon, color: AppColors.success, size: 20),
-        const SizedBox(width: 8),
+        SizedBox(width: 8),
         Text(
           title,
           style: AppTextStyles.h6.copyWith(
@@ -339,7 +339,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
 
   Widget _buildInfoCard({required List<Widget> children}) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
@@ -347,7 +347,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
           BoxShadow(
             color: AppColors.shadow,
             blurRadius: 8,
-            offset: const Offset(0, 4),
+            offset: Offset(0, 4),
           ),
         ],
       ),
@@ -370,7 +370,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
           : CrossAxisAlignment.center,
       children: [
         Icon(icon, color: AppColors.textSecondary, size: 18),
-        const SizedBox(width: 12),
+        SizedBox(width: 12),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -382,7 +382,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                   fontSize: 12,
                 ),
               ),
-              const SizedBox(height: 4),
+              SizedBox(height: 4),
               Text(
                 value,
                 style: AppTextStyles.bodyMedium.copyWith(
@@ -406,7 +406,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
     }
 
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
@@ -414,7 +414,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
           BoxShadow(
             color: AppColors.shadow,
             blurRadius: 8,
-            offset: const Offset(0, 4),
+            offset: Offset(0, 4),
           ),
         ],
       ),
@@ -423,7 +423,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
         children: [
           ..._booking.menuItems.map((item) {
             return Padding(
-              padding: const EdgeInsets.only(bottom: 12),
+              padding: EdgeInsets.only(bottom: 12),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -447,7 +447,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
               ),
             );
           }),
-          const Divider(color: AppColors.border, height: 24),
+          Divider(color: AppColors.border, height: 24),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -494,7 +494,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                 if (created == true && mounted) {
                   await _loadBookingData();
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
+                    SnackBar(
                       content: Text('Order updated successfully'),
                       backgroundColor: AppColors.success,
                       duration: Duration(seconds: 2),
@@ -502,8 +502,8 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                   );
                 }
               },
-        icon: const Icon(Icons.add_shopping_cart, size: 20),
-        label: const Text('Add Order'),
+        icon: Icon(Icons.add_shopping_cart, size: 20),
+        label: Text('Add Order'),
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.success,
           foregroundColor: AppColors.white,
@@ -526,8 +526,8 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
       height: isTablet ? 56.0 : 48.0,
       child: ElevatedButton.icon(
         onPressed: () => _showStatusSelectionDialog(),
-        icon: const Icon(Icons.edit, size: 20),
-        label: const Text('Change Status'),
+        icon: Icon(Icons.edit, size: 20),
+        label: Text('Change Status'),
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
           foregroundColor: AppColors.white,
@@ -555,8 +555,8 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
             ),
           );
         },
-        icon: const Icon(Icons.receipt_long, size: 20),
-        label: const Text('View Bill'),
+        icon: Icon(Icons.receipt_long, size: 20),
+        label: Text('View Bill'),
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.success,
           foregroundColor: AppColors.white,
@@ -578,9 +578,9 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
       builder: (context) => AlertDialog(
         backgroundColor: AppColors.cardBackground,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+        insetPadding: EdgeInsets.symmetric(horizontal: 20),
         contentPadding: EdgeInsets.zero,
-        titlePadding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
+        titlePadding: EdgeInsets.fromLTRB(20, 20, 20, 16),
         title: Text(
           'Change Status',
           style: AppTextStyles.h5.copyWith(
@@ -590,7 +590,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
         ),
         content: Container(
           width: screenWidth - 40,
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -602,7 +602,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                   },
                   borderRadius: BorderRadius.circular(12),
                   child: Container(
-                    padding: const EdgeInsets.all(16),
+                    padding: EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       color: AppColors.success.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(12),
@@ -618,7 +618,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                           color: AppColors.success,
                           size: 24,
                         ),
-                        const SizedBox(width: 12),
+                        SizedBox(width: 12),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -630,7 +630,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              const SizedBox(height: 4),
+                              SizedBox(height: 4),
                               Text(
                                 'Mark guests as seated',
                                 style: AppTextStyles.bodySmall.copyWith(
@@ -651,7 +651,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                   ),
                 ),
               if (_booking.status == TableBookingStatus.confirmed)
-                const SizedBox(height: 12),
+                SizedBox(height: 12),
               // Cleaning option (not shown if already cleaning)
               if (_booking.status != TableBookingStatus.cleaning) ...[
                 InkWell(
@@ -660,7 +660,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                   },
                   borderRadius: BorderRadius.circular(12),
                   child: Container(
-                    padding: const EdgeInsets.all(16),
+                    padding: EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       color: AppColors.info.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(12),
@@ -676,7 +676,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                           color: AppColors.info,
                           size: 24,
                         ),
-                        const SizedBox(width: 12),
+                        SizedBox(width: 12),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -688,7 +688,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              const SizedBox(height: 4),
+                              SizedBox(height: 4),
                               Text(
                                 'Table needs cleaning',
                                 style: AppTextStyles.bodySmall.copyWith(
@@ -708,7 +708,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: 12),
               ],
               // Completed option
               InkWell(
@@ -716,7 +716,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                     Navigator.pop(context, TableBookingStatus.completed),
                 borderRadius: BorderRadius.circular(12),
                 child: Container(
-                  padding: const EdgeInsets.all(16),
+                  padding: EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: AppColors.success.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(12),
@@ -732,7 +732,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                         color: AppColors.success,
                         size: 24,
                       ),
-                      const SizedBox(width: 12),
+                      SizedBox(width: 12),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -744,7 +744,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            const SizedBox(height: 4),
+                            SizedBox(height: 4),
                             Text(
                               'Booking is completed',
                               style: AppTextStyles.bodySmall.copyWith(
@@ -764,14 +764,14 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12),
               // Cancelled option
               InkWell(
                 onTap: () =>
                     Navigator.pop(context, TableBookingStatus.cancelled),
                 borderRadius: BorderRadius.circular(12),
                 child: Container(
-                  padding: const EdgeInsets.all(16),
+                  padding: EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: AppColors.error.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(12),
@@ -783,7 +783,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                   child: Row(
                     children: [
                       Icon(Icons.cancel, color: AppColors.error, size: 24),
-                      const SizedBox(width: 12),
+                      SizedBox(width: 12),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -795,7 +795,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            const SizedBox(height: 4),
+                            SizedBox(height: 4),
                             Text(
                               'Cancel this booking',
                               style: AppTextStyles.bodySmall.copyWith(
@@ -818,7 +818,7 @@ class _TableDetailScreenState extends State<TableDetailScreen> {
             ],
           ),
         ),
-        actionsPadding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+        actionsPadding: EdgeInsets.fromLTRB(20, 0, 20, 20),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),

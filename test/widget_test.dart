@@ -38,7 +38,7 @@ void main() {
     WidgetTester tester,
   ) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp());
     await tester.pumpAndSettle();
 
     // Verify that the app builds without errors
@@ -49,7 +49,7 @@ void main() {
     WidgetTester tester,
   ) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp());
     await tester.pumpAndSettle();
 
     // Verify that the app title is set correctly

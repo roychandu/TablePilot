@@ -13,7 +13,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final double elevation;
   final bool centerTitle;
 
-  const AppBarWidget({
+  AppBarWidget({
     super.key,
     required this.title,
     this.actions,
@@ -48,5 +48,5 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 }

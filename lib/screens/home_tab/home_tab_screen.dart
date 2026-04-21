@@ -1,4 +1,4 @@
-﻿// ignore_for_file: deprecated_member_use, empty_catches, use_build_context_synchronously
+// ignore_for_file: deprecated_member_use, empty_catches, use_build_context_synchronously
 
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
@@ -33,18 +33,18 @@ import '../../aws/aws_fields.dart';
 
 /// Constants for responsive breakpoints and sizing
 class _ResponsiveConstants {
-  static const double tabletBreakpoint = 600.0;
-  static const double desktopBreakpoint = 1200.0;
-  static const double maxContentWidth = 1400.0;
+  static double tabletBreakpoint = 600.0;
+  static double desktopBreakpoint = 1200.0;
+  static double maxContentWidth = 1400.0;
 
   // Spacing
-  static const double spacingMobile = 16.0;
-  static const double spacingTablet = 24.0;
-  static const double spacingDesktop = 32.0;
+  static double spacingMobile = 16.0;
+  static double spacingTablet = 24.0;
+  static double spacingDesktop = 32.0;
 }
 
 class HomeTabScreen extends StatefulWidget {
-  const HomeTabScreen({super.key});
+  HomeTabScreen({super.key});
 
   @override
   State<HomeTabScreen> createState() => _HomeTabScreenState();
@@ -170,14 +170,14 @@ class _HomeTabScreenState extends State<HomeTabScreen>
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
     final startOfDay = DateTime(today.year, today.month, today.day);
-    final endOfDay = startOfDay.add(const Duration(days: 1));
+    final endOfDay = startOfDay.add(Duration(days: 1));
 
     // Active table bookings (not completed/cancelled) for today
     final activeToday = sorted.where((booking) {
       final bookingDate = booking.bookingDate;
       final isToday =
           bookingDate.isAfter(
-            startOfDay.subtract(const Duration(seconds: 1)),
+            startOfDay.subtract(Duration(seconds: 1)),
           ) &&
           bookingDate.isBefore(endOfDay);
       if (!isToday) return false;
@@ -208,7 +208,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
     final Map<int, int> occupancy = {};
     final Map<int, int> capacity = {};
     final tables = _tableStatuses;
-    const tablesPerFloor = 10;
+    final tablesPerFloor = 10;
 
     // Build occupied tables from bookings for today (confirmed/seated)
     final now = DateTime.now();
@@ -246,7 +246,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
         );
         // Consider confirmed booking active if time has arrived (within 15 min early window)
         if (now.isAfter(
-          bookingDateTime.subtract(const Duration(minutes: 15)),
+          bookingDateTime.subtract(Duration(minutes: 15)),
         )) {
           occupiedTablesFromBookings.add(booking.tableNumber!);
         }
@@ -683,7 +683,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
 
     // Start auto-scroll timer (slower speed - 5 seconds)
     _offersAutoScrollTimer?.cancel();
-    _offersAutoScrollTimer = Timer.periodic(const Duration(seconds: 5), (
+    _offersAutoScrollTimer = Timer.periodic(Duration(seconds: 5), (
       timer,
     ) {
       if (!mounted || _offersPageController == null) {
@@ -702,7 +702,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
 
       _offersPageController!.animateToPage(
         nextPage,
-        duration: const Duration(milliseconds: 500),
+        duration: Duration(milliseconds: 500),
         curve: Curves.easeInOutCubic,
       );
     });
@@ -711,7 +711,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
   Future<void> _loadProfileImage() async {
     try {
       final userData = await _authService.getUserData().timeout(
-        const Duration(seconds: 5),
+        Duration(seconds: 5),
       );
       final profileImageFromPrefs =
           (userData['profileImage'] ??
@@ -748,11 +748,11 @@ class _HomeTabScreenState extends State<HomeTabScreen>
       final now = DateTime.now();
       final today = DateTime(now.year, now.month, now.day);
       final startOfDay = DateTime(today.year, today.month, today.day);
-      final endOfDay = startOfDay.add(const Duration(days: 1));
+      final endOfDay = startOfDay.add(Duration(days: 1));
 
       // Load today's bills
       final allBills = await _billService.getAllBills().timeout(
-        const Duration(seconds: 12),
+        Duration(seconds: 12),
       );
       final todayBills = allBills.where((bill) {
         final paidAt = bill.paidAt;
@@ -765,11 +765,11 @@ class _HomeTabScreenState extends State<HomeTabScreen>
       // Load today's table bookings and include in revenue/active counts
       final allTableBookings = await _tableBookingService
           .getTableBookings()
-          .timeout(const Duration(seconds: 12));
+          .timeout(Duration(seconds: 12));
       final todayTableBookings = allTableBookings.where((booking) {
         final bookingDate = booking.bookingDate;
         return bookingDate.isAfter(
-              startOfDay.subtract(const Duration(seconds: 1)),
+              startOfDay.subtract(Duration(seconds: 1)),
             ) &&
             bookingDate.isBefore(endOfDay);
       }).toList();
@@ -777,10 +777,10 @@ class _HomeTabScreenState extends State<HomeTabScreen>
       // Load events - use admin method if admin, otherwise use regular method
       final allEvents = _isAdmin
           ? await _eventService.getAllReservationsForAdmin().timeout(
-              const Duration(seconds: 12),
+              Duration(seconds: 12),
             )
           : await _eventService.getReservations().timeout(
-              const Duration(seconds: 12),
+              Duration(seconds: 12),
             );
 
       // Store all events for counting upcoming reservation requests
@@ -860,7 +860,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
           reservation.reservationDate.day,
         );
         return reservationDate.isAfter(
-              startOfDay.subtract(const Duration(seconds: 1)),
+              startOfDay.subtract(Duration(seconds: 1)),
             ) &&
             reservationDate.isBefore(endOfDay);
       }).toList();
@@ -902,10 +902,10 @@ class _HomeTabScreenState extends State<HomeTabScreen>
       // Load orders - use admin method if admin, otherwise use regular method
       final allOrders = _isAdmin
           ? await _orderService.getAllNonAdminOrders().timeout(
-              const Duration(seconds: 12),
+              Duration(seconds: 12),
             )
           : await _orderService.getOrders().timeout(
-              const Duration(seconds: 12),
+              Duration(seconds: 12),
             );
 
       // Store all orders for counting pending takeaway orders
@@ -942,10 +942,10 @@ class _HomeTabScreenState extends State<HomeTabScreen>
 
       // Load table data
       _totalTables = await _tableService.getTotalTables().timeout(
-        const Duration(seconds: 12),
+        Duration(seconds: 12),
       );
       _tableStatuses = await _tableService.getTables().timeout(
-        const Duration(seconds: 12),
+        Duration(seconds: 12),
       );
       await _updateTableOccupancy();
     } on TimeoutException {
@@ -970,14 +970,14 @@ class _HomeTabScreenState extends State<HomeTabScreen>
 
     try {
       final tables = await _tableService.getTables().timeout(
-        const Duration(seconds: 12),
+        Duration(seconds: 12),
       );
-      const tablesPerFloor = 10;
+      final tablesPerFloor = 10;
 
       // Get today's active table bookings
       final allTableBookings = await _tableBookingService
           .getTableBookings()
-          .timeout(const Duration(seconds: 12));
+          .timeout(Duration(seconds: 12));
       final now = DateTime.now();
       final today = DateTime(now.year, now.month, now.day);
 
@@ -1026,7 +1026,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
           );
 
           if (now.isAfter(
-                bookingDateTime.subtract(const Duration(minutes: 15)),
+                bookingDateTime.subtract(Duration(minutes: 15)),
               ) &&
               now.isBefore(bookingEndTime)) {
             occupiedTablesFromBookings.add(booking.tableNumber!);
@@ -1075,14 +1075,14 @@ class _HomeTabScreenState extends State<HomeTabScreen>
 
   void _showSnackBar(
     String message, {
-    Color backgroundColor = AppColors.error,
+    Color? backgroundColor,
   }) {
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         behavior: SnackBarBehavior.floating,
         content: Text(message),
-        backgroundColor: backgroundColor,
+        backgroundColor: backgroundColor ?? AppColors.error,
       ),
     );
   }
@@ -1115,7 +1115,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
     return Scaffold(
       backgroundColor: AppColors.background,
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? Center(child: CircularProgressIndicator())
           : Column(
               children: [
                 // Header (Outside SafeArea to have background color till top)
@@ -1238,7 +1238,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const RestaurantProfileScreen(),
+                    builder: (context) => RestaurantProfileScreen(),
                   ),
                 );
               },
@@ -1246,8 +1246,8 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: const BoxDecoration(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       gradient: LinearGradient(
                         colors: [AppColors.warning, AppColors.warning],
@@ -1262,7 +1262,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                       height: 20,
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  SizedBox(width: 12),
                   Expanded(
                     child: Text(
                       'SFC Plus - Southern Fried Chicken',
@@ -1278,12 +1278,12 @@ class _HomeTabScreenState extends State<HomeTabScreen>
               ),
             ),
           ),
-          const SizedBox(width: 16),
+          SizedBox(width: 16),
           GestureDetector(
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ProfileScreen()),
+                MaterialPageRoute(builder: (context) => ProfileScreen()),
               );
             },
             child: Column(
@@ -1380,7 +1380,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
             fontSize: isDesktop ? 24 : (isTablet ? 22 : 20),
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         // Scrollable section extends to edges (no horizontal padding)
         SizedBox(
           height: cardHeight,
@@ -1394,11 +1394,11 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 16),
+                    padding: EdgeInsets.only(left: 16),
                     child: Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(right: 12),
+                          padding: EdgeInsets.only(right: 12),
                           child: SizedBox(
                             width: cardWidth,
                             child: _metricCard(
@@ -1413,7 +1413,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 12),
+                          padding: EdgeInsets.only(right: 12),
                           child: SizedBox(
                             width: cardWidth,
                             child: _metricCard(
@@ -1428,7 +1428,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 12),
+                          padding: EdgeInsets.only(right: 12),
                           child: SizedBox(
                             width: cardWidth,
                             child: _metricCard(
@@ -1444,7 +1444,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                         ),
                         if (_isAdmin)
                           Padding(
-                            padding: const EdgeInsets.only(right: 12),
+                            padding: EdgeInsets.only(right: 12),
                             child: SizedBox(
                               width: cardWidth,
                               child: _metricCard(
@@ -1484,7 +1484,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
 
   Widget _buildSearchBar({bool isTablet = false, bool isDesktop = false}) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
@@ -1493,7 +1493,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
           BoxShadow(
             color: AppColors.shadow,
             blurRadius: 8,
-            offset: const Offset(0, 2),
+            offset: Offset(0, 2),
           ),
         ],
       ),
@@ -1504,7 +1504,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
             color: AppColors.textSecondary,
             size: isDesktop ? 20 : (isTablet ? 18 : 18),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12),
           Expanded(
             child: TextField(
               controller: _searchController,
@@ -1555,12 +1555,12 @@ class _HomeTabScreenState extends State<HomeTabScreen>
               children: [
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 8, right: 6),
+                    padding: EdgeInsets.only(left: 8, right: 6),
                     child: _serviceOptionCard(
                       topText: 'Skip the Line',
                       mainText: 'Order online',
                       bottomText: 'Order will be fastracked',
-                      gradientColors: const [
+                      gradientColors: [
                         AppColors.cardBackground, // Dark blue-grey
                         Color(0xFFFF6B4A), // Vibrant orange-red
                       ],
@@ -1576,12 +1576,12 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 6, right: 8),
+                    padding: EdgeInsets.only(left: 6, right: 8),
                     child: _serviceOptionCard(
                       topText: 'Book Table',
                       mainText: 'Reserve Table',
                       bottomText: 'Order will be fastracked',
-                      gradientColors: const [
+                      gradientColors: [
                         AppColors.cardBackground, // Dark blue-grey
                         AppColors.success, // Deep green
                       ],
@@ -1590,7 +1590,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const AddReservationScreen(),
+                            builder: (context) => AddReservationScreen(),
                           ),
                         );
                       },
@@ -1627,7 +1627,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
             BoxShadow(
               color: AppColors.black.withOpacity(0.2),
               blurRadius: 8,
-              offset: const Offset(0, 4),
+              offset: Offset(0, 4),
             ),
           ],
         ),
@@ -1665,7 +1665,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
             ),
             // Content
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1718,7 +1718,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
 
   Widget _buildPopularMenuItems() {
     if (_menu == null || _menu!.categories.isEmpty) {
-      return const SizedBox.shrink();
+      return SizedBox.shrink();
     }
 
     // Calculate popular items from today's orders
@@ -1756,7 +1756,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
         .toList();
 
     if (itemsToShow.isEmpty) {
-      return const SizedBox.shrink();
+      return SizedBox.shrink();
     }
 
     final screenSize = MediaQuery.of(context).size;
@@ -1790,7 +1790,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                       fontSize: isDesktop ? 24 : (isTablet ? 22 : 20),
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4),
                   Text(
                     'Most ordered items today',
                     style: AppTextStyles.bodySmall.copyWith(
@@ -1807,7 +1807,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const RestaurantMenuScreen(),
+                    builder: (context) => RestaurantMenuScreen(),
                   ),
                 );
               },
@@ -1821,7 +1821,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
             ),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         // Popular items section extends to edges (no horizontal padding)
         SizedBox(
           height: 180,
@@ -1834,7 +1834,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                 width: screenWidth,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.symmetric(horizontal: 16),
                   itemCount: itemsToShow.length,
                   itemBuilder: (context, index) {
                     final item = itemsToShow[index];
@@ -1865,7 +1865,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
             width: 120,
             height: 120,
             decoration: BoxDecoration(
-              color: const Color(0xFFFFE5E5), // Light pink background
+              color: Color(0xFFFFE5E5), // Light pink background
               shape: BoxShape.circle,
             ),
             child: ClipOval(
@@ -1888,7 +1888,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                     ),
             ),
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           // Item name
           Text(
             item.itemName,
@@ -1901,7 +1901,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: 4),
           // Chef Special tag
           Text(
             'Chef Special',
@@ -1918,7 +1918,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
 
   Widget _buildFeaturedItems({bool isTablet = false, bool isDesktop = false}) {
     if (_menu == null) {
-      return const SizedBox.shrink();
+      return SizedBox.shrink();
     }
 
     // Get items based on selected category
@@ -1952,10 +1952,10 @@ class _HomeTabScreenState extends State<HomeTabScreen>
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.all(32),
+            padding: EdgeInsets.all(32),
             child: Column(
               children: [
                 Icon(
@@ -1963,7 +1963,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                   size: 48,
                   color: AppColors.textSecondary,
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: 12),
                 Text(
                   'No items available',
                   style: AppTextStyles.bodyLarge.copyWith(
@@ -1988,7 +1988,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         LayoutBuilder(
           builder: (context, constraints) {
             final screenWidth = constraints.maxWidth;
@@ -2052,7 +2052,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
           BoxShadow(
             color: AppColors.black.withOpacity(0.05),
             blurRadius: 10,
-            offset: const Offset(0, 2),
+            offset: Offset(0, 2),
           ),
         ],
       ),
@@ -2062,7 +2062,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
         children: [
           // Image Section
           ClipRRect(
-            borderRadius: const BorderRadius.only(
+            borderRadius: BorderRadius.only(
               topLeft: Radius.circular(16),
               topRight: Radius.circular(16),
             ),
@@ -2108,7 +2108,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                           BoxShadow(
                             color: AppColors.black.withOpacity(0.2),
                             blurRadius: 4,
-                            offset: const Offset(0, 2),
+                            offset: Offset(0, 2),
                           ),
                         ],
                       ),
@@ -2273,7 +2273,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                     ),
                   ),
                   backgroundColor: AppColors.success,
-                  duration: const Duration(seconds: 1),
+                  duration: Duration(seconds: 1),
                 ),
               );
               _lastAddedItemName = item.itemName;
@@ -2288,7 +2288,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                   ),
                 ),
                 backgroundColor: AppColors.error,
-                duration: const Duration(seconds: 1),
+                duration: Duration(seconds: 1),
               ),
             );
           }
@@ -2303,7 +2303,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
               BoxShadow(
                 color: AppColors.black.withOpacity(0.25),
                 blurRadius: 6,
-                offset: const Offset(0, 2),
+                offset: Offset(0, 2),
               ),
             ],
           ),
@@ -2319,7 +2319,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
             BoxShadow(
               color: AppColors.black.withOpacity(0.25),
               blurRadius: 6,
-              offset: const Offset(0, 2),
+              offset: Offset(0, 2),
             ),
           ],
         ),
@@ -2357,7 +2357,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                           ),
                         ),
                         backgroundColor: AppColors.error,
-                        duration: const Duration(seconds: 1),
+                        duration: Duration(seconds: 1),
                       ),
                     );
                   }
@@ -2366,7 +2366,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
               child: Container(
                 width: buttonSize * 0.875,
                 height: buttonSize * 0.875,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: AppColors.primary,
                   shape: BoxShape.circle,
                 ),
@@ -2406,7 +2406,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                             ),
                           ),
                           backgroundColor: AppColors.success,
-                          duration: const Duration(seconds: 1),
+                          duration: Duration(seconds: 1),
                         ),
                       );
                       _lastAddedItemName = item.itemName;
@@ -2435,10 +2435,10 @@ class _HomeTabScreenState extends State<HomeTabScreen>
   }
 
   Widget _buildCartFAB() {
-    if (_cartItemCount == 0) return const SizedBox.shrink();
+    if (_cartItemCount == 0) return SizedBox.shrink();
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: EdgeInsets.symmetric(horizontal: 16.0),
       child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.9,
         height: 60,
@@ -2446,7 +2446,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const CartScreen()),
+              MaterialPageRoute(builder: (context) => CartScreen()),
             ).then((_) {
               _loadCart();
             });
@@ -2461,12 +2461,12 @@ class _HomeTabScreenState extends State<HomeTabScreen>
             children: [
               Row(
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.shopping_cart,
                     color: AppColors.white,
                     size: 28,
                   ),
-                  const SizedBox(width: 12),
+                  SizedBox(width: 12),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -2490,7 +2490,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                   ),
                 ],
               ),
-              const SizedBox(width: 40),
+              SizedBox(width: 40),
               Row(
                 children: [
                   Text(
@@ -2537,11 +2537,11 @@ class _HomeTabScreenState extends State<HomeTabScreen>
           BoxShadow(
             color: AppColors.black.withOpacity(0.2),
             blurRadius: 8,
-            offset: const Offset(0, 2),
+            offset: Offset(0, 2),
           ),
         ],
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -2605,7 +2605,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                 ),
               ],
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
           ],
           _buildOfferCard(_activeOffers.first),
         ],
@@ -2633,7 +2633,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const OffersListScreen(),
+                        builder: (context) => OffersListScreen(),
                       ),
                     );
                   },
@@ -2647,7 +2647,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                 ),
             ],
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
         ],
         // Carousel section extends to edges (no horizontal padding)
         SizedBox(
@@ -2672,7 +2672,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                   },
                   itemCount: 10000, // Large number for infinite scrolling
                   padEnds: false,
-                  physics: const BouncingScrollPhysics(),
+                  physics: BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
                     final offersToShow = _activeOffers.length > 3
                         ? 3
@@ -2680,7 +2680,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                     final actualIndex = index % offersToShow;
                     final offer = _activeOffers[actualIndex];
                     return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      padding: EdgeInsets.symmetric(horizontal: 8),
                       child: _buildOfferCard(offer),
                     );
                   },
@@ -2689,7 +2689,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
             ),
           ),
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: 12),
         // Carousel Indicator
         if ((_activeOffers.length > 3 ? 3 : _activeOffers.length) > 1)
           _buildCarouselIndicator(),
@@ -2738,7 +2738,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
             BoxShadow(
               color: AppColors.primary.withOpacity(0.3),
               blurRadius: 12,
-              offset: const Offset(0, 6),
+              offset: Offset(0, 6),
             ),
           ],
         ),
@@ -2755,7 +2755,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                         ? offer.bannerImageUrl!
                         : getUrlForUserUploadedImage(offer.bannerImageUrl!),
                     fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+                    errorBuilder: (_, __, ___) => SizedBox.shrink(),
                   ),
                 ),
               ),
@@ -2778,7 +2778,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
               top: 16,
               right: 16,
               child: Container(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: 10,
                   vertical: 5,
                 ),
@@ -2789,7 +2789,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                     BoxShadow(
                       color: AppColors.black.withOpacity(0.2),
                       blurRadius: 4,
-                      offset: const Offset(0, 2),
+                      offset: Offset(0, 2),
                     ),
                   ],
                 ),
@@ -2805,14 +2805,14 @@ class _HomeTabScreenState extends State<HomeTabScreen>
             ),
             // Content
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // Discount badge
                   Container(
-                    padding: const EdgeInsets.symmetric(
+                    padding: EdgeInsets.symmetric(
                       horizontal: 12,
                       vertical: 6,
                     ),
@@ -2839,7 +2839,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
 
   Widget _buildCarouselIndicator() {
     final offersToShow = _activeOffers.length > 3 ? 3 : _activeOffers.length;
-    if (offersToShow <= 1) return const SizedBox.shrink();
+    if (offersToShow <= 1) return SizedBox.shrink();
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -2848,7 +2848,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
         (index) => Container(
           width: _currentOfferIndex == index ? 24 : 8,
           height: 8,
-          margin: const EdgeInsets.symmetric(horizontal: 4),
+          margin: EdgeInsets.symmetric(horizontal: 4),
           decoration: BoxDecoration(
             color: _currentOfferIndex == index
                 ? AppColors.primary
@@ -2900,11 +2900,11 @@ class _HomeTabScreenState extends State<HomeTabScreen>
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         if (combinedItems.isEmpty)
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
+            padding: EdgeInsets.fromLTRB(32, 0, 32, 0),
             child: Column(
               children: [
                 Image.asset(
@@ -2964,7 +2964,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                         return Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(
+                              padding: EdgeInsets.symmetric(
                                 horizontal: 16,
                                 vertical: 12,
                               ),
@@ -2984,7 +2984,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                                                 fontWeight: FontWeight.w600,
                                               ),
                                         ),
-                                        const SizedBox(height: 4),
+                                        SizedBox(height: 4),
                                         // Items and date/time
                                         Text(
                                           '${order.items.length} ${order.items.length == 1 ? 'item' : 'items'} • Created: $dateLabel, $timeStr',
@@ -3066,7 +3066,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                         return Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(
+                              padding: EdgeInsets.symmetric(
                                 horizontal: 16,
                                 vertical: 12,
                               ),
@@ -3086,7 +3086,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                                                 fontWeight: FontWeight.w600,
                                               ),
                                         ),
-                                        const SizedBox(height: 4),
+                                        SizedBox(height: 4),
                                         // Booking date and time
                                         Text(
                                           'Booking: $dateLabel, $timeStr | ${booking.numberOfGuests} Guests',
@@ -3095,7 +3095,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                                                 color: AppColors.textSecondary,
                                               ),
                                         ),
-                                        const SizedBox(height: 2),
+                                        SizedBox(height: 2),
                                         // Created date and time
                                         Text(
                                           'Created: $createdDateLabel, $createdTimeStr',
@@ -3203,7 +3203,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
             ),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         // Cards section extends to edges (no horizontal padding)
         SizedBox(
           height: 120,
@@ -3218,11 +3218,11 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 16, right: 8),
+                        padding: EdgeInsets.only(left: 16, right: 8),
                         child: _buildOnlineRequestCard(
                           title: 'Open Online Orders',
                           count: takeawayOrdersCount,
-                          gradientColors: const [
+                          gradientColors: [
                             AppColors.cardBackground, // Dark blue-grey
                             Color(0xFFFF6B4A), // Vibrant orange-red
                           ],
@@ -3232,7 +3232,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const TakeawayScreen(),
+                                builder: (context) => TakeawayScreen(),
                               ),
                             );
                           },
@@ -3241,11 +3241,11 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                     ),
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 8, right: 16),
+                        padding: EdgeInsets.only(left: 8, right: 16),
                         child: _buildOnlineRequestCard(
                           title: 'Online Reservation Request',
                           count: reservationRequestsCount,
-                          gradientColors: const [
+                          gradientColors: [
                             AppColors.cardBackground, // Dark blue-grey
                             AppColors.success, // Deep green
                           ],
@@ -3256,7 +3256,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    const ReservationRequestScreen(),
+                                    ReservationRequestScreen(),
                               ),
                             );
                             _loadDashboardData();
@@ -3296,7 +3296,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
             BoxShadow(
               color: AppColors.black.withOpacity(0.2),
               blurRadius: 8,
-              offset: const Offset(0, 4),
+              offset: Offset(0, 4),
             ),
           ],
         ),
@@ -3334,7 +3334,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
             ),
             // Content
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -3380,7 +3380,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         // Two buttons side-by-side
         Row(
           children: [
@@ -3394,14 +3394,14 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                 },
               ),
             ),
-            const SizedBox(width: 12),
+            SizedBox(width: 12),
             Expanded(
               child: _quickActionButton(
                 label: 'Create Offers',
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const OffersListScreen(),
+                    builder: (context) => OffersListScreen(),
                   ),
                 ),
               ),
@@ -3419,7 +3419,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        padding: EdgeInsets.symmetric(vertical: 16),
         decoration: BoxDecoration(
           color: AppColors.cardBackground, // Dark purplish-grey
           borderRadius: BorderRadius.circular(12),
@@ -3470,7 +3470,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ReservationRequestScreen(),
+                    builder: (context) => ReservationRequestScreen(),
                   ),
                 );
                 _loadDashboardData();
@@ -3485,11 +3485,11 @@ class _HomeTabScreenState extends State<HomeTabScreen>
             ),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         if (upcomingReservations.isEmpty)
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
+            padding: EdgeInsets.fromLTRB(32, 0, 32, 0),
             child: Column(
               children: [
                 Image.asset(
@@ -3577,7 +3577,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                       return Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(
+                            padding: EdgeInsets.symmetric(
                               horizontal: 16,
                               vertical: 12,
                             ),
@@ -3597,7 +3597,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                                               fontWeight: FontWeight.w600,
                                             ),
                                       ),
-                                      const SizedBox(height: 4),
+                                      SizedBox(height: 4),
                                       // Reservation date and time
                                       Text(
                                         'Reservation: $dateLabel, $timeStr | ${event.numberOfGuests} Guests',
@@ -3605,7 +3605,7 @@ class _HomeTabScreenState extends State<HomeTabScreen>
                                           color: AppColors.textSecondary,
                                         ),
                                       ),
-                                      const SizedBox(height: 2),
+                                      SizedBox(height: 2),
                                       // Booking date and time
                                       Text(
                                         'Booked: $bookingDateLabel, $bookingTimeStr',

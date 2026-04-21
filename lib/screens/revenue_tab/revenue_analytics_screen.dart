@@ -19,7 +19,7 @@ import '../../services/table_booking_service.dart';
 import 'package:intl/intl.dart';
 
 class RevenueAnalyticsScreen extends StatefulWidget {
-  const RevenueAnalyticsScreen({super.key});
+  RevenueAnalyticsScreen({super.key});
 
   @override
   State<RevenueAnalyticsScreen> createState() => _RevenueAnalyticsScreenState();
@@ -64,7 +64,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
         backgroundColor: AppColors.cardBackground,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back_ios_new_rounded,
             color: AppColors.textPrimary,
           ),
@@ -93,7 +93,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
                 builder: (context, billsSnapshot) {
                   if (billsSnapshot.connectionState ==
                       ConnectionState.waiting) {
-                    return const Center(
+                    return Center(
                       child: CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation<Color>(
                           AppColors.primary,
@@ -123,7 +123,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
             if (eventsSnapshot.connectionState == ConnectionState.waiting &&
                 !eventsSnapshot.hasData &&
                 bills.isEmpty) {
-              return const Center(
+              return Center(
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
                 ),
@@ -247,7 +247,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
                     fontSize: fontSize,
                     horizontalPadding: horizontalPadding,
                   ),
-                  const SizedBox(width: 8),
+                  SizedBox(width: 8),
                   _buildTimeframeButton(
                     label: 'Monthly',
                     value: 'monthly',
@@ -255,7 +255,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
                     fontSize: fontSize,
                     horizontalPadding: horizontalPadding,
                   ),
-                  const SizedBox(width: 8),
+                  SizedBox(width: 8),
                   _buildTimeframeButton(
                     label: 'Yearly',
                     value: 'yearly',
@@ -269,7 +269,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
           ],
         ),
         if (!isTablet) ...[
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           Row(
             children: [
               Expanded(
@@ -281,7 +281,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
                   horizontalPadding: horizontalPadding,
                 ),
               ),
-              const SizedBox(width: 8),
+              SizedBox(width: 8),
               Expanded(
                 child: _buildTimeframeButton(
                   label: 'Monthly',
@@ -291,7 +291,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
                   horizontalPadding: horizontalPadding,
                 ),
               ),
-              const SizedBox(width: 8),
+              SizedBox(width: 8),
               Expanded(
                 child: _buildTimeframeButton(
                   label: 'Yearly',
@@ -453,10 +453,10 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
     final isTablet = screenWidth > 600;
     final isSmallScreen = screenWidth < 360;
     final padding = isTablet
-        ? const EdgeInsets.all(20)
+        ? EdgeInsets.all(20)
         : isSmallScreen
-        ? const EdgeInsets.all(12)
-        : const EdgeInsets.all(16);
+        ? EdgeInsets.all(12)
+        : EdgeInsets.all(16);
     final iconSize = isTablet
         ? 24.0
         : isSmallScreen
@@ -493,7 +493,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
           BoxShadow(
             color: AppColors.shadow,
             blurRadius: 8,
-            offset: const Offset(0, 4),
+            offset: Offset(0, 4),
           ),
         ],
       ),
@@ -510,7 +510,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
             ),
             child: Icon(icon, color: iconColor, size: iconSize),
           ),
-          const Spacer(),
+          Spacer(),
           Flexible(
             child: FittedBox(
               fit: BoxFit.scaleDown,
@@ -527,7 +527,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
               ),
             ),
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: 4),
           Flexible(
             child: FittedBox(
               fit: BoxFit.scaleDown,
@@ -566,7 +566,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
         : 0.0;
 
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
@@ -574,7 +574,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
           BoxShadow(
             color: AppColors.shadow,
             blurRadius: 4,
-            offset: const Offset(0, 2),
+            offset: Offset(0, 2),
           ),
         ],
       ),
@@ -588,7 +588,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20),
           // Reservation Bookings
           _buildDistributionItem(
             label: 'Reservation Bookings',
@@ -597,7 +597,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
             color: AppColors.warning,
             screenWidth: screenWidth,
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20),
           // Table Bookings
           _buildDistributionItem(
             label: 'Table Bookings',
@@ -645,7 +645,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
             ),
           ],
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: 12),
         ClipRRect(
           borderRadius: BorderRadius.circular(8),
           child: LinearProgressIndicator(
@@ -673,10 +673,10 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         ...dailyBreakdown.map(
           (day) => Padding(
-            padding: const EdgeInsets.only(bottom: 16),
+            padding: EdgeInsets.only(bottom: 16),
             child: _buildDailyItem(day, screenWidth),
           ),
         ),
@@ -697,7 +697,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
         : 0.0;
 
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
@@ -705,7 +705,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
           BoxShadow(
             color: AppColors.shadow,
             blurRadius: 4,
-            offset: const Offset(0, 2),
+            offset: Offset(0, 2),
           ),
         ],
       ),
@@ -731,7 +731,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
               ),
             ],
           ),
-          const SizedBox(height: 6),
+          SizedBox(height: 6),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -751,7 +751,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           // Progress bar with text inside
           LayoutBuilder(
             builder: (context, constraints) {
@@ -786,14 +786,14 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
                               color: AppColors.warning,
                               borderRadius:
                                   reservations > 0 && tableBookings > 0
-                                  ? const BorderRadius.only(
+                                  ? BorderRadius.only(
                                       topLeft: Radius.circular(8),
                                       bottomLeft: Radius.circular(8),
                                     )
                                   : BorderRadius.circular(8),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
+                              padding: EdgeInsets.symmetric(
                                 horizontal: 8,
                               ),
                               child: Align(
@@ -823,14 +823,14 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
                               color: AppColors.primary,
                               borderRadius:
                                   reservations > 0 && tableBookings > 0
-                                  ? const BorderRadius.only(
+                                  ? BorderRadius.only(
                                       topRight: Radius.circular(8),
                                       bottomRight: Radius.circular(8),
                                     )
                                   : BorderRadius.circular(8),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
+                              padding: EdgeInsets.symmetric(
                                 horizontal: 8,
                               ),
                               child: Align(
@@ -873,7 +873,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         _buildInsightCard(
           icon: Icons.calendar_today,
           iconColor: AppColors.success,
@@ -882,7 +882,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
           value2: 'AED ${_formatNumber(insights['bestDayRevenue'] as double)}',
           screenWidth: screenWidth,
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: 12),
         _buildInsightCard(
           icon: CupertinoIcons.chart_bar_alt_fill,
           iconColor: AppColors.info,
@@ -890,7 +890,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
           value: 'AED ${_formatNumber(insights['averagePerDay'] as double)}',
           screenWidth: screenWidth,
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: 12),
         _buildInsightCard(
           icon: CupertinoIcons.arrow_up_right,
           iconColor: AppColors.warning,
@@ -913,7 +913,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
     required double screenWidth,
   }) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
@@ -921,7 +921,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
           BoxShadow(
             color: AppColors.shadow,
             blurRadius: 4,
-            offset: const Offset(0, 2),
+            offset: Offset(0, 2),
           ),
         ],
       ),
@@ -936,7 +936,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
             ),
             child: Icon(icon, color: AppColors.white, size: 18),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12),
           Expanded(
             child: Text(
               label,
@@ -985,9 +985,9 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Container(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: AppColors.cardBackground,
             borderRadius: BorderRadius.circular(16),
@@ -995,14 +995,14 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
               BoxShadow(
                 color: AppColors.shadow,
                 blurRadius: 4,
-                offset: const Offset(0, 2),
+                offset: Offset(0, 2),
               ),
             ],
           ),
           child: Column(
             children: [
               _buildExportDropdown(),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               _buildExportButton(
                 screenWidth,
                 hasRevenue:
@@ -1010,7 +1010,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
               ),
               if ((revenueData['totalRevenue'] as double? ?? 0.0) <= 0.0)
                 Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
+                  padding: EdgeInsets.only(top: 8.0),
                   child: Text(
                     'No revenue data available for the selected period to export.',
                     style: AppTextStyles.bodySmall.copyWith(
@@ -1034,11 +1034,11 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
         showModalBottomSheet(
           context: context,
           backgroundColor: AppColors.cardBackground,
-          shape: const RoundedRectangleBorder(
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
           ),
           builder: (context) => Container(
-            padding: const EdgeInsets.symmetric(vertical: 20),
+            padding: EdgeInsets.symmetric(vertical: 20),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -1051,7 +1051,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
         );
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         decoration: BoxDecoration(
           color: AppColors.background,
           borderRadius: BorderRadius.circular(12),
@@ -1087,7 +1087,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
         Navigator.pop(context);
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -1116,7 +1116,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
       child: ElevatedButton.icon(
         onPressed: _isExporting || !hasRevenue ? null : _exportRevenueReport,
         icon: _isExporting
-            ? const SizedBox(
+            ? SizedBox(
                 width: 20,
                 height: 20,
                 child: CircularProgressIndicator(
@@ -1124,7 +1124,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
                   valueColor: AlwaysStoppedAnimation<Color>(AppColors.white),
                 ),
               )
-            : const Icon(Icons.download, color: AppColors.white),
+            : Icon(Icons.download, color: AppColors.white),
         label: Text(
           _isExporting
               ? 'Exporting...'
@@ -1154,7 +1154,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
           _cachedBills == null ||
           _cachedTableBookings == null) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+          SnackBar(
             content: Text('Please wait for data to load'),
             backgroundColor: AppColors.error,
           ),
@@ -1171,7 +1171,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
       showDialog(
         context: context,
         barrierDismissible: false,
-        builder: (context) => const Center(
+        builder: (context) => Center(
           child: CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
           ),
@@ -1184,7 +1184,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
         if (mounted) {
           Navigator.pop(context); // Close loading
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
+            SnackBar(
               content: Text(
                 'Unable to access storage. Please grant permissions.',
               ),
@@ -1235,16 +1235,16 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Revenue report saved successfully!'),
-                Text('File: $fileName', style: const TextStyle(fontSize: 12)),
+                Text('Revenue report saved successfully!'),
+                Text('File: $fileName', style: TextStyle(fontSize: 12)),
                 Text(
                   'Location: ${directory.path}',
-                  style: const TextStyle(fontSize: 11),
+                  style: TextStyle(fontSize: 11),
                 ),
               ],
             ),
             backgroundColor: AppColors.success,
-            duration: const Duration(seconds: 5),
+            duration: Duration(seconds: 5),
             action: SnackBarAction(
               label: 'Share',
               textColor: AppColors.white,
@@ -1295,7 +1295,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
     pdf.addPage(
       pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
-        margin: const pw.EdgeInsets.all(40),
+        margin: pw.EdgeInsets.all(40),
         build: (pw.Context context) {
           return [
             // Header
@@ -1342,14 +1342,14 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
         pw.SizedBox(height: 8),
         pw.Text(
           '$timeframeName Report',
-          style: const pw.TextStyle(fontSize: 16),
+          style: pw.TextStyle(fontSize: 16),
         ),
         pw.SizedBox(height: 4),
-        pw.Text(dateRange, style: const pw.TextStyle(fontSize: 12)),
+        pw.Text(dateRange, style: pw.TextStyle(fontSize: 12)),
         pw.SizedBox(height: 4),
         pw.Text(
           'Generated: ${DateFormat('MMM dd, yyyy • hh:mm a').format(now)}',
-          style: const pw.TextStyle(fontSize: 10),
+          style: pw.TextStyle(fontSize: 10),
         ),
       ],
     );
@@ -1393,7 +1393,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
 
   pw.Widget _buildPDFKeyMetrics(Map<String, dynamic> revenueData) {
     return pw.Container(
-      padding: const pw.EdgeInsets.all(12),
+      padding: pw.EdgeInsets.all(12),
       decoration: pw.BoxDecoration(
         border: pw.Border.all(color: PdfColors.grey300),
         borderRadius: pw.BorderRadius.circular(8),
@@ -1434,7 +1434,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
     return pw.Row(
       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
       children: [
-        pw.Text(label, style: const pw.TextStyle(fontSize: 12)),
+        pw.Text(label, style: pw.TextStyle(fontSize: 12)),
         pw.Text(
           displayValue,
           style: pw.TextStyle(fontSize: 12, fontWeight: pw.FontWeight.bold),
@@ -1458,7 +1458,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
         : 0.0;
 
     return pw.Container(
-      padding: const pw.EdgeInsets.all(12),
+      padding: pw.EdgeInsets.all(12),
       decoration: pw.BoxDecoration(
         border: pw.Border.all(color: PdfColors.grey300),
         borderRadius: pw.BorderRadius.circular(8),
@@ -1498,7 +1498,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
         pw.Row(
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [
-            pw.Text(label, style: const pw.TextStyle(fontSize: 12)),
+            pw.Text(label, style: pw.TextStyle(fontSize: 12)),
             pw.Text(
               'AED ${_formatNumberForPDF(value)} (${percentage.toStringAsFixed(1)}%)',
               style: pw.TextStyle(fontSize: 12, fontWeight: pw.FontWeight.bold),
@@ -1536,7 +1536,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
 
   pw.Widget _buildPDFDailyBreakdown(List<Map<String, dynamic>> dailyBreakdown) {
     return pw.Container(
-      padding: const pw.EdgeInsets.all(12),
+      padding: pw.EdgeInsets.all(12),
       decoration: pw.BoxDecoration(
         border: pw.Border.all(color: PdfColors.grey300),
         borderRadius: pw.BorderRadius.circular(8),
@@ -1551,13 +1551,13 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
           pw.SizedBox(height: 12),
           ...dailyBreakdown.map((day) {
             return pw.Padding(
-              padding: const pw.EdgeInsets.only(bottom: 8),
+              padding: pw.EdgeInsets.only(bottom: 8),
               child: pw.Row(
                 mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                 children: [
                   pw.Text(
                     day['day'] as String,
-                    style: const pw.TextStyle(fontSize: 11),
+                    style: pw.TextStyle(fontSize: 11),
                   ),
                   pw.Text(
                     'AED ${_formatNumberForPDF(day['total'] as double)}',
@@ -1577,7 +1577,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
 
   pw.Widget _buildPDFPerformanceInsights(Map<String, dynamic> insights) {
     return pw.Container(
-      padding: const pw.EdgeInsets.all(12),
+      padding: pw.EdgeInsets.all(12),
       decoration: pw.BoxDecoration(
         border: pw.Border.all(color: PdfColors.grey300),
         borderRadius: pw.BorderRadius.circular(8),
@@ -1617,13 +1617,13 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
       children: [
         pw.Expanded(
-          child: pw.Text(label, style: const pw.TextStyle(fontSize: 11)),
+          child: pw.Text(label, style: pw.TextStyle(fontSize: 11)),
         ),
         pw.Column(
           crossAxisAlignment: pw.CrossAxisAlignment.end,
           children: [
             if (value2 != null)
-              pw.Text(value2, style: const pw.TextStyle(fontSize: 10)),
+              pw.Text(value2, style: pw.TextStyle(fontSize: 10)),
             pw.Text(
               value,
               style: pw.TextStyle(fontSize: 11, fontWeight: pw.FontWeight.bold),
@@ -1636,12 +1636,12 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
 
   pw.Widget _buildPDFFooter() {
     return pw.Container(
-      padding: const pw.EdgeInsets.all(12),
+      padding: pw.EdgeInsets.all(12),
       child: pw.Column(
         children: [
           pw.Text(
             'This is a computer-generated revenue report.',
-            style: const pw.TextStyle(fontSize: 10),
+            style: pw.TextStyle(fontSize: 10),
           ),
         ],
       ),
@@ -2098,7 +2098,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
       if (!await file.exists()) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
+            SnackBar(
               content: Text('File not found'),
               backgroundColor: AppColors.error,
             ),
@@ -2185,7 +2185,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
           (eventDateTime.isAtSameMomentAs(startDateTime) ||
               (eventDateTime.isAfter(startDateTime) &&
                   eventDateTime.isBefore(
-                    endDateTime.add(const Duration(days: 1)),
+                    endDateTime.add(Duration(days: 1)),
                   )));
     }).toList();
 
@@ -2214,7 +2214,7 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
           (bookingDateTime.isAtSameMomentAs(startDateTime) ||
               (bookingDateTime.isAfter(startDateTime) &&
                   bookingDateTime.isBefore(
-                    endDateTime.add(const Duration(days: 1)),
+                    endDateTime.add(Duration(days: 1)),
                   )));
     }).toList();
 
@@ -2251,9 +2251,9 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
         event.reservationDate.day,
       );
       if (eventDate.isAfter(
-            previousStartDate.subtract(const Duration(days: 1)),
+            previousStartDate.subtract(Duration(days: 1)),
           ) &&
-          eventDate.isBefore(startDate.add(const Duration(days: 1))) &&
+          eventDate.isBefore(startDate.add(Duration(days: 1))) &&
           event.status != ReservationStatus.cancelled) {
         previousReservationRevenue += event.estimatedTotalCost > 0
             ? event.estimatedTotalCost
@@ -2269,9 +2269,9 @@ class _RevenueAnalyticsScreenState extends State<RevenueAnalyticsScreen> {
         booking.bookingDate.day,
       );
       if (bookingDate.isAfter(
-            previousStartDate.subtract(const Duration(days: 1)),
+            previousStartDate.subtract(Duration(days: 1)),
           ) &&
-          bookingDate.isBefore(startDate.add(const Duration(days: 1))) &&
+          bookingDate.isBefore(startDate.add(Duration(days: 1))) &&
           booking.status != TableBookingStatus.cancelled) {
         double subtotal = 0.0;
         for (final item in booking.menuItems) {

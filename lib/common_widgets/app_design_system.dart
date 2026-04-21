@@ -14,7 +14,7 @@ class AppDesignSystem {
   static const double spacingXl = 32.0;
   static const double spacing2Xl = 48.0;
 
-  // Legacy aliases for existing usage
+  // Legacy aliases
   static const double spacing4 = spacingXs;
   static const double spacing8 = spacingSm;
   static const double spacing12 = 12.0;
@@ -37,62 +37,58 @@ class AppDesignSystem {
   static const double radiusButton = 12.0;
   static const double radiusInput = 10.0;
 
-  // Shadows
-  // Card shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
-  static List<BoxShadow> cardShadow = [
+  // Shadows (dynamic getters)
+  static List<BoxShadow> get cardShadow => [
     BoxShadow(
       color: AppColors.black.withOpacity(0.1),
       blurRadius: 6,
-      offset: const Offset(0, 4),
+      offset: Offset(0, 4),
     ),
   ];
 
-  // Button shadow for primary buttons
-  static List<BoxShadow> buttonShadow = [
+  static List<BoxShadow> get buttonShadow => [
     BoxShadow(
       color: AppColors.primary.withOpacity(0.3),
       blurRadius: 8,
-      offset: const Offset(0, 4),
+      offset: Offset(0, 4),
     ),
   ];
 
-  static List<BoxShadow> elevatedShadow = [
+  static List<BoxShadow> get elevatedShadow => [
     BoxShadow(
       color: AppColors.black.withOpacity(0.2),
       blurRadius: 18,
-      offset: const Offset(0, 8),
+      offset: Offset(0, 8),
     ),
   ];
 
-  // Card Decoration
-  static BoxDecoration cardDecoration = BoxDecoration(
+  // Card Decoration (dynamic getter)
+  static BoxDecoration get cardDecoration => BoxDecoration(
     color: AppColors.cardBackground,
     borderRadius: BorderRadius.circular(radiusCard),
     border: Border.all(color: AppColors.border),
     boxShadow: cardShadow,
   );
 
-  // Input Decoration (base)
-  // Height: 48px, Padding: 12px 16px, Rounded: 10px
-  // Background: Slate 700, Border: Slate 600, Focus: Blue border + glow
-  static InputDecoration inputDecoration = InputDecoration(
+  // Input Decoration (base dynamic getter)
+  static InputDecoration get inputDecoration => InputDecoration(
     filled: true,
-    fillColor: AppColors.surface, // Slate 700
+    fillColor: AppColors.surface,
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(radiusInput),
-      borderSide: BorderSide(color: AppColors.borderMuted), // Slate 600
+      borderSide: BorderSide(color: AppColors.borderMuted),
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(radiusInput),
-      borderSide: BorderSide(color: AppColors.borderMuted), // Slate 600
+      borderSide: BorderSide(color: AppColors.borderMuted),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(radiusInput),
-      borderSide: const BorderSide(color: AppColors.primary, width: 2),
+      borderSide: BorderSide(color: AppColors.primary, width: 2),
     ),
-    contentPadding: const EdgeInsets.symmetric(
-      horizontal: spacingMd, // 16px
-      vertical: 12, // 12px
+    contentPadding: EdgeInsets.symmetric(
+      horizontal: spacingMd,
+      vertical: 12,
     ),
   );
 

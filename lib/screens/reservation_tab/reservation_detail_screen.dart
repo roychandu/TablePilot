@@ -13,7 +13,7 @@ import 'add_order_screen.dart';
 import 'edit_reservation_screen.dart';
 
 class ReservationDetailScreen extends StatefulWidget {
-  const ReservationDetailScreen({super.key, required this.event});
+  ReservationDetailScreen({super.key, required this.event});
 
   final dynamic
   event; // Accepts both ReservationModel and EventModel for compatibility
@@ -277,7 +277,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
         backgroundColor: AppColors.cardBackground,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back_ios_new_rounded,
             color: AppColors.textPrimary,
           ),
@@ -286,14 +286,14 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
         title: Row(
           children: [
             Container(
-              padding: const EdgeInsets.all(8),
+              padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: eventTypeColor.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(eventTypeIcon, color: eventTypeColor, size: 24),
             ),
-            const SizedBox(width: 12),
+            SizedBox(width: 12),
             Expanded(
               child: Text(
                 _reservationName,
@@ -309,18 +309,18 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
         ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Completed Status Indicator (if completed)
             if (_reservationStatus == ReservationStatus.completed) ...[
               Container(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: 16,
                   vertical: 12,
                 ),
-                margin: const EdgeInsets.only(bottom: 16),
+                margin: EdgeInsets.only(bottom: 16),
                 decoration: BoxDecoration(
                   color: AppColors.success.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(12),
@@ -336,7 +336,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
                         shape: BoxShape.circle,
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                     Text(
                       'Reservation Completed',
                       style: AppTextStyles.bodyMedium.copyWith(
@@ -349,11 +349,11 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
               ),
             ] else if (_reservationStatus == ReservationStatus.cancelled) ...[
               Container(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: 16,
                   vertical: 12,
                 ),
-                margin: const EdgeInsets.only(bottom: 16),
+                margin: EdgeInsets.only(bottom: 16),
                 decoration: BoxDecoration(
                   color: AppColors.error.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(12),
@@ -369,7 +369,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
                         shape: BoxShape.circle,
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                     Text(
                       'Reservation Cancelled',
                       style: AppTextStyles.bodyMedium.copyWith(
@@ -382,11 +382,11 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
               ),
             ] else if (_reservationStatus == ReservationStatus.rejected) ...[
               Container(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: 16,
                   vertical: 12,
                 ),
-                margin: const EdgeInsets.only(bottom: 16),
+                margin: EdgeInsets.only(bottom: 16),
                 decoration: BoxDecoration(
                   color: AppColors.error.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(12),
@@ -402,7 +402,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
                         shape: BoxShape.circle,
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                     Text(
                       'Reservation Rejected',
                       style: AppTextStyles.bodyMedium.copyWith(
@@ -416,7 +416,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
             ],
             // Reservation Details
             Container(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: AppColors.cardBackground,
                 borderRadius: BorderRadius.circular(16),
@@ -429,21 +429,21 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
                     label: 'Date',
                     value: _formatDate(_reservationDate),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                   // Time
                   _buildDetailRow(
                     icon: CupertinoIcons.time,
                     label: 'Time',
                     value: _formatTime(_event.startTime),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                   // Guest Count
                   _buildDetailRow(
                     icon: CupertinoIcons.person_2,
                     label: 'Guest Count',
                     value: '${_event.numberOfGuests} guests',
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                   // Table Number (if available)
                   if (_tableNumber != null) ...[
                     _buildDetailRow(
@@ -451,7 +451,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
                       label: 'Table Number',
                       value: 'Table T$_tableNumber',
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                   ],
                   // Contact Person
                   _buildDetailRow(
@@ -459,21 +459,21 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
                     label: 'Contact Person',
                     value: _event.contactPerson,
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                   // Email
                   _buildDetailRow(
                     icon: CupertinoIcons.mail,
                     label: 'Email',
                     value: _event.email,
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                   // Phone
                   _buildDetailRow(
                     icon: CupertinoIcons.phone,
                     label: 'Phone',
                     value: _event.phone,
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                   // Menu Categories
                   if (_event.menuCategories.isNotEmpty) ...[
                     _buildDetailRow(
@@ -482,12 +482,12 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
                       value: _event.menuCategories.join('\n'),
                       maxLines: _event.menuCategories.length,
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                   ],
                   // Menu Items
                   if (_event.menuItems.isNotEmpty) ...[
                     _buildMenuItemsRow(),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                   ],
                   // Special Dietary Requirements
                   if (_event.specialDietaryRequirements.isNotEmpty) ...[
@@ -497,7 +497,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
                       value: _event.specialDietaryRequirements,
                       maxLines: 3,
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                   ],
                   // Assigned Staff
                   if (_event.assignedStaffIds.isNotEmpty) ...[_buildStaffRow()],
@@ -508,7 +508,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
             if (_reservationStatus != ReservationStatus.completed &&
                 _reservationStatus != ReservationStatus.cancelled &&
                 _reservationStatus != ReservationStatus.rejected) ...[
-              const SizedBox(height: 24),
+              SizedBox(height: 24),
               Column(
                 children: [
                   _buildActionButton(
@@ -532,7 +532,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
                               _event = refreshedReservation;
                             });
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
+                              SnackBar(
                                 content: Text(
                                   'Reservation updated successfully',
                                 ),
@@ -543,7 +543,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
                       }
                     },
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12),
                   _buildActionButton(
                     icon: Icons.cancel_outlined,
                     label: 'Cancel Reservation',
@@ -551,7 +551,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
                     onTap: _cancelEvent,
                   ),
                   if (_canMarkAsCompleted()) ...[
-                    const SizedBox(height: 12),
+                    SizedBox(height: 12),
                     _buildActionButton(
                       icon: Icons.check_circle_outline,
                       label: 'Mark as Completed',
@@ -564,7 +564,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
             ],
             // Show "Add Orders" button ONLY when status is completed (Confirmed)
             if (_reservationStatus == ReservationStatus.completed) ...[
-              const SizedBox(height: 24),
+              SizedBox(height: 24),
               _buildActionButton(
                 icon: Icons.shopping_cart_outlined,
                 label: 'Add Orders',
@@ -588,7 +588,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
                       }
                     }
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
+                      SnackBar(
                         content: Text('Menu items updated successfully'),
                       ),
                     );
@@ -612,7 +612,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
           size: 20,
           color: AppColors.textSecondary,
         ),
-        const SizedBox(width: 12),
+        SizedBox(width: 12),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -623,7 +623,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
                   color: AppColors.textSecondary,
                 ),
               ),
-              const SizedBox(height: 4),
+              SizedBox(height: 4),
               if (assignedStaff.isEmpty)
                 Text(
                   'No staff assigned',
@@ -635,7 +635,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
               else
                 ...assignedStaff.map(
                   (staff) => Padding(
-                    padding: const EdgeInsets.only(bottom: 4),
+                    padding: EdgeInsets.only(bottom: 4),
                     child: Text(
                       '• ${staff.fullName} (${staff.category})',
                       style: AppTextStyles.bodyMedium.copyWith(
@@ -662,7 +662,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Icon(icon, size: 20, color: AppColors.textSecondary),
-        const SizedBox(width: 12),
+        SizedBox(width: 12),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -673,7 +673,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
                   color: AppColors.textSecondary,
                 ),
               ),
-              const SizedBox(height: 4),
+              SizedBox(height: 4),
               Text(
                 value,
                 style: AppTextStyles.bodyMedium.copyWith(
@@ -697,7 +697,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Icon(Icons.restaurant, size: 20, color: AppColors.textSecondary),
-        const SizedBox(width: 12),
+        SizedBox(width: 12),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -708,10 +708,10 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
                   color: AppColors.textSecondary,
                 ),
               ),
-              const SizedBox(height: 4),
+              SizedBox(height: 4),
               ..._event.menuItems.map((item) {
                 return Padding(
-                  padding: const EdgeInsets.only(bottom: 4),
+                  padding: EdgeInsets.only(bottom: 4),
                   child: Text(
                     '${item.quantity}x ${item.itemName} (AED ${item.totalPrice.toStringAsFixed(0)})',
                     style: AppTextStyles.bodyMedium.copyWith(
@@ -748,7 +748,7 @@ class _ReservationDetailScreenState extends State<ReservationDetailScreen> {
         ),
         style: ElevatedButton.styleFrom(
           backgroundColor: color,
-          padding: const EdgeInsets.symmetric(vertical: 16),
+          padding: EdgeInsets.symmetric(vertical: 16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),

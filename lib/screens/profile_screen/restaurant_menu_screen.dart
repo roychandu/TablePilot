@@ -16,7 +16,7 @@ import '../cart_tab/cart_screen.dart';
 import '../admin_tab/add_menu_screen.dart';
 
 class RestaurantMenuScreen extends StatefulWidget {
-  const RestaurantMenuScreen({super.key, this.showBackButton = true});
+  RestaurantMenuScreen({super.key, this.showBackButton = true});
 
   final bool showBackButton;
 
@@ -476,12 +476,12 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
   Widget _buildCartFAB() {
     return Container(
       height: 60,
-      margin: const EdgeInsets.symmetric(horizontal: 16),
+      margin: EdgeInsets.symmetric(horizontal: 16),
       child: FloatingActionButton.extended(
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const CartScreen()),
+            MaterialPageRoute(builder: (context) => CartScreen()),
           ).then((_) {
             // Refresh cart when returning from cart screen
             _loadCart();
@@ -493,7 +493,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         icon: Stack(
           children: [
-            const Icon(
+            Icon(
               Icons.shopping_cart_rounded,
               color: AppColors.white,
               size: 28,
@@ -522,13 +522,13 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const SizedBox(width: 8),
+                  SizedBox(width: 8),
                   Container(
                     width: 1,
                     height: 16,
                     color: AppColors.white.withOpacity(0.3),
                   ),
-                  const SizedBox(width: 8),
+                  SizedBox(width: 8),
                   Text(
                     'AED ${_calculateSubtotalWithOffers().toStringAsFixed(2)}',
                     style: AppTextStyles.bodyMedium.copyWith(
@@ -551,14 +551,14 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const AddMenuScreen()),
+          MaterialPageRoute(builder: (context) => AddMenuScreen()),
         ).then((_) {
           // Refresh menu when returning from add menu screen
           _loadMenu();
         });
       },
       backgroundColor: AppColors.primary,
-      icon: const Icon(Icons.add, color: AppColors.white),
+      icon: Icon(Icons.add, color: AppColors.white),
       label: Text(
         'Add Item',
         style: AppTextStyles.bodyMedium.copyWith(
@@ -581,7 +581,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
       ),
       leading: widget.showBackButton
           ? IconButton(
-              icon: const Icon(
+              icon: Icon(
                 Icons.arrow_back_ios_rounded,
                 color: AppColors.textPrimary,
               ),
@@ -593,7 +593,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
       elevation: 0,
       centerTitle: false,
       bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(1),
+        preferredSize: Size.fromHeight(1),
         child: Container(
           height: 1,
           decoration: BoxDecoration(
@@ -616,7 +616,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            padding: const EdgeInsets.all(24),
+            padding: EdgeInsets.all(24),
             decoration: BoxDecoration(
               color: AppColors.cardBackground,
               shape: BoxShape.circle,
@@ -628,12 +628,12 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
                 ),
               ],
             ),
-            child: const CircularProgressIndicator(
+            child: CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
               strokeWidth: 3,
             ),
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
           Text(
             'Loading Menu...',
             style: AppTextStyles.bodyMedium.copyWith(
@@ -649,12 +649,12 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
   Widget _buildEmptyState() {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(32),
+        padding: EdgeInsets.all(32),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              padding: const EdgeInsets.all(24),
+              padding: EdgeInsets.all(24),
               decoration: BoxDecoration(
                 color: AppColors.cardBackground,
                 shape: BoxShape.circle,
@@ -669,7 +669,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
                 color: AppColors.textSecondary.withOpacity(0.5),
               ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
             Text(
               'No Menu Available',
               style: AppTextStyles.h5.copyWith(
@@ -677,7 +677,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             Text(
               'Please try again later',
               style: AppTextStyles.bodyMedium.copyWith(
@@ -721,7 +721,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
 
         return ListView.builder(
           physics:
-              const AlwaysScrollableScrollPhysics(), // Enable pull-to-refresh
+              AlwaysScrollableScrollPhysics(), // Enable pull-to-refresh
           padding: EdgeInsets.only(
             left: 0,
             right: 0,
@@ -734,7 +734,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
             final items = category.items;
 
             if (items.isEmpty) {
-              return const SizedBox.shrink();
+              return SizedBox.shrink();
             }
 
             return Column(
@@ -824,7 +824,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
           BoxShadow(
             color: AppColors.black.withOpacity(0.15),
             blurRadius: 8,
-            offset: const Offset(0, 2),
+            offset: Offset(0, 2),
           ),
         ],
       ),
@@ -835,7 +835,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
         children: [
           // Image Section with Add Button Overlay
           ClipRRect(
-            borderRadius: const BorderRadius.only(
+            borderRadius: BorderRadius.only(
               topLeft: Radius.circular(16),
               topRight: Radius.circular(16),
             ),
@@ -885,7 +885,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
                           BoxShadow(
                             color: AppColors.black.withOpacity(0.2),
                             blurRadius: 4,
-                            offset: const Offset(0, 2),
+                            offset: Offset(0, 2),
                           ),
                         ],
                       ),
@@ -1043,7 +1043,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
                     ),
                   ),
                   backgroundColor: AppColors.success,
-                  duration: const Duration(seconds: 1),
+                  duration: Duration(seconds: 1),
                 ),
               );
               _lastAddedItemName = item.itemName;
@@ -1058,7 +1058,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
                   ),
                 ),
                 backgroundColor: AppColors.error,
-                duration: const Duration(seconds: 1),
+                duration: Duration(seconds: 1),
               ),
             );
           }
@@ -1073,7 +1073,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
               BoxShadow(
                 color: AppColors.black.withOpacity(0.25),
                 blurRadius: 6,
-                offset: const Offset(0, 2),
+                offset: Offset(0, 2),
               ),
             ],
           ),
@@ -1090,7 +1090,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
             BoxShadow(
               color: AppColors.black.withOpacity(0.25),
               blurRadius: 6,
-              offset: const Offset(0, 2),
+              offset: Offset(0, 2),
             ),
           ],
         ),
@@ -1129,7 +1129,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
                           ),
                         ),
                         backgroundColor: AppColors.error,
-                        duration: const Duration(seconds: 1),
+                        duration: Duration(seconds: 1),
                       ),
                     );
                   }
@@ -1138,7 +1138,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
               child: Container(
                 width: buttonSize * 0.875,
                 height: buttonSize * 0.875,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: AppColors.primary,
                   shape: BoxShape.circle,
                 ),
@@ -1180,7 +1180,7 @@ class _RestaurantMenuScreenState extends State<RestaurantMenuScreen> {
                             ),
                           ),
                           backgroundColor: AppColors.success,
-                          duration: const Duration(seconds: 1),
+                          duration: Duration(seconds: 1),
                         ),
                       );
                       _lastAddedItemName = item.itemName;

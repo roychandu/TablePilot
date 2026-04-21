@@ -160,7 +160,7 @@ class TableBookingModel {
                     ReservationMenuItem.fromMap(item as Map<dynamic, dynamic>),
               )
               .toList() ??
-          const [],
+          [],
       status: stringToTableBookingStatus(
         map['status'] as String? ?? 'confirmed',
       ),
@@ -173,7 +173,7 @@ class TableBookingModel {
       userId: map['userId'] as String?,
       assignedStaffIds:
           (map['assignedStaffIds'] as List<dynamic>?)?.cast<String>() ??
-          const [],
+          [],
     );
   }
 

@@ -48,7 +48,7 @@ class CustomButton extends StatelessWidget {
         onPressed: _isDisabled ? null : onPressed,
         style: TextButton.styleFrom(
           foregroundColor: textColor ?? AppColors.primary,
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           shape: RoundedRectangleBorder(borderRadius: radius),
         ),
         child: _buildButtonContent(
@@ -66,7 +66,7 @@ class CustomButton extends StatelessWidget {
           foregroundColor: textColor ?? AppColors.primary,
           side: BorderSide(color: AppColors.primary, width: 1.5),
           shape: RoundedRectangleBorder(borderRadius: radius), // 12px
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         ),
         child: _buildButtonContent(
           effectiveTextColor: textColor ?? AppColors.primary,
@@ -94,7 +94,7 @@ class CustomButton extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: radius,
           gradient: isPrimary
-              ? const LinearGradient(
+              ? LinearGradient(
                   colors: [
                     AppColors.primaryGradientStart, // #3B82F6
                     AppColors.primaryGradientEnd,   // #2563EB
@@ -107,7 +107,7 @@ class CustomButton extends StatelessWidget {
           boxShadow: isPrimary ? AppDesignSystem.buttonShadow : null,
         ),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           alignment: Alignment.center,
           child: _buildButtonContent(effectiveTextColor: fgColor),
         ),
@@ -129,7 +129,7 @@ class CustomButton extends StatelessWidget {
 
   Widget _buildButtonContent({required Color effectiveTextColor}) {
     if (isLoading) {
-      return const SizedBox(
+      return SizedBox(
         width: 20,
         height: 20,
         child: CircularProgressIndicator(
@@ -146,7 +146,7 @@ class CustomButton extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, size: 18, color: effectiveTextColor),
-          const SizedBox(width: 8),
+          SizedBox(width: 8),
           Text(text, style: style),
         ],
       );

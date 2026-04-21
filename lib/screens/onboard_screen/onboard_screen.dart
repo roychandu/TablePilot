@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:table_pilot/common_widgets/app_colors.dart';
 import 'package:table_pilot/services/app_flow_service.dart';
 
-const Color _onboardPurple = AppColors.occupied;
+Color _onboardPurple = AppColors.occupied;
 
 class OnboardScreen extends StatefulWidget {
-  const OnboardScreen({super.key});
+  OnboardScreen({super.key});
 
   @override
   State<OnboardScreen> createState() => _OnboardScreenState();
@@ -46,7 +46,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
   void _previousPage() {
     if (_currentPage > 0) {
       _pageController.previousPage(
-        duration: const Duration(milliseconds: 300),
+        duration: Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
     }
@@ -55,7 +55,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
   void _nextPage() async {
     if (_currentPage < _onboardPages.length - 1) {
       _pageController.nextPage(
-        duration: const Duration(milliseconds: 300),
+        duration: Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
     } else {
@@ -84,7 +84,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
     final isSmallScreen = screenHeight < 700;
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(
+      value: SystemUiOverlayStyle(
         statusBarColor: AppColors.transparent,
         statusBarIconBrightness: Brightness.light,
         statusBarBrightness: Brightness.dark,
@@ -125,7 +125,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                             errorBuilder: (context, error, stackTrace) {
                               return Container(
                                 color: AppColors.background,
-                                child: const Center(
+                                child: Center(
                                   child: Icon(
                                     Icons.image_not_supported,
                                     size: 64,
@@ -158,10 +158,10 @@ class _OnboardScreenState extends State<OnboardScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const SizedBox(height: 40),
+                          SizedBox(height: 40),
                           // Title
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 24),
+                            padding: EdgeInsets.symmetric(horizontal: 24),
                             child: Text(
                               _onboardPages[_currentPage].title,
                               textAlign: TextAlign.center,
@@ -172,10 +172,10 @@ class _OnboardScreenState extends State<OnboardScreen> {
                               ),
                             ),
                           ),
-                          const SizedBox(height: 12),
+                          SizedBox(height: 12),
                           // Description
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 32),
+                            padding: EdgeInsets.symmetric(horizontal: 32),
                             child: Text(
                               _onboardPages[_currentPage].description,
                               textAlign: TextAlign.center,
@@ -186,14 +186,14 @@ class _OnboardScreenState extends State<OnboardScreen> {
                               ),
                             ),
                           ),
-                          const SizedBox(height: 32),
+                          SizedBox(height: 32),
                           // Pagination indicators
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: List.generate(
                               _onboardPages.length,
                               (indicatorIndex) => Padding(
-                                padding: const EdgeInsets.symmetric(
+                                padding: EdgeInsets.symmetric(
                                   horizontal: 4,
                                 ),
                                 child: _buildIndicator(
@@ -202,10 +202,10 @@ class _OnboardScreenState extends State<OnboardScreen> {
                               ),
                             ),
                           ),
-                          const SizedBox(height: 32),
+                          SizedBox(height: 32),
                           // Previous and Next buttons
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 24),
+                            padding: EdgeInsets.symmetric(horizontal: 24),
                             child: _currentPage > 0
                                 ? Row(
                                     children: [
@@ -238,7 +238,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                                           ),
                                         ),
                                       ),
-                                      const SizedBox(width: 16),
+                                      SizedBox(width: 16),
                                       // Next or Get Started button
                                       Expanded(
                                         child: SizedBox(
@@ -299,7 +299,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                                     ),
                                   ),
                           ),
-                          const SizedBox(height: 12),
+                          SizedBox(height: 12),
                           // Skip button
                           TextButton(
                             onPressed: _skipToLogin,
@@ -330,7 +330,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
 
   Widget _buildIndicator({required bool isActive}) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 300),
+      duration: Duration(milliseconds: 300),
       width: isActive ? 40 : 20,
       height: 8,
       decoration: BoxDecoration(

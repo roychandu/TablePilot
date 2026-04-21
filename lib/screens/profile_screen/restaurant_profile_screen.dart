@@ -8,7 +8,7 @@ import '../../common_widgets/app_text_styles.dart';
 import 'restaurant_menu_screen.dart';
 
 class RestaurantProfileScreen extends StatefulWidget {
-  const RestaurantProfileScreen({super.key});
+  RestaurantProfileScreen({super.key});
 
   @override
   State<RestaurantProfileScreen> createState() =>
@@ -20,7 +20,7 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
   // Google Maps link: https://maps.app.goo.gl/sGs6mxiv38xWQ4GT6
   // Coordinates for Abu Dhabi (approximate location for Sheikh Zayed Bin Sultan Street)
 
-  static const LatLng _restaurantLocation = LatLng(24.4539, 54.3773);
+  static LatLng _restaurantLocation = LatLng(24.4539, 54.3773);
 
   @override
   void dispose() {
@@ -50,7 +50,7 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
       // If all else fails, show error message
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+          SnackBar(
             content: Text('Could not open maps. Please install Google Maps.'),
           ),
         );
@@ -100,17 +100,17 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
                   AppColors.mainBackground.withOpacity(0.85),
                   AppColors.mainBackground,
                 ],
-                stops: const [0.55, 0.82, 1],
+                stops: [0.55, 0.82, 1],
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _BackButton(onTap: () => Navigator.of(context).pop()),
-                const Spacer(),
+                Spacer(),
                 Center(
                   child: Column(
                     children: [
@@ -137,7 +137,7 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 12),
+                          SizedBox(width: 12),
                           Text(
                             'SFC Plus - Southern\nFried Chicken',
                             textAlign: TextAlign.start,
@@ -150,7 +150,7 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: 16),
                       _PrimaryButton(
                         label: 'View Menu',
                         background: AppColors.secondary,
@@ -159,12 +159,12 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => const RestaurantMenuScreen(),
+                              builder: (_) => RestaurantMenuScreen(),
                             ),
                           );
                         },
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20),
                     ],
                   ),
                 ),
@@ -178,7 +178,7 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
 
   Widget _buildDetailsSection(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+      padding: EdgeInsets.fromLTRB(16, 12, 16, 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -188,15 +188,15 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
             description:
                 'Al Dhaheri Building - Al - Sheikh Zayed Bin Sultan St - Abu Dhabi - United Arab Emirates',
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20),
           _infoBlock(
             icon: Icons.call_rounded,
             title: 'Call:',
             description: '+971600566004',
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20),
           _buildMapCard(context),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           _PrimaryButton(
             label: 'View Location',
             background: AppColors.primary,
@@ -217,14 +217,14 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          padding: const EdgeInsets.all(10),
+          padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: AppColors.primary.withOpacity(0.15),
             shape: BoxShape.circle,
           ),
           child: Icon(icon, color: AppColors.primary, size: 20),
         ),
-        const SizedBox(width: 12),
+        SizedBox(width: 12),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -236,7 +236,7 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(height: 6),
+              SizedBox(height: 6),
               Text(
                 description,
                 style: AppTextStyles.bodyMedium.copyWith(
@@ -261,7 +261,7 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
           BoxShadow(
             color: AppColors.shadow,
             blurRadius: 12,
-            offset: const Offset(0, 6),
+            offset: Offset(0, 6),
           ),
         ],
       ),
@@ -279,9 +279,9 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
                 onMapCreated: (GoogleMapController controller) {},
                 markers: {
                   Marker(
-                    markerId: const MarkerId('restaurant'),
+                    markerId: MarkerId('restaurant'),
                     position: _restaurantLocation,
-                    infoWindow: const InfoWindow(
+                    infoWindow: InfoWindow(
                       title: 'SFC Plus - Southern Fried Chicken',
                       snippet: 'Fast food · AED 50-100',
                     ),
@@ -300,7 +300,7 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
               left: 14,
               right: 14,
               child: Container(
-                padding: const EdgeInsets.all(12),
+                padding: EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   color: AppColors.white,
                   borderRadius: BorderRadius.circular(14),
@@ -308,7 +308,7 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
                     BoxShadow(
                       color: AppColors.black.withOpacity(0.18),
                       blurRadius: 10,
-                      offset: const Offset(0, 6),
+                      offset: Offset(0, 6),
                     ),
                   ],
                 ),
@@ -333,7 +333,7 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -347,7 +347,7 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
                               height: 1.25,
                             ),
                           ),
-                          const SizedBox(height: 6),
+                          SizedBox(height: 6),
                           Wrap(
                             spacing: 8,
                             runSpacing: 4,
@@ -355,7 +355,7 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
                             children: [
                               Row(
                                 mainAxisSize: MainAxisSize.min,
-                                children: const [
+                                children: [
                                   Icon(
                                     Icons.star,
                                     size: 16,
@@ -384,7 +384,7 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
                         ],
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                   ],
                 ),
               ),
@@ -399,19 +399,19 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
 class _BackButton extends StatelessWidget {
   final VoidCallback onTap;
 
-  const _BackButton({required this.onTap});
+  _BackButton({required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(10),
+        padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: AppColors.black.withOpacity(0.35),
           shape: BoxShape.circle,
         ),
-        child: const Icon(
+        child: Icon(
           Icons.arrow_back_ios_new,
           color: AppColors.white,
           size: 18,
@@ -427,7 +427,7 @@ class _PrimaryButton extends StatelessWidget {
   final Color foreground;
   final VoidCallback onTap;
 
-  const _PrimaryButton({
+  _PrimaryButton({
     required this.label,
     required this.background,
     required this.foreground,
@@ -466,7 +466,7 @@ class _ChipIcon extends StatelessWidget {
   final Color color;
   final VoidCallback onTap;
 
-  const _ChipIcon({
+  _ChipIcon({
     required this.icon,
     required this.color,
     required this.onTap,
@@ -477,7 +477,7 @@ class _ChipIcon extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(8),
+        padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: color.withOpacity(0.12),
           shape: BoxShape.circle,
